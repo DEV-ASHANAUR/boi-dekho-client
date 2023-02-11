@@ -1,0 +1,96 @@
+footer {
+    border-top: 3px solid #ffa500;
+    background-color: #1d1f24;
+    color: #999;
+}
+.footer_top {
+    position: relative;
+    padding: 40px 0;
+}
+.footer_top::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 340px;
+    background-size: cover;
+}
+.footer_top .text {
+    font-weight: 400;
+    line-height: 30px;
+}
+footer .widget_box {
+    padding: 0 55px;
+}
+footer h5 {
+    margin-top: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 700;
+}
+footer ul {
+    padding-left: 0;
+}
+footer ul li {
+    list-style: none;
+}
+footer ul li a {
+    color: rgba(255, 255, 255, 0.74);
+}
+footer p {
+    max-width: 27rem;
+}
+.footer-bottom {
+    border-top: 1px solid #ffa500;
+    padding: 20px 0;
+    color: #fff;
+}
+.footer-bottom p {
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.icon {
+    background: #000;
+    padding: 2px;
+    border-radius: 50%;
+}
+.copyright {
+    margin-top: -214px;
+}
+.copyright p {
+    font-size: 14px;
+    line-height: 21px;
+}
+.footer-bottom .icon-area a {
+    font-size: 18px;
+    margin-right: 3rem;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+}
+.text-right {
+    text-align: right;
+}
+.footer-bottom .icon-area a:last-child {
+    margin-right: 0;
+}
+footer .footer-box .payment-footer {
+    width: 20rem;
+}
+.footer-bottom .icon-area a {
+    font-size: 25px;
+    margin-right: 3rem;
+    display: inline-block;
+    color: #fff;
+}
+
+.footer-bottom .icon-area a:last-child {
+    margin-right: 0;
+}
+
+.footer-bottom .icon-area a:hover {
+    color: #ffa500;
+}
