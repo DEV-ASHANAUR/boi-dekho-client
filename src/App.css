@@ -12,6 +12,7 @@ section {
 .container {
     max-width: 1400px;
     padding: 0px 10px;
+    overflow: hidden;
 }
 .border-bottom {
     border-bottom: 1px solid #dee2e6;

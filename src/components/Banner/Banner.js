@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import catimg from "../../images/iwvoEIDLV6KFpO1bbyXYrAzEVERJvnH6I6pnSJiE.jpg";
-import banner1 from "../../images/aslaf_desktop-1.webp";
-import banner2 from "../../images/banner/CoverPage.jpg";
+import banner1 from "../../images/banner/CoverPage.jpg";
+import banner2 from "../../images/banner/banner-1.webp";
 import "./Banner.css";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { EffectFade, Autoplay, Pagination, Navigation } from "swiper";
 const Banner = () => {
     return (
         <div className="home-banner-area pt-3">
@@ -141,7 +150,44 @@ const Banner = () => {
                     </div>
                     <div className="col-lg-9 col-md-12">
                         <div className="banner-container shadow-sm">
-                            <img src={banner2} alt="" />
+                            <Swiper
+                                slidesPerView={1}
+                                loop={true}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                                effect={"fade"}
+                                autoplay={{
+                                    delay: 2000,
+                                    disableOnInteraction: false,
+                                    pauseOnMouseEnter: true,
+                                }}
+                                navigation={{
+                                    prevEl: ".button-prev-slide",
+                                    nextEl: ".button-next-slide",
+                                }}
+                                modules={[
+                                    EffectFade,
+                                    Autoplay,
+                                    Pagination,
+                                    Navigation,
+                                ]}
+                                data-swiper-autoplay={1000}
+                                className="mySwiper position-relative"
+                            >
+                                <SwiperSlide>
+                                    <img src={banner1} alt="" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <img src={banner2} alt="" />
+                                </SwiperSlide>
+                                <div className="button-prev-slide">
+                                    <i className="fas fa-arrow-left"></i>
+                                </div>
+                                <div className="button-next-slide">
+                                    <i className="fas fa-arrow-right"></i>
+                                </div>
+                            </Swiper>
                         </div>
                     </div>
                 </div>
