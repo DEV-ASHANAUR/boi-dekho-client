@@ -4,7 +4,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import { useNavigate } from "react-router-dom";
 // import auth from "../../../firebase.init";
-import CustomLink from "../CustomeLink/CustomeLink";
+import CustomLink from "../CustomLink/CustomLink";
 import logo from "../../../images/banner/BoiDekho-PNG.png";
 import "./Header.css";
 
@@ -84,7 +84,7 @@ const Header = () => {
                                 Wishlist
                             </span>
                         </CustomLink>
-                        {/* <CustomLink
+                        {/* <customeLink
                             className="nav-link login"
                             style={{
                                 paddingRight: "0px",
@@ -100,7 +100,7 @@ const Header = () => {
                             <span class="nav-box-text d-none d-xl-block opacity-100">
                                 Login
                             </span>
-                        </CustomLink> */}
+                        </customeLink> */}
                         <CustomLink className="nav-link shoppingCart" to="/">
                             <span class="num-area">3</span>
                             <i

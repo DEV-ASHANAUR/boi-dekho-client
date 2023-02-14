@@ -19,7 +19,7 @@ const bestOfferProduct = () => {
                             </span>
                         </h3>
                         <div>
-                            <button className="btn btn-custome">View All</button>
+                            <button className="btn btn-custom">View All</button>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div><div className="col-lg-2 col-md-3 col-sm-4 col-6">
@@ -98,7 +98,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div><div className="col-lg-2 col-md-3 col-sm-4 col-6">
@@ -136,7 +136,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div><div className="col-lg-2 col-md-3 col-sm-4 col-6">
@@ -174,7 +174,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div><div className="col-lg-2 col-md-3 col-sm-4 col-6">
@@ -212,7 +212,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div><div className="col-lg-2 col-md-3 col-sm-4 col-6">
@@ -248,7 +248,7 @@ const bestOfferProduct = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">Add to Cart</button>
+                                    <button className="btn btn-custom rounded-pill">Add to Cart</button>
                                 </div>
                             </div>
                         </div>

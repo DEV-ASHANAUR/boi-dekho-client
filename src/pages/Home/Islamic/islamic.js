@@ -17,14 +17,12 @@ const islamic = () => {
                             </span>
                         </h3>
                         <div>
-                            <button className="btn btn-custome">
-                                View All
-                            </button>
+                            <button className="btn btn-custom">View All</button>
                         </div>
                     </div>
 
                     <div className="row">
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -43,7 +41,8 @@ const islamic = () => {
 
                                 <div className="onsale">
                                     <span className="badge rounded-0">
-                                        OFF &nbsp; 29%
+                                        <i className="fas fa-arrow-down"></i>{" "}
+                                        29%
                                     </span>
                                 </div>
                                 <div className="productImage">
@@ -66,17 +65,18 @@ const islamic = () => {
                                         <Link to="">লাইফ উইথ আল্লাহ টিম</Link>
                                     </div>
                                     <div className="product-price">
-                                        <span>$ 189</span>
+                                        <del>$ 189</del> &nbsp;
+                                        <span> $ 180</span>
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -123,13 +123,13 @@ const islamic = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -176,13 +176,13 @@ const islamic = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -229,13 +229,13 @@ const islamic = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -282,13 +282,13 @@ const islamic = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-sm-4 col-6">
+                        <div className="col-xl-2 col-md-3 col-sm-4 col-6">
                             <div className="porduct-inner-box position-relative">
                                 <div className="icons position-absolute">
                                     <Link
@@ -335,7 +335,7 @@ const islamic = () => {
                                     </div>
                                 </div>
                                 <div className="cart-btn text-center mt-3">
-                                    <button className="btn btn-custome rounded-pill">
+                                    <button className="btn btn-custom rounded-pill">
                                         Add to Cart
                                     </button>
                                 </div>

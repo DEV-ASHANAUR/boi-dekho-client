@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Books from "./pages/Books/Books";
 import Book from "./pages/Book/Book";
 import NoPage from "./pages/NoPage/NoPage";
+import PreOrder from "./pages/PreOrder/PreOrder";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/home" element={<Home />}></Route>
                 <Route path="/books" element={<Books />}></Route>
+                <Route path="/pre-order" element={<PreOrder />}></Route>
                 <Route path="/book/:id" element={<Book />}></Route>
                 <Route path="*" element={<NoPage />}></Route>
             </Routes>

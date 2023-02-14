@@ -87,6 +87,7 @@
     display: block;
     margin: 0 auto;
     border-radius: 10px;
+    width: 100%;
 }
 .porduct-inner-box:hover .icons {
     transform: rotateY(-3%);
@@ -117,21 +118,17 @@
     text-decoration: none;
     color: #999;
 }
-.btn-custome {
+.btn-custom {
     background-color: #ffa500;
-    /* background-color: #f2f3f8; */
     color: #fff;
     font-weight: 600;
     width: 100%;
     box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 3px 8px rgb(0 0 0 / 12%);
-    /* box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
-        -10px -10px 10px -1px rgba(255, 255, 255, 0.7); */
     transition: 0.2s;
     border-radius: 50px;
 }
-.btn-custome:hover {
+.btn-custom:hover {
     background-color: #ff8c00;
-    /* background-color: #ffa500; */
     color: #fff;
     font-weight: 600;
 }

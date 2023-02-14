@@ -26,9 +26,12 @@
     padding-left: 20px;
     padding-right: 20px;
 }
+.check-inner p {
+    margin-bottom: 10px;
+}
 .check-group {
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .check-group.form-check {
     padding-left: 0;
@@ -76,4 +79,122 @@
     border: solid #ffa500;
     border-width: 0 0px 2px 2px;
     transform: rotate(-45deg);
+}
+
+.select-custome:focus {
+    border-color: #ffa500;
+    box-shadow: none;
+}
+.select-custome option:hover {
+    background-color: #ffa500;
+    color: #fff;
+}
+.porduct-box {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+    transition: 0.3s;
+}
+
+.porduct-box .icons {
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    top: -3px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.porduct-box .icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #fff;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: #333;
+    font-size: 15px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 3px 8px rgb(0 0 0 / 12%);
+    z-index: 1;
+    transition: 0.2s;
+}
+.porduct-box .icons a:hover {
+    background: #ffa500;
+    color: #fff !important;
+}
+.porduct-box .onsale .badge {
+    background: #000;
+    font-size: 12px;
+    padding: 5px 14px;
+    top: 30px;
+    left: 0px;
+    position: absolute;
+    z-index: 1;
+}
+.porduct-box .onsale .badge::before {
+    border-width: 10px 0px 0px 10px;
+    border-color: transparent transparent transparent #000;
+    content: "";
+    position: absolute;
+    right: -8px;
+    width: 0;
+    bottom: 0;
+    border-style: solid;
+}
+.porduct-box .onsale .badge::after {
+    border-width: 10px 8px 0px 10px;
+    border-color: #000 transparent transparent;
+    content: "";
+    position: absolute;
+    right: -8px;
+    width: 0;
+    top: 0;
+    border-style: solid;
+}
+
+.productImage {
+    overflow: hidden;
+}
+.porduct-box img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 100%;
+}
+.porduct-box:hover .icons {
+    transform: rotateY(-3%);
+    top: 3%;
+    opacity: 1;
+}
+
+.pagination .page-item .page-link {
+    padding: 10px 15px;
+    color: #222;
+    font-size: 16px;
+}
+.pagination .page-item .page-link:focus {
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.pagination .page-item .page-link.active {
+    background-color: #ffa500;
+    color: #fff;
+    border-color: #ffa500;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #ffa500;
+    color: #fff;
 }
