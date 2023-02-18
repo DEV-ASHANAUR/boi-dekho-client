@@ -2,21 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-import TopHeader from "../SharedComponents/Topbar/TopHeader";
-import Header from "../SharedComponents/Navbar/Header";
-import SubscriptionArea from "../SharedComponents/SubscriptionArea/subscriptionArea";
-import Footer from "../SharedComponents/Footer/Footer";
+// import TopHeader from "../SharedComponents/Topbar/TopHeader";
+// import Header from "../SharedComponents/Navbar/Header";
+// import Footer from "../SharedComponents/Footer/Footer";
+import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 
 
-import Banner from "./Banner/Banner";
-import Services from "./Services/services";
-import BestOfferProduct from "./BestOfferProduct/bestOfferProduct";
-import NewArrivalBooks from "./NewArrival/newArrival";
-import BestSellingBooks from "./BestSelling/bestSelling";
-import IslamicBooks from "./Islamic/islamic";
-import FictionBooks from "./Fiction/fiction";
-import NonFictionBooks from "./Non-Fiction/nonFiction";
-import ChildishBooks from "./Childish/childish";
+import Banner from "../../components/Home/Banner/Banner";
+import Services from "../../components/Home/Services/services";
+import BestOfferProduct from "../../components/Home/BestOfferProduct/bestOfferProduct";
+import NewArrivalBooks from "../../components/Home/NewArrival/newArrival";
+import BestSellingBooks from "../../components/Home/BestSelling/bestSelling";
+import IslamicBooks from "../../components/Home/Islamic/islamic";
+import FictionBooks from "../../components/Home/Fiction/fiction";
+import NonFictionBooks from "../../components/Home/Non-Fiction/nonFiction";
+import ChildishBooks from "../../components/Home/Childish/childish";
 
 
 import fiction from "../../images/fiction.jpg";
@@ -30,17 +30,17 @@ import childish from "../../images/childish.jpg";
 const Home = () => {
     return (
         <>
-            <TopHeader />
-            <Header />
+            {/* <TopHeader />
+            <Header /> */}
             <Banner />
             <BestSellingBooks />
             <NewArrivalBooks />
 
             <section id="fetcher">
-                <div class="container text-center">
+                <div className="container text-center">
                     <div className="px-2 py-4 bg-white box-shadow">
-                        <div class="row m-0">
-                            <div class="col-lg-3 col-sm-6 col-12 py-md-3">
+                        <div className="row m-0">
+                            <div className="col-lg-3 col-sm-6 col-12 py-md-3">
                                 <Link to="#">
                                     <figure className="snip1104 red">
                                         <img src={islamic} alt="" />
@@ -50,7 +50,7 @@ const Home = () => {
                                     </figure>
                                 </Link>
                             </div>
-                            <div class="col-lg-3 col-sm-6 col-12 py-md-3">
+                            <div className="col-lg-3 col-sm-6 col-12 py-md-3">
                                 <Link to="#">
                                     <figure className="snip1104 red">
                                         <img src={fiction} alt="" />
@@ -60,7 +60,7 @@ const Home = () => {
                                     </figure>
                                 </Link>
                             </div>
-                            <div class="col-lg-3 col-sm-6 col-12 py-md-3">
+                            <div className="col-lg-3 col-sm-6 col-12 py-md-3">
                                 <Link to="#">
                                     <figure className="snip1104 green">
                                         <img src={nonFiction} alt="" />
@@ -70,7 +70,7 @@ const Home = () => {
                                     </figure>
                                 </Link>
                             </div>
-                            <div class="col-lg-3 col-sm-6 col-12 py-md-3">
+                            <div className="col-lg-3 col-sm-6 col-12 py-md-3">
                                 <Link to="#">
                                     <figure className="snip1104 blue">
                                         <img src={childish} alt="" />
@@ -95,7 +95,7 @@ const Home = () => {
             <Services />
             <BestOfferProduct />
             <SubscriptionArea />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

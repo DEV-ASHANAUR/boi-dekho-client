@@ -1,3 +1,6 @@
+.books-main-area {
+    padding: 50px 0 100px;
+}
 .books-side-cat-list {
     height: 35vh;
     overflow: auto;
@@ -29,7 +32,7 @@
 .check-inner p {
     margin-bottom: 10px;
 }
-.check-group {
+.check-inner .check-group {
     display: block;
     margin-bottom: 10px;
 }
@@ -73,8 +76,8 @@
     display: block;
     position: absolute;
     top: 8px;
-    left: 1px;
-    width: 17px;
+    left: 3px;
+    width: 13px;
     height: 6px;
     border: solid #ffa500;
     border-width: 0 0px 2px 2px;

@@ -1,0 +1,132 @@
+.porduct-inner-box {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 15px;
+    border-radius: 10px;
+    justify-content: space-between;
+    border: 1px solid #f2f3f8;
+    transition: 0.3s;
+}
+.porduct-inner-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+}
+.porduct-inner-box .icons {
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    top: -3px;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.porduct-inner-box .icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #fff;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: #333;
+    font-size: 15px;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 3px 8px rgb(0 0 0 / 12%);
+    z-index: 1;
+    transition: 0.2s;
+}
+.porduct-inner-box .icons a:hover {
+    background: #ffa500;
+    color: #fff !important;
+}
+.porduct-inner-box .onsale .badge {
+    background: #000;
+    font-size: 12px;
+    padding: 5px 14px;
+    top: 30px;
+    left: 0px;
+    position: absolute;
+    z-index: 1;
+}
+.porduct-inner-box .onsale .badge::before {
+    border-width: 10px 0px 0px 10px;
+    border-color: transparent transparent transparent #000;
+    content: "";
+    position: absolute;
+    right: -8px;
+    width: 0;
+    bottom: 0;
+    border-style: solid;
+}
+.porduct-inner-box .onsale .badge::after {
+    border-width: 10px 8px 0px 10px;
+    border-color: #000 transparent transparent;
+    content: "";
+    position: absolute;
+    right: -8px;
+    width: 0;
+    top: 0;
+    border-style: solid;
+}
+
+.productImage {
+    overflow: hidden;
+}
+.porduct-inner-box img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 100%;
+}
+.porduct-inner-box:hover .icons {
+    transform: rotateY(-3%);
+    top: 3%;
+    opacity: 1;
+}
+
+.product-name h3 {
+    margin: 0px 0px 6px;
+}
+.product-name h3 a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+}
+.product-price span {
+    font-size: 16px;
+    color: #ffa500;
+    font-weight: 700;
+}
+.product-author a {
+    padding-top: 5px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+    color: #999;
+}
+.btn-custom {
+    background-color: #ffa500;
+    color: #fff;
+    font-weight: 600;
+    width: 100%;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%), 0 3px 8px rgb(0 0 0 / 12%);
+    transition: 0.2s;
+    border-radius: 50px;
+}
+.btn-custom:hover {
+    background-color: #ff8c00;
+    color: #fff;
+    font-weight: 600;
+}
+.bestOfferProduct-main-area,
+.reletedProduct-main-area,
+.preOrder-main-area {
+    padding: 50px 0 100px;
+}

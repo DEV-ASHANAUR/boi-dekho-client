@@ -1,0 +1,159 @@
+.item-view-area .item-img {
+    text-align: center;
+}
+
+.item-view-area .item-img img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+
+.product-deatils-wrapper .back {
+    font-size: 16px;
+    color: #ffa500;
+    text-decoration: none;
+}
+
+.product-deatils-wrapper .back span {
+    margin-left: 18px;
+    font-size: 18px;
+    color: #222;
+}
+.product-deatils-wrapper .name-area {
+    margin-top: 30px;
+}
+.product-deatils-wrapper .name-area h2 {
+    font-size: 40px;
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.product-deatils-wrapper .rating-area i {
+    font-size: 18px;
+    color: #ff9206;
+}
+.product-deatils-wrapper .rating-area i:last-child {
+    color: #8d8d8d;
+}
+
+.product-deatils-wrapper .rating-area p {
+    font-size: 18px;
+    margin-left: 30px;
+}
+.product-deatils-wrapper .price-area,
+.product-deatils-wrapper .size-area {
+    margin-top: 20px;
+}
+.product-deatils-wrapper .price-area h5,
+.product-deatils-wrapper .size-area h5 {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.product-deatils-wrapper .price-area p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffa500;
+    margin-top: 3px;
+}
+.product-details {
+    margin-top: 20px;
+}
+.product-details h6,
+a {
+    margin-bottom: 5px;
+}
+.product-details a {
+    margin-left: 20px;
+    color: #8d8d8d;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.product-details .link:hover {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+.number-area .quantity {
+    width: 180px;
+    height: 47px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.cart-area-wrapper {
+    margin-top: 2rem;
+}
+.shortPdf.button {
+    background: none;
+    color: #222;
+    border: 1px solid #c2c2c2 !important;
+    padding: 0 16px;
+    align-items: center;
+    justify-content: center;
+    height: 47px;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 6px;
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    text-transform: capitalize;
+}
+.shortPdf p {
+    margin-right: 0.4rem;
+    margin-bottom: 0px;
+}
+.shortPdf-icon i {
+    margin-left: 16px;
+}
+.cart-area-wrapper .add-cart {
+    border-radius: 6px;
+    margin-left: 20px;
+    background-color: #ffa500;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    justify-content: center;
+    height: 47px;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 6px;
+    font-size: 18px;
+    text-align: center;
+    text-transform: capitalize;
+    transition: 0.3s;
+}
+.cart-area-wrapper .add-cart:hover {
+    background: #ff9206;
+}
+.cart-area-wrapper .add-cart i {
+    margin-left: 16px;
+}
+.categories-area {
+    margin-top: 20px;
+}
+.categories-area h5 {
+    font-size: 20px;
+}
+.categories-area a {
+    font-size: 16px;
+    margin-left: 30px;
+    color: #8d8d8d;
+    text-decoration: none;
+}
+.categories-area a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+    .cart-area-wrapper .add-cart {
+        margin-left: 0px;
+        margin-right: 20px;
+    }
+}

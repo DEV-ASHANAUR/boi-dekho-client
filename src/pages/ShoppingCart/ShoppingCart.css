@@ -1,0 +1,123 @@
+.main-cart-area {
+    padding: 100px 0 100px;
+}
+.shoppingCartTitle h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+.main-cart-area .cart-item-box-wrapper .cart-box:first-child {
+    border-top: 1px solid #f2f3f8;
+}
+.main-cart-area .cart-item-box-wrapper .cart-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f2f3f8;
+    padding: 20px 0;
+    position: relative;
+}
+.main-cart-area .cart-box .media {
+    display: flex;
+    align-items: center;
+}
+.main-cart-area .cart-box .media img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+}
+.main-cart-area .cart-box .media .media-body h4 {
+    font-size: 18px;
+    font-weight: 700;
+}
+.main-cart-area .cart-box .media .media-body p {
+    font-size: 17px;
+}
+.main-cart-area .cart-box .price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffa500;
+}
+.main-cart-area .cart-box .close-item {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #f3f3f3;
+    border-radius: 50%;
+    color: #222;
+    display: inline-block;
+}
+
+.checkout-box-wrapper {
+    padding-left: 50px;
+}
+
+.checkout-box {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 6px;
+}
+
+.checkout-box .b-1 {
+    border-bottom: 1px solid #8d8d8d;
+}
+
+.checkout-box .b-1 h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.checkout-box .sm-box {
+    padding: 10px 0;
+}
+
+.checkout-box .sm-box p {
+    font-size: 18px;
+}
+
+.checkout-box .sm-box span {
+    font-size: 16px;
+}
+
+.checkout-box .shipping-item {
+    padding-bottom: 27px;
+}
+
+.checkout-box .subtotal-box {
+    border-bottom: 1px solid #8d8d8d;
+    padding: 20px 0;
+}
+
+.checkout-box .checkout-btn {
+    display: block;
+    border-radius: 30px;
+    background-color: #ffa500;
+    padding: 13px 40px;
+    font-weight: 700;
+    color: #fff;
+    transition: 0.3s;
+    font-size: 18px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.checkout-box .checkout-btn:hover {
+    background-color: #222;
+}
+
+.checkout-box .checkout-btn-area {
+    text-align: center;
+}
+
+.checkout-box .continue-shoping {
+    font-size: 18px;
+    text-decoration: underline;
+    margin-top: 15px;
+    display: inline-block;
+    color: #222;
+}
+
+.checkout-box .continue-shoping:hover {
+    color: #ffa500;
+}

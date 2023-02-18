@@ -1,21 +1,47 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Books from "./pages/Books/Books";
-import Book from "./pages/Book/Book";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import Checkout from "./pages/Checkout/Checkout";
+import ProductView from "./pages/ProductView/ProductView";
 import NoPage from "./pages/NoPage/NoPage";
 import PreOrder from "./pages/PreOrder/PreOrder";
+import TopHeader from "./components/SharedComponents/Topbar/TopHeader";
+import Header from "./components/SharedComponents/Navbar/Header";
+import Footer from "./components/SharedComponents/Footer/Footer";
 
+function Layout() {
+    return (
+        <>
+            <TopHeader />
+            <Header />
+            <Outlet />
+            <Footer />
+        </>
+    );
+}
 function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/home" element={<Home />}></Route>
-                <Route path="/books" element={<Books />}></Route>
-                <Route path="/pre-order" element={<PreOrder />}></Route>
-                <Route path="/book/:id" element={<Book />}></Route>
-                <Route path="*" element={<NoPage />}></Route>
+                <Route path="/" element={<Layout />}>
+                    <Route path="/" element={<Home />}></Route>
+                    <Route path="/home" element={<Home />}></Route>
+                    <Route path="/books" element={<Books />}></Route>
+                    <Route path="/book" element={<ProductView />}></Route>
+                    <Route path="/pre-order" element={<PreOrder />}></Route>
+                    <Route
+                        path="/shopping-cart"
+                        element={<ShoppingCart />}
+                    ></Route>
+                    <Route path="/check-out" element={<Checkout />}></Route>
+                    <Route
+                        path="/product-view/:id"
+                        element={<ProductView />}
+                    ></Route>
+                    <Route path="*" element={<NoPage />}></Route>
+                </Route>
             </Routes>
         </div>
     );
