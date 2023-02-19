@@ -126,7 +126,10 @@
     font-weight: 600;
 }
 .bestOfferProduct-main-area,
-.reletedProduct-main-area,
 .preOrder-main-area {
     padding: 50px 0 100px;
+}
+
+.reletedProduct-main-area {
+    padding: 100px 0 100px;
 }

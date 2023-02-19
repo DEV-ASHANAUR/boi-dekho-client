@@ -1,21 +1,34 @@
 import React from 'react';
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import paymentImg from "../../images/banner/payment.jpg"
+import banner from "../../images/banner/CoverPage.jpg"
 import "./Checkout.css";
+import { Link } from 'react-router-dom';
 const Checkout = () => {
     return (
         <>
             <div className="checkout-main-area">
+                <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-12">
+                                <div class="cart-text-area">
+                                    <h2>Billing Details</h2>
+                                    <div>
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li class="breadcrumb-item active">billing</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <form className="needs-validation billing-form" noValidate="">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-12">
-                                <div className="title mb-4">
-                                    <h2>Billing Details :</h2>
-                                </div>
-                            </div>
                             <div className="col-lg-8">
-
                                 <div className="row">
                                     <div className="col-md-12 mt-4">
                                         <div className="input_group">

@@ -10,6 +10,7 @@ import PreOrder from "./pages/PreOrder/PreOrder";
 import TopHeader from "./components/SharedComponents/Topbar/TopHeader";
 import Header from "./components/SharedComponents/Navbar/Header";
 import Footer from "./components/SharedComponents/Footer/Footer";
+import Contact from "./pages/Contact/Contact";
 
 function Layout() {
     return (
@@ -40,6 +41,7 @@ function App() {
                         path="/product-view/:id"
                         element={<ProductView />}
                     ></Route>
+                    <Route path="/contact-us" element={<Contact />}></Route>
                     <Route path="*" element={<NoPage />}></Route>
                 </Route>
             </Routes>

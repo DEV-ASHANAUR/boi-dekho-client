@@ -1,6 +1,46 @@
 .main-cart-area {
-    padding: 100px 0 100px;
+    padding-bottom: 100px;
 }
+
+.order-banner {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+}
+.order-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(110deg, #1d1f24 16%, #ffffff00 64%);
+    opacity: 0.91;
+    z-index: -1;
+}
+
+.cart-text-area h2 {
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.breadcrumb li {
+    font-size: 18px;
+}
+.breadcrumb li a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .shoppingCartTitle h2 {
     font-size: 30px;
     font-weight: 700;

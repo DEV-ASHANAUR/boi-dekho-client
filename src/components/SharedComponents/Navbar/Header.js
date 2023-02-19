@@ -66,11 +66,11 @@ const Header = () => {
                         <CustomLink className="nav-link" to="/pre-order">
                             Pre-Order
                         </CustomLink>
-                        <CustomLink className="nav-link" to="/blog">
+                        {/* <CustomLink className="nav-link" to="/blog">
                             Blog
-                        </CustomLink>
+                        </CustomLink> */}
 
-                        <CustomLink className="nav-link" to="/contact">
+                        <CustomLink className="nav-link" to="/contact-us">
                             Contact-us
                         </CustomLink>
                     </Nav>

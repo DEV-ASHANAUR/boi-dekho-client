@@ -2,19 +2,33 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import pimg2 from "../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
+import banner from "../../images/banner/CoverPage.jpg"
 import "./ShoppingCart.css";
 const ShoppingCart = () => {
     return (
         <>
             <div className="main-cart-area">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="shoppingCartTitle mb-4">
-                                <h2>Shopping Cart</h2>
+                <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-12">
+                                <div class="cart-text-area">
+                                    <h2>Shopping Cart</h2>
+                                    <div>
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li class="breadcrumb-item active">Cart</li>
+                                        </ol>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-lg-8 mt-5">
+                    </div>
+                </div>
+
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-8 mt-3">
                             <div className="cart-item-box-wrapper px-2 py-4 px-md-4 py-md-3 bg-white box-shadow">
                                 <div className="cart-box">
                                     <div className="product">
@@ -91,7 +105,7 @@ const ShoppingCart = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-4 mt-5">
+                        <div className="col-lg-4 mt-3">
                             <div className="checkout-box-wrapper">
                                 <div className="checkout-box">
                                     <div className="b-1">
