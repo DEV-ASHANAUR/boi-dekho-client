@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import Facebook from "../../../images/social-icon/facebook.png";
 // import Git from "../../../images/social-icon/github.png";
 // import Google from "../../../images/social-icon/google.png";
-import img from "file:///C:/Users/Zesan/Desktop/Maria-drugstore/Maria%20Drugstore/img/payment.jpg";
+import img from "../../../images/banner/payment.jpg";
 import "./Footer.css";
 const Footer = () => {
     const today = new Date();
