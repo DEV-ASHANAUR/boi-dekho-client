@@ -10,7 +10,7 @@ import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea
 
 import Banner from "../../components/Home/Banner/Banner";
 import Services from "../../components/Home/Services/services";
-import BestOfferProduct from "../../components/Home/BestOfferProduct/BestOfferProduct";
+import BestOfferProduct from "../../components/Home/BestOfferProduct/bestOfferProduct";
 import NewArrivalBooks from "../../components/Home/NewArrival/NewArrival";
 import BestSellingBooks from "../../components/Home/BestSelling/BestSelling";
 import IslamicBooks from "../../components/Home/Islamic/Islamic";
