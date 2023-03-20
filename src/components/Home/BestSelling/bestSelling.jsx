@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./bestSelling.css";
 
 
@@ -6,9 +6,18 @@ import pimg1 from "../../../images/product/mahfil-192x254.jpg";
 import pimg2 from "../../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
 import pimg3 from "../../../images/product/nari192x254.jpg";
 import SingleBestSellingBook from "./SingleBestSellingBook";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBooks } from "../../../features/books/BooksSlice";
+import Skeleton from '../../../components/SharedComponents/skeleton/Skeleton'
 
 
-const bestSelling = () => {
+const BestSelling = () => {
+    const dispatch = useDispatch();
+    const {books,isLoading,isError,error} = useSelector((state)=>state.books);
+    console.log("books",books)
+    useEffect(()=>{
+        dispatch(fetchBooks());
+    },[dispatch])
     const bestSellingBooks = [
         {
             img: pimg1,
@@ -59,6 +68,24 @@ const bestSelling = () => {
             offeredPrice: 180,
         },
     ];
+    //decide what to render
+    let content = null;
+
+    if(isLoading){
+        content = <Skeleton type="books" />
+    }
+    if(!isLoading && isError){
+        content = <p>Something Went Wrong</p>
+    }
+    if(!isLoading && !isError && books?.length == 0){
+        content = <p>Books Not found!</p>
+    }
+    if(!isLoading && !isError && books?.length > 0){
+        content = books.map((book,i)=>(
+            <SingleBestSellingBook book={book} key={i} />
+        ))
+    }
+
     return (
         <section>
             <div className="container">
@@ -76,9 +103,12 @@ const bestSelling = () => {
 
 
                     <div className="row">
-                        {bestSellingBooks.map((item, index) => (
+                        {/* {bestSellingBooks.map((item, index) => (
                             <SingleBestSellingBook item={item} key={index} />
-                        ))}
+                        ))} */}
+                        {
+                            content
+                        }
                     </div>
                 </div>
             </div>
@@ -86,4 +116,4 @@ const bestSelling = () => {
     );
 };
 
-export default bestSelling;
+export default BestSelling;

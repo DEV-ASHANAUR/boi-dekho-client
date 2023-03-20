@@ -1,0 +1,188 @@
+.postSk {
+    width: 16.6%;
+    padding: 10px;
+    animation: skeleton 1s ease infinite alternate;
+    border: 2px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 13px;
+    margin-bottom: 10px;
+}
+
+@keyframes skeleton {
+    to {
+        opacity: 0.5;
+    }
+}
+
+.postSkImg {
+    background-color: #313131;
+    width: 100%;
+    height: 254px;
+    border-radius: 8px;
+}
+
+.postSkInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info_title1 {
+    height: 15px;
+    background-color: #313131;
+    border-radius: 4px;
+}
+.info_title2 {
+    height: 13px;
+    background-color: #313131;
+    border-radius: 4px;
+}
+
+.info_price{
+    height: 15px;
+    background-color: #313131;
+    border-radius: 4px;
+}
+.info_button {
+    height: 22px;
+    background-color: #313131;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 16px;
+}
+
+.info1 {
+    width: 90%;
+}
+
+.info2 {
+    width: 70%;
+}
+
+.info3 {
+    width: 30%;
+}
+
+.info4 {
+    width: 83%;
+}
+
+.info5 {
+    width: 60%;
+}
+
+.info6 {
+    width: 35%;
+}
+
+.info7 {
+    width: 68%;
+}
+
+.ratingSk {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.SkItemtop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text1 {
+    width: 30%;
+}
+
+.text2 {
+    width: 8%;
+    height: 22px;
+    border-radius: 5.81818px 5.81818px 5.81818px 0;
+}
+
+.SkItemBtm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.text3 {
+    width: 15%;
+}
+
+.text4 {
+    width: 60%;
+}
+
+.text5 {
+    padding: 14px 45px;
+    border-radius: 5px;
+}
+
+.ReSk {
+    width: 335px;
+    height: 108px;
+    padding: 20px;
+    animation: skeleton 1s ease infinite alternate;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 50px;
+}
+
+.ReLeft {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.text11 {
+    width: 80%;
+}
+
+.text22 {
+    width: 95%;
+}
+
+.text33 {
+    width: 70%;
+}
+
+.text44 {
+    width: 50%;
+}
+
+.ReRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text55 {
+    width: 40%;
+}
+
+.text66 {
+    width: 20%;
+}
+
+.text77 {
+    width: 40%;
+}
+
+.TableSk {
+    animation: skeleton 1s ease infinite alternate;
+}
+
+.TableSk td {
+    background-color: #313131;
+    padding: 20px;
+}

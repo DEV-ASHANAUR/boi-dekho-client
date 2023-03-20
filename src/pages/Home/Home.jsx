@@ -12,7 +12,7 @@ import Banner from "../../components/Home/Banner/Banner";
 import Services from "../../components/Home/Services/services";
 import BestOfferProduct from "../../components/Home/BestOfferProduct/bestOfferProduct";
 import NewArrivalBooks from "../../components/Home/NewArrival/newArrival";
-import BestSellingBooks from "../../components/Home/BestSelling/bestSelling";
+import BestSellingBooks from "../../components/Home/BestSelling/BestSelling";
 import IslamicBooks from "../../components/Home/Islamic/islamic";
 import FictionBooks from "../../components/Home/Fiction/fiction";
 import NonFictionBooks from "../../components/Home/Non-Fiction/nonFiction";
@@ -32,7 +32,7 @@ const Home = () => {
         <>
             {/* <TopHeader />
             <Header /> */}
-            {/* <Banner /> */}
+            <Banner />
             <BestSellingBooks />
             <NewArrivalBooks />
 
