@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./bestSelling.css";
 import axois from "../../../utils/axois";
-import Skeleton from '../../../components/SharedComponents/skeleton/Skeleton'
+import Skeleton from '../../SharedComponents/skeleton/Skeleton'
 import BookCard from "../../BookCard";
 
 
