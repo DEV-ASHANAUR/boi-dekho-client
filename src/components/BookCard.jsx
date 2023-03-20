@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleFictionBook = ({ item }) => {
-    const { img, title, author, orginalPrice, discount, offeredPrice } = item;
+const BookCard = ({ book }) => {
+    // console.log(book);
+    const { coverImage, bookTitle, author, orginalPrice, discount, price } = book;
     return (
         <div className="col-xl-2 col-md-3 col-sm-4 col-6">
             <div className="porduct-inner-box position-relative">
@@ -26,20 +27,20 @@ const SingleFictionBook = ({ item }) => {
                         <i className="fas fa-arrow-down"></i> {discount}%</span>
                 </div>
                 <div className="productImage">
-                    <img src={img} alt="img1" className="img-fluid" />
+                    <img src={coverImage} alt="img1" className="img-fluid" />
                 </div>
 
                 <div className="product-info">
                     <div className="product-name">
                         <h3>
-                            <Link to="">{title}</Link>
+                            <Link to="">{bookTitle}</Link>
 
                         </h3>
                     </div>
                     <div className="product-author">
                         <Link to="">{author}</Link>
                     </div>
-                    <div className="product-price"><del>$ {orginalPrice}</del> &nbsp;<span> $ {offeredPrice}</span>
+                    <div className="product-price"><del>$ {discount}</del> &nbsp;<span> $ {price}</span>
                     </div>
                 </div>
                 <div className="cart-btn text-center mt-3">
@@ -52,4 +53,4 @@ const SingleFictionBook = ({ item }) => {
     );
 };
 
-export default SingleFictionBook;
+export default BookCard;

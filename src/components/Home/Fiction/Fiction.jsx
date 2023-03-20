@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import "./bestSelling.css";
+import React,{useEffect, useState} from "react";
 import axois from "../../../utils/axois";
-import Skeleton from '../../../components/SharedComponents/skeleton/Skeleton'
 import BookCard from "../../BookCard";
+import Skeleton from "../../SharedComponents/skeleton/Skeleton";
 
 
-const BestSelling = () => {
+const Fiction = () => {
     const [books,setBooks] = useState([]);
     const [isLoading,setIsloading] = useState(false);
     const [isError,setIsError] = useState(false);
-    // const dispatch = useDispatch();
-    // const {books,isLoading,isError} = useSelector((state)=>state.books);
+    
     console.log("books",books)
     useEffect(()=>{
-        fetchData("trending");
+        fetchData("fiction");
 
     },[])
 
@@ -48,7 +46,6 @@ const BestSelling = () => {
             <BookCard book={book} key={i} />
         ))
     }
-
     return (
         <section>
             <div className="container">
@@ -56,7 +53,7 @@ const BestSelling = () => {
                     <div className="d-flex mb-3 align-items-baseline justify-content-between border-bottom">
                         <h3 className="h5 fw-700 mb-0">
                             <span className="border-bottom border-primary pb-3 d-inline-block">
-                                Best-Selling Books
+                                Fiction
                             </span>
                         </h3>
                         <div>
@@ -64,11 +61,7 @@ const BestSelling = () => {
                         </div>
                     </div>
 
-
                     <div className="row">
-                        {/* {bestSellingBooks.map((item, index) => (
-                            <SingleBestSellingBook item={item} key={index} />
-                        ))} */}
                         {
                             content
                         }
@@ -79,4 +72,4 @@ const BestSelling = () => {
     );
 };
 
-export default BestSelling;
+export default Fiction;

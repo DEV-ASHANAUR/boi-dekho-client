@@ -8,8 +8,8 @@ const initialState = {
     error: ""
 }
 
-export const fetchBooks = createAsyncThunk("books/fetchBooks",async()=>{
-    const books = await getbooks();
+export const fetchBooks = createAsyncThunk("books/fetchBooks",async(type)=>{
+    const books = await getbooks(type);
     return books;
 })
 

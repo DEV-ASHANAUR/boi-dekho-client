@@ -1,62 +1,51 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import BookCard from "../../BookCard";
+import Skeleton from "../../SharedComponents/skeleton/Skeleton";
+import axois from "../../../utils/axois";
+//non-fiction
+const NonFiction = () => {
 
-import pimg1 from "../../../images/product/mahfil-192x254.jpg";
-import pimg2 from "../../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
-import pimg3 from "../../../images/product/nari192x254.jpg";
-import SingleNonFictionBook from "./SingleNonFictionBook";
+    const [books, setBooks] = useState([]);
+    const [isLoading, setIsloading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
-const nonFiction = () => {
-    const nonFictionBooks = [
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-    ];
+    console.log("books", books)
+    useEffect(() => {
+        fetchData("non-fiction");
+
+    }, [])
+
+    const fetchData = async (type) => {
+        try {
+            setIsloading(true);
+            const res = await axois.get(`/book/${type}`);
+            setBooks(res.data);
+            setIsloading(false);
+            // return res.data;
+        } catch (error) {
+            setIsloading(false);
+            console.log("error occur");
+            setIsError(true);
+        }
+    }
+
+    //decide what to render
+    let content = null;
+
+    if (isLoading) {
+        content = <Skeleton type="books" />
+    }
+    if (!isLoading && isError) {
+        content = <p>Something Went Wrong</p>
+    }
+    if (!isLoading && !isError && books?.length === 0) {
+        content = <p>Books Not found!</p>
+    }
+    if (!isLoading && !isError && books?.length > 0) {
+        content = books.map((book, i) => (
+            <BookCard book={book} key={i} />
+        ))
+    }
     return (
         <section>
             <div className="container">
@@ -73,9 +62,9 @@ const nonFiction = () => {
                     </div>
 
                     <div className="row">
-                        {nonFictionBooks.map((item, index) => (
-                            <SingleNonFictionBook item={item} key={index} />
-                        ))}
+                        {
+                            content
+                        }
                     </div>
                 </div>
             </div>
@@ -83,4 +72,4 @@ const nonFiction = () => {
     );
 };
 
-export default nonFiction;
+export default NonFiction;

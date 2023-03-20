@@ -10,13 +10,13 @@ import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea
 
 import Banner from "../../components/Home/Banner/Banner";
 import Services from "../../components/Home/Services/services";
-import BestOfferProduct from "../../components/Home/BestOfferProduct/bestOfferProduct";
-import NewArrivalBooks from "../../components/Home/NewArrival/newArrival";
+import BestOfferProduct from "../../components/Home/BestOfferProduct/BestOfferProduct";
+import NewArrivalBooks from "../../components/Home/NewArrival/NewArrival";
 import BestSellingBooks from "../../components/Home/BestSelling/BestSelling";
-import IslamicBooks from "../../components/Home/Islamic/islamic";
-import FictionBooks from "../../components/Home/Fiction/fiction";
-import NonFictionBooks from "../../components/Home/Non-Fiction/nonFiction";
-import ChildishBooks from "../../components/Home/Childish/childish";
+import IslamicBooks from "../../components/Home/Islamic/Islamic";
+import FictionBooks from "../../components/Home/Fiction/Fiction";
+import NonFictionBooks from "../../components/Home/Non-Fiction/NonFiction";
+import ChildishBooks from "../../components/Home/Childish/Childish";
 
 
 import fiction from "../../images/fiction.jpg";
