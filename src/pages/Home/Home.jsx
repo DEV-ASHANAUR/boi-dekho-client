@@ -15,8 +15,8 @@ import NewArrivalBooks from "../../components/Home/NewArrival/NewArrival";
 import BestSellingBooks from "../../components/Home/BestSelling/BestSelling";
 import IslamicBooks from "../../components/Home/Islamic/Islamic";
 import FictionBooks from "../../components/Home/Fiction/Fiction";
-import NonFictionBooks from "../../components/Home/Non-Fiction/NonFiction";
-import ChildishBooks from "../../components/Home/Childish/Childish";
+import NonFictionBooks from "../../components/Home/Non-Fiction/NonFiction.jsx";
+import ChildishBooks from "../../components/Home/Childish/Childish.jsx";
 
 
 import fiction from "../../images/fiction.jpg";
