@@ -11,7 +11,7 @@ const BestSelling = () => {
     const [isError,setIsError] = useState(false);
     // const dispatch = useDispatch();
     // const {books,isLoading,isError} = useSelector((state)=>state.books);
-    console.log("books",books)
+    // console.log("books",books)
     useEffect(()=>{
         fetchData("trending");
 

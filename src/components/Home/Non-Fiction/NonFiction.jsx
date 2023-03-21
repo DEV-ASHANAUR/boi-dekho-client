@@ -9,7 +9,7 @@ const NonFiction = () => {
     const [isLoading, setIsloading] = useState(false);
     const [isError, setIsError] = useState(false);
 
-    console.log("books", books)
+    // console.log("books", books)
     useEffect(() => {
         fetchData("non-fiction");
 

@@ -11,12 +11,13 @@ import { fetchAuthors } from '../../../features/Author/AuthorSlice';
 import { fetchPublishers } from '../../../features/Publisher/PublisherSlice';
 
 const Filters = () => {
+    const {category} = useSelector(state => state.filter);
     const {categories,isLoading,isError} = useSelector((state)=>state.category)
     const {publishers,isLoading:pubLoading,isError:pubError} = useSelector((state)=>state.publisher)
     const {subcategories,isLoading:subLoading,isError:subError} = useSelector((state)=>state.subCategory)
     const {authors,isLoading:authorLoading,isError:authorError} = useSelector((state)=>state.author)
     const dispatch = useDispatch();
-    console.log("subcategory",subcategories);
+    // console.log("subcategory",subcategories);
 
     useEffect(()=>{
         dispatch(fetchCategories());
@@ -68,6 +69,15 @@ const Filters = () => {
         ))
     }
 
+    //filterByCategory
+
+    const filterByCategory = (subCat) =>{
+        if(category.length > 0){
+            return category.includes(subCat?.category);
+        }
+        return true;
+    }
+
     //what to render in subcetegory section
     let subcategoryContent;
 
@@ -80,7 +90,9 @@ const Filters = () => {
     }
 
     if (!subError && !subLoading && subcategories?.length > 0) {
-        subcategoryContent = subcategories.map((item,index) => (
+        subcategoryContent = subcategories
+        .filter(filterByCategory)
+        .map((item,index) => (
             <SubCategory item={item} key={index} />
         ))
     }
