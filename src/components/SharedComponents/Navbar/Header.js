@@ -1,23 +1,27 @@
-// import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { useNavigate } from "react-router-dom";
-// import auth from "../../../firebase.init";
 import CustomLink from "../CustomLink/CustomLink";
 import logo from "../../../images/banner/BoiDekho-PNG.png";
 import "./Header.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useMatch, useNavigate } from "react-router-dom";
+import { searched } from "../../../features/Filter/filterSlice";
 
 const Header = () => {
-    // const navigate = useNavigate();
-    // const [user] = useAuthState(auth);
+    const {search} = useSelector((state)=>state.filter)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [input,setInput] = useState(search);
+    const match = useMatch('/books');
 
-    // const handleLogOut = () => {
-    //     signOut(auth);
-    // };
-    // const navigteLogIn = () => {
-    //     navigate("/login");
-    // };
+    //handleSearch
+    const handleSearch = (e) =>{
+        e.preventDefault();
+        dispatch(searched(input));
+        if(!match){
+            navigate("/books");
+        }
+    }
 
     return (
         <Navbar
@@ -31,14 +35,16 @@ const Header = () => {
                     <img src={logo} width="120" alt="Organic" />
                 </Navbar.Brand>
                 <div className="search-box d-lg-none d-sm-block d-none col-md-6 col-sm-8">
-                    <form action="">
+                    <form onSubmit={handleSearch}>
                         <div className="d-flex position-relative align-items-center">
                             <div className="input-group">
                                 <input
                                     type="text"
                                     className="search-input form-control"
                                     id="search"
-                                    name="keyword"
+                                    name="search"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
                                     placeholder="I am shopping for..."
                                     autoComplete="off"
                                 />
@@ -60,16 +66,9 @@ const Header = () => {
                         <CustomLink className="nav-link" to="/books">
                             Books
                         </CustomLink>
-                        <CustomLink className="nav-link" to="/book">
-                            Book
-                        </CustomLink>
                         <CustomLink className="nav-link" to="/pre-order">
                             Pre-Order
                         </CustomLink>
-                        {/* <CustomLink className="nav-link" to="/blog">
-                            Blog
-                        </CustomLink> */}
-
                         <CustomLink className="nav-link" to="/contact-us">
                             Contact-us
                         </CustomLink>
@@ -104,16 +103,17 @@ const Header = () => {
                             </span>
                         </CustomLink>
                         <div className="search-box d-sm-none d-block col-10 mb-3">
-                            <form action="">
+                            <form onSubmit={handleSearch}>
                                 <div className="d-flex position-relative align-items-center">
                                     <div className="input-group">
                                         <input
                                             type="text"
                                             className="search-input form-control"
                                             id="search"
-                                            name="keyword"
+                                            name="search"
                                             placeholder="I am shopping for..."
-                                            autoComplete="off"
+                                            value={input}
+                                            onChange={(e) => setInput(e.target.value)}
                                         />
                                         <div className="input-group-append">
                                             <button

@@ -7,7 +7,7 @@ const Childish = () => {
     const [books,setBooks] = useState([]);
     const [isLoading,setIsloading] = useState(false);
     const [isError,setIsError] = useState(false);
-    console.log("books",books)
+    // console.log("books",books)
     useEffect(()=>{
         fetchData("childish");
 

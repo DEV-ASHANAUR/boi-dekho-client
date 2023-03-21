@@ -1,13 +1,23 @@
-import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//     faFacebook,
-//     faTwitter,
-//     faInstagram,
-// } from "@fortawesome/free-brands-svg-icons";
+import React, { useState } from "react";
 import "./TopHeader.css";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { searched } from "../../../features/Filter/filterSlice";
 const TopHeader = () => {
+    const {search} = useSelector((state)=>state.filter)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [input,setInput] = useState(search);
+    const match = useMatch('/books');
+
+    //handleSearch
+    const handleSearch = (e) =>{
+        e.preventDefault();
+        dispatch(searched(input));
+        if(!match){
+            navigate("/books");
+        }
+    }
     return (
         <div className="border-bottom bg-white">
             <div
@@ -25,14 +35,16 @@ const TopHeader = () => {
                 </div>
 
                 <div className="search-box d-lg-block d-none col-md-6">
-                    <form action="">
+                    <form onSubmit={handleSearch}>
                         <div className="d-flex position-relative align-items-center">
                             <div className="input-group">
                                 <input
                                     type="text"
                                     className="search-input form-control"
                                     id="search"
-                                    name="keyword"
+                                    name="search"
+                                    value={input}
+                                    onChange={(e)=>setInput(e.target.value)}
                                     placeholder="I am shopping for..."
                                     autoComplete="off"
                                 />

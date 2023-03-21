@@ -1,14 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-// import Footer from "../SharedComponents/Footer/Footer";
-// import Header from "../SharedComponents/Navbar/Header";
-// import TopHeader from "../SharedComponents/Topbar/TopHeader";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import SubscriptionArea from "./../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import ReletedProduct from "./reletedProduct";
-import pimg1 from "../../images/product/mahfil-192x254.jpg";
+import moment from "moment/moment";
 import "./productView.css";
 import Review from "../../components/ProductView/Review/Review";
 const ProductView = () => {
+    const [quantity, setQuantity] = useState(1);
+    const { bookId } = useParams();
+    const [book, setBook] = useState({});
+    useEffect(() => {
+        const url = `http://localhost:5000/api/v1/boikini/book/${bookId}`;
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+                setBook(data);
+            });
+    }, [bookId]);
     return (
         <>
             {/* <TopHeader />
@@ -21,7 +29,7 @@ const ProductView = () => {
                                 <div className="item">
                                     <div className="item-img">
                                         <Link>
-                                            <img className="img-fluid" src={pimg1} alt="img" />
+                                            <img className="img-fluid" src={book.coverImage} alt="img" />
                                         </Link>
                                     </div>
                                 </div>
@@ -50,25 +58,37 @@ const ProductView = () => {
 
                                     <div className="categories-area d-flex">
                                         <h5>Categories :</h5>
-                                        <Link>Assisories</Link>
+                                        {
+                                            book.categories?.map((cat, i) => (
+                                                <>
+                                                    <Link to="" key={i}>{cat}</Link>
+                                                </>
+                                            ))
+                                        }
                                     </div>
 
                                     <div className="product-details">
                                         <div className="d-flex align-items-center">
-                                            <h6>Author : </h6>
-                                            <Link className="link">Moniruzzaman</Link>
+                                            <h6>Author/Translator : </h6>
+                                            {
+                                                book.authors?.map((author, i) => (
+                                                    <>
+                                                        <Link to="" key={i}>{author}</Link>
+                                                    </>
+                                                ))
+                                            }
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <h6>Publisher : </h6>
-                                            <Link className="link">Lecture</Link>
+                                            <Link className="link">{book.publisher}</Link>
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <h6>Version : </h6>
-                                            <Link>1st published 2023</Link>
+                                            <Link>{book.version}th published {moment(book.publishDate).format("MMM Do YYYY")}</Link>
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <h6>Cover : </h6>
-                                            <Link>Hard Cover</Link>
+                                            <Link>{book.coverType}</Link>
                                         </div>
                                     </div>
 
@@ -76,14 +96,14 @@ const ProductView = () => {
 
                                     <div className="price-area">
                                         <h5>Product Price</h5>
-                                        <p>$12.00</p>
+                                        <p>${book.price}</p>
                                     </div>
-                                    <div className="size-area">
-                                        <div>
-                                            <h5>Select Quantity</h5>
-                                            <div className="number-area">
-                                                <input className="form-control quantity" type="number" min="0" value="1" />
-                                            </div>
+                                    <div className="quantity-area">
+                                        <h5>Select Quantity</h5>
+                                        <div className="select-quantity">
+                                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
+                                            <span className="number-area">{quantity}</span>
+                                            <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
                                         </div>
                                     </div>
                                     <div className="cart-area-wrapper d-md-flex">
