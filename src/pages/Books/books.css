@@ -194,3 +194,7 @@
     background-color: #ffa500;
     color: #fff;
 }
+
+:disabled{
+    cursor: not-allowed;
+}

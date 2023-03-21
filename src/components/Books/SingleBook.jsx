@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleBook = ({ item }) => {
-    const { img, title, author, orginalPrice, discount, offeredPrice } = item;
+const SingleBook = ({ book }) => {
+    const { _id, coverImage, bookTitle, author, discount, price } = book;
+    const newPrice = price-price*(discount/100);
     return (
         <div className="col-xl-3 col-md-4 col-sm-6 col-6">
             <div className="porduct-box position-relative">
@@ -22,20 +23,20 @@ const SingleBook = ({ item }) => {
                         <i className="fas fa-arrow-down"></i> {discount}%</span>
                 </div>
                 <div className="productImage">
-                    <img src={img} alt="img1" className="img-fluid" />
+                    <img src={coverImage} alt="img1" className="img-fluid" />
                 </div>
 
                 <div className="product-info">
                     <div className="product-name">
                         <h3>
-                            <Link to="">{title}</Link>
+                            <Link to="">{bookTitle}</Link>
 
                         </h3>
                     </div>
                     <div className="product-author">
                         <Link to="">{author}</Link>
                     </div>
-                    <div className="product-price"><del>$ {orginalPrice}</del> &nbsp;<span> $ {offeredPrice}</span>
+                    <div className="product-price"><del>$ {price}</del> &nbsp;<span> $ {newPrice}</span>
                     </div>
                 </div>
                 <div className="cart-btn text-center mt-3">

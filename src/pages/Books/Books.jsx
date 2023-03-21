@@ -1,115 +1,59 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import TopHeader from '../SharedComponents/Topbar/TopHeader';
 // import Header from '../SharedComponents/Navbar/Header';
 import SubscriptionArea from "./../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 // import Footer from './../../components/SharedComponents/SharedComponents/Footer/Footer';
 import { Link } from 'react-router-dom';
-import pimg1 from "../../images/product/mahfil-192x254.jpg";
 import "./books.css"
 import Filters from '../../components/Books/filter/Filters';
 import SingleBook from '../../components/Books/SingleBook';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../../features/books/BooksSlice';
+import Skeleton from '../../components/SharedComponents/skeleton/Skeleton';
+import { setPage } from '../../features/Filter/filterSlice';
+
+
 const Books = () => {
+    const dispatch = useDispatch();
+    const { books, current_page, total_page, isLoading, isError } = useSelector(state => state.books);
+    const { publisher, author, category, subcategory, page } = useSelector(state => state.filter);
 
+    console.log("total_page", total_page);
 
-    const allBooks = [
+    useEffect(() => {
+        dispatch(fetchBooks({ publisher, category, subcategory, author, page }));
+    }, [dispatch, publisher, category, subcategory, author, page]);
 
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-    ];
+    //decide what to render
+    let content = null;
+
+    if (isLoading) {
+        content = <Skeleton type="books" />
+    }
+    if (!isLoading && isError) {
+        content = <p>Something Went Wrong</p>
+    }
+    if (!isLoading && !isError && books?.length === 0) {
+        content = <p>Books Not found!</p>
+    }
+    if (!isLoading && !isError && books?.length > 0) {
+        content = books.map((book, i) => (
+            <SingleBook book={book} key={i} />
+        ))
+    }
+
+    const total_page_value = () => {
+        let countArray = []
+        for (let i = 1; i <= total_page; i++) {
+            countArray.push(i);
+        }
+        return countArray
+    }
+
+    //handlePagination
+    const handlePagination = (page) => {
+        dispatch(setPage(page))
+    }
 
 
     return (
@@ -139,35 +83,58 @@ const Books = () => {
                                 </div>
                                 <div className="row">
                                     {
-                                        allBooks.map((item, index) => (
-
-                                            <SingleBook item={item} key={index} />
-                                        ))
+                                        content
                                     }
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="mt-4">
-                                            <ul className="pagination justify-content-center">
-                                                <li className="page-item">
-                                                    <Link className="page-link" to="#">Prev</Link>
-                                                </li>
-                                                <li className="page-item">
-                                                    <Link className="page-link active" to="#">1</Link>
-                                                </li>
-                                                <li className="page-item">
-                                                    <Link className="page-link" to="#">2</Link>
-                                                </li>
-                                                <li className="page-item">
-                                                    <Link className="page-link" to="#">...</Link>
-                                                </li>
-                                                <li className="page-item">
-                                                    <Link className="page-link" to="#">Next</Link>
-                                                </li>
-                                            </ul>
+                                {
+                                    (total_page && total_page > 1) && (
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="mt-4">
+                                                    <ul className="pagination justify-content-center">
+                                                        {
+                                                            current_page !== 1 ? (
+                                                                <li className="page-item">
+                                                                    <button className="page-link" onClick={() => handlePagination(current_page - 1)}>Prev</button>
+                                                                </li>
+                                                            ) : (
+                                                                <li className="page-item">
+                                                                    <button className="page-link" disabled>Prev</button>
+                                                                </li>
+                                                            )
+                                                        }
+                                                        {
+                                                            total_page_value()?.map((num, i) => (
+                                                                current_page == num ? (
+                                                                    <li className="page-item">
+                                                                        <button className="page-link active" disabled>{num}</button>
+                                                                    </li>
+                                                                ) : (
+                                                                    <li className="page-item">
+                                                                        <button className="page-link" onClick={() => handlePagination(num)}>{num}</button>
+                                                                    </li>
+                                                                )
+
+                                                            ))
+                                                        }
+
+                                                        {
+                                                            total_page !== current_page ? (
+                                                                <li className="page-item">
+                                                                    <button className="page-link" onClick={() => handlePagination(current_page+1)}>Next</button>
+                                                                </li>
+                                                            ) : (
+                                                                <li className="page-item">
+                                                                    <button className="page-link" disabled>Next</button>
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
