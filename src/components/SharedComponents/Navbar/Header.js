@@ -60,16 +60,9 @@ const Header = () => {
                         <CustomLink className="nav-link" to="/books">
                             Books
                         </CustomLink>
-                        <CustomLink className="nav-link" to="/book">
-                            Book
-                        </CustomLink>
                         <CustomLink className="nav-link" to="/pre-order">
                             Pre-Order
                         </CustomLink>
-                        {/* <CustomLink className="nav-link" to="/blog">
-                            Blog
-                        </CustomLink> */}
-
                         <CustomLink className="nav-link" to="/contact-us">
                             Contact-us
                         </CustomLink>

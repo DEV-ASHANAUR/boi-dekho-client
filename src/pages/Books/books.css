@@ -1,16 +1,9 @@
-.books-main-area {
+ .books-main-area {
     padding: 50px 0 100px;
 }
-.books-side-cat-list {
-    height: 35vh;
-    overflow: auto;
-}
-.books-side-pub-list {
-    height: 35vh;
-    overflow: auto;
-}
-.books-side-author-list {
-    height: 35vh;
+
+.books-side-list{
+    height: 100%;
     overflow: auto;
 }
 .books-filter {

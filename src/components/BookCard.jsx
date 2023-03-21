@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BookCard = ({ book }) => {
-    // console.log(book);
-    const { coverImage, bookTitle, author, orginalPrice, discount, price } = book;
+    const navigate = useNavigate();
+    const { _id, coverImage, bookTitle, author, discount, price } = book;
+    const newPrice = price-price*(discount/100);
+    const handleViewProduct = (id) => {
+        navigate(`/book/${id}`);
+    }
     return (
         <div className="col-xl-2 col-md-3 col-sm-4 col-6">
             <div className="porduct-inner-box position-relative">
@@ -19,6 +23,12 @@ const BookCard = ({ book }) => {
                         className="text-decoration-none text-dark"
                     >
                         <i className="fas fa-eye"></i>
+                    </Link>
+                    <Link
+                        href=""
+                        className="text-decoration-none text-dark"
+                    >
+                        <i className="fas fa-cart-arrow-down"></i>
                     </Link>
                 </div>
 
@@ -40,12 +50,12 @@ const BookCard = ({ book }) => {
                     <div className="product-author">
                         <Link to="">{author}</Link>
                     </div>
-                    <div className="product-price"><del>$ {discount}</del> &nbsp;<span> $ {price}</span>
+                    <div className="product-price"><del>$ {price}</del> &nbsp;<span> $ {newPrice}</span>
                     </div>
                 </div>
                 <div className="cart-btn text-center mt-3">
-                    <button className="btn btn-custom rounded-pill">
-                        Add to Cart
+                    <button  onClick={() => handleViewProduct(_id)} className="btn btn-custom rounded-pill">
+                        View Details
                     </button>
                 </div>
             </div>

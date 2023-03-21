@@ -39,9 +39,16 @@ const Skeleton = ({ type }) => {
         </tr>
     )
 
+    const CatSK = () => (
+        <div className='catSk'>
+            <div className='cat'></div>
+        </div>
+    )
+
     if (type === 'books') return Array(COUNTER).fill(<ProductSkeleton />);
     if (type === 'reserve') return Array(5).fill(<ReserveSkeleton />);
     if (type === 'table') return Array(5).fill(<TableSk />)
+    if (type === 'cat') return Array(5).fill(<CatSK />)
 
 }
 
