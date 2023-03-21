@@ -15,7 +15,13 @@
     font-size: 20px;
     font-weight: 600;
 }
-
+.filterdata{
+    font-size: 18px;
+}
+.filteritem{
+    background-color: #ffa500;
+    cursor: pointer;
+}
 .check-inner {
     display: flex;
     justify-content: space-between;

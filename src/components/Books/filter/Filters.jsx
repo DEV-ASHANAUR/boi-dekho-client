@@ -140,6 +140,21 @@ const Filters = () => {
                 }
             </div>
 
+            <div className="bg-white rounded shadow-sm mt-3 books-side-author-list">
+                <div className="px-3 pt-3 books-filter text-start">
+                    <div className="mb-3 border-bottom">
+                        <h3 className="h5 fw-700 mb-0">
+                            <span className="border-bottom border-primary pb-3 d-inline-block">
+                                All Author
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+                {
+                    authorContent
+                }
+            </div>
+
 
             <div className="bg-white rounded shadow-sm mt-3 books-side-cat-list">
                 <div className="px-3 pt-3 books-filter text-start">
@@ -177,23 +192,7 @@ const Filters = () => {
 
 
 
-            <div className="bg-white rounded shadow-sm mt-3 books-side-author-list">
-                <div className="px-3 pt-3 books-filter text-start">
-                    <div className="mb-3 border-bottom">
-                        <h3 className="h5 fw-700 mb-0">
-                            <span className="border-bottom border-primary pb-3 d-inline-block">
-                                All Author
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-
-
-
-                {
-                    authorContent
-                }
-            </div>
+            
         </div>
     );
 };

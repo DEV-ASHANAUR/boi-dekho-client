@@ -20,7 +20,7 @@ const Author = ({ item }) => {
     return (
         <div className="check-inner">
             <div className="check-group">
-                <input type="checkbox" id={id} onClick={handleCheck} />
+                <input type="checkbox" checked={isSelected} id={id} onClick={handleCheck} />
                 <label for={id}>{author}</label>
             </div>
             {/* <p>(0)</p> */}

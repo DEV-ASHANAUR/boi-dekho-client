@@ -19,7 +19,7 @@ const Fiction = ({ item }) => {
     return (
         <div className="check-inner">
             <div className="check-group">
-                <input type="checkbox" id={_id} onClick={handleCheck} />
+                <input type="checkbox" checked={isSelected} id={_id} onClick={handleCheck} />
                 <label for={_id}>{subCategory}</label>
             </div>
             {/* <p>(0)</p> */}

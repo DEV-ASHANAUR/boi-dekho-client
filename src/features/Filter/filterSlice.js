@@ -5,6 +5,7 @@ const initialState = {
     author: [],
     category: [],
     subcategory: [],
+    sort:"-createdAt",
     search: "",
     page: 1,
 }
@@ -65,6 +66,10 @@ const filterSlice = createSlice({
             state.page = 1;
             state.search = action.payload;
         },
+        sortBy: (state, action) => {
+            state.page = 1;
+            state.sort = action.payload;
+        },
         setPage: (state, action) => {
             state.page = action.payload
         },
@@ -80,4 +85,4 @@ const filterSlice = createSlice({
 });
 
 export default filterSlice.reducer;
-export const { publisherSelected,publisherRemoved,authorSelected, authorRemoved,categorySelected,categoryRemoved,subcategorySelected,subcategoryRemoved, searched, setPage,resetFilter } = filterSlice.actions;
+export const { publisherSelected,publisherRemoved,authorSelected, authorRemoved,categorySelected,categoryRemoved,subcategorySelected,subcategoryRemoved, searched, setPage,sortBy,resetFilter } = filterSlice.actions;

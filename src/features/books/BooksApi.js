@@ -1,6 +1,6 @@
 import axios from "../../utils/axois";
 
-export const getbooks = async({publisher,category,subcategory,author,page}) =>{
+export const getbooks = async({publisher,category,subcategory,author,page,search,sort}) =>{
     let querystring = "";
 
     if(publisher?.length > 0){
@@ -23,7 +23,14 @@ export const getbooks = async({publisher,category,subcategory,author,page}) =>{
         querystring += `authors=${auth}&`
     }
 
-    const response = await axios.get(`/book/?${querystring}page=${page}&limit=5`);
+    if(search !== ""){
+        querystring+= `search=${search}&`
+    }
+    if(sort !== ""){
+        querystring+= `sort=${sort}&`
+    }
+
+    const response = await axios.get(`/book/?${querystring}page=${page}&limit=12`);
 
     let res = {
         total: response.data.total,
