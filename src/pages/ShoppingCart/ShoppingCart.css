@@ -87,6 +87,12 @@
     color: #222;
     display: inline-block;
 }
+.close-item i{
+    transition: .3s;
+}
+.close-item i:hover{
+    color: red;
+}
 
 .checkout-box-wrapper {
     padding-left: 50px;

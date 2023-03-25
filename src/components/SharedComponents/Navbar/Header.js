@@ -4,21 +4,23 @@ import CustomLink from "../CustomLink/CustomLink";
 import logo from "../../../images/banner/BoiDekho-PNG.png";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useMatch, useNavigate } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../../features/Filter/filterSlice";
 
+
 const Header = () => {
-    const {search} = useSelector((state)=>state.filter)
+    const { search } = useSelector((state) => state.filter)
+    const { cartItems } = useSelector(state => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [input,setInput] = useState(search);
+    const [input, setInput] = useState(search);
     const match = useMatch('/books');
 
     //handleSearch
-    const handleSearch = (e) =>{
+    const handleSearch = (e) => {
         e.preventDefault();
         dispatch(searched(input));
-        if(!match){
+        if (!match) {
             navigate("/books");
         }
     }
@@ -32,7 +34,9 @@ const Header = () => {
         >
             <Container>
                 <Navbar.Brand href="#home">
-                    <img src={logo} width="120" alt="Organic" />
+                    <Link to="/">
+                        <img src={logo} width="120" alt="Organic" />
+                    </Link>
                 </Navbar.Brand>
                 <div className="search-box d-lg-none d-sm-block d-none col-md-6 col-sm-8">
                     <form onSubmit={handleSearch}>
@@ -91,7 +95,7 @@ const Header = () => {
                             className="nav-link shoppingCart"
                             to="/shopping-cart"
                         >
-                            <span className="num-area">3</span>
+                            <span className="num-area">{cartItems?.length}</span>
                             <i
                                 className="fas fa-cart-arrow-down"
                                 style={{

@@ -10,6 +10,19 @@
     margin-bottom: 10px;
 }
 
+.postSk1 {
+    width: 25%;
+    padding: 10px;
+    animation: skeleton 1s ease infinite alternate;
+    border: 2px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 13px;
+    margin-bottom: 10px;
+}
+
 @keyframes skeleton {
     to {
         opacity: 0.5;
@@ -20,6 +33,13 @@
     background-color: #313131;
     width: 100%;
     height: 254px;
+    border-radius: 8px;
+}
+
+.postSkImg1 {
+    background-color: #313131;
+    width: 100%;
+    height: 350px;
     border-radius: 8px;
 }
 

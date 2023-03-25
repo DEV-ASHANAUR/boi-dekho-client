@@ -5,6 +5,7 @@ import subCategoryReducer from '../features/SubCategory/SubCategorySlice';
 import authorReducer from '../features/Author/AuthorSlice';
 import publisherReducer  from '../features/Publisher/PublisherSlice';
 import filterReducer from '../features/Filter/filterSlice'
+import cartReducer from '../features/Cart/CartSlice'
 export const store = configureStore({
   reducer: {
     books: booksReducer,
@@ -12,7 +13,8 @@ export const store = configureStore({
     subCategory: subCategoryReducer,
     author:authorReducer,
     publisher:publisherReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    cart: cartReducer
   },
 })
 

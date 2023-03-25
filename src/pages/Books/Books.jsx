@@ -10,8 +10,8 @@ import SingleBook from '../../components/Books/SingleBook';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../features/books/BooksSlice';
 import Skeleton from '../../components/SharedComponents/skeleton/Skeleton';
-import { authorRemoved, categoryRemoved, categorySelected, publisherRemoved, setLimit, setPage, setQueryString, sortBy, subcategoryRemoved } from '../../features/Filter/filterSlice';
-
+import { authorRemoved, categoryRemoved, publisherRemoved, setLimit, setPage, setQueryString, sortBy, subcategoryRemoved } from '../../features/Filter/filterSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Books = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -135,7 +135,7 @@ const Books = () => {
     let content = null;
 
     if (isLoading) {
-        content = <Skeleton type="books" />
+        content = <Skeleton type="filterbooks" />
     }
     if (!isLoading && isError) {
         content = <p>Something Went Wrong</p>
@@ -294,6 +294,7 @@ const Books = () => {
                     </div>
                 </div>
             </div>
+            <Toaster />
             <SubscriptionArea />
             {/* <Footer /> */}
         </>

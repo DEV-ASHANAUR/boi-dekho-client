@@ -12,6 +12,16 @@ const Skeleton = ({ type }) => {
             <div className='info4 info_button'></div>
         </div>
     )
+    const FilterProductSkeleton = () => (
+        <div className="postSk1">
+            <div className="postSkImg1"></div>
+            
+            <div className="info1 info_title1"></div>
+            <div className="info2 info_title2"></div>
+            <div className='info3 info_price'></div>
+            <div className='info4 info_button'></div>
+        </div>
+    )
 
     const ReserveSkeleton = () => (
         <div className="ReSk">
@@ -46,6 +56,7 @@ const Skeleton = ({ type }) => {
     )
 
     if (type === 'books') return Array(COUNTER).fill(<ProductSkeleton />);
+    if (type === 'filterbooks') return Array(8).fill(<FilterProductSkeleton />);
     if (type === 'reserve') return Array(5).fill(<ReserveSkeleton />);
     if (type === 'table') return Array(5).fill(<TableSk />)
     if (type === 'cat') return Array(5).fill(<CatSK />)

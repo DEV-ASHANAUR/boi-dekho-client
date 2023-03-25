@@ -4,7 +4,12 @@ import pimg2 from "../../images/product/Muslim-itihase-utthan-poton-192x254.jpg"
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import banner from "../../images/banner/CoverPage.jpg"
 import "./ShoppingCart.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { removeCartItem } from '../../features/Cart/CartSlice';
 const ShoppingCart = () => {
+    const { cartItems } = useSelector(state => state.cart);
+    const dispatch = useDispatch();
+    // console.log("cartitem",cartItems);
     return (
         <>
             <div className="main-cart-area">
@@ -30,7 +35,37 @@ const ShoppingCart = () => {
                     <div className="row">
                         <div className="col-lg-8 mt-3">
                             <div className="cart-item-box-wrapper px-2 py-4 px-md-4 py-md-3 bg-white box-shadow">
-                                <div className="cart-box">
+                                {
+                                    cartItems?.length > 0 ? (
+
+                                        cartItems.map((item, i) => (
+                                            <div className="cart-box">
+                                                <div className="product">
+                                                    <div className="media">
+                                                        <img className="me-4 lazy-load" src={item.coverImage} alt="img" />
+                                                        <div className="media-body">
+                                                            <h4>{item.bookTitle}</h4>
+                                                            <p>Assisories, Medical</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="price">${item.price}</div>
+                                                <div className="number-area">
+                                                    <input className="form-control quantity" type="number" min="0" value="1" />
+                                                </div>
+                                                <Link href="#" className="close-item" onClick={()=> dispatch(removeCartItem(item))}>
+                                                    <i className="fas fa-trash"></i>
+                                                </Link>
+                                            </div>
+                                        ))
+
+                                    ) : (
+                                        <h1>empty</h1>
+                                    )
+                                }
+
+
+                                {/* <div className="cart-box">
                                     <div className="product">
                                         <div className="media">
                                             <img className="me-4 lazy-load" src={pimg2} alt="img" />
@@ -48,6 +83,7 @@ const ShoppingCart = () => {
                                         <i className="fas fa-trash"></i>
                                     </Link>
                                 </div>
+
                                 <div className="cart-box">
                                     <div className="product">
                                         <div className="media">
@@ -65,25 +101,7 @@ const ShoppingCart = () => {
                                     <Link href="#" className="close-item">
                                         <i className="fas fa-trash"></i>
                                     </Link>
-                                </div>
-                                <div className="cart-box">
-                                    <div className="product">
-                                        <div className="media">
-                                            <img className="me-4 lazy-load" src={pimg2} alt="img" />
-                                            <div className="media-body">
-                                                <h4>Anti-septic Dry Hand Gel</h4>
-                                                <p>Assisories, Medical</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="price">$12.00</div>
-                                    <div className="number-area">
-                                        <input className="form-control quantity" type="number" min="0" value="1" />
-                                    </div>
-                                    <Link href="#" className="close-item">
-                                        <i className="fas fa-trash"></i>
-                                    </Link>
-                                </div>
+                                </div> */}
 
                                 {/* <div className="row mt-5">
                                 <div className="col-md-7">
