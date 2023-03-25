@@ -36,10 +36,10 @@ const Review = () => {
                                 <div>
 
                                     <div className="review-box mt-3">
-                                        <div class="my-rating d-flex align-items-center">
+                                        <div className="my-rating d-flex align-items-center">
                                             <h4>Give A rating</h4>
-                                            <div class="my-rating-wrapper">
-                                                <div class="star-rating">
+                                            <div className="my-rating-wrapper">
+                                                <div className="star-rating">
                                                     <i className='fas fa-star'></i>
                                                     <i className='fas fa-star'></i>
                                                     <i className='fas fa-star'></i>
@@ -50,12 +50,12 @@ const Review = () => {
                                         </div>
 
                                         <form action="#" method="post">
-                                            <div class="row">
-                                                <div class="col-md-12 form-group my-3">
-                                                    <textarea name="message" class="textBox form-control" placeholder="Write a review"></textarea>
+                                            <div className="row">
+                                                <div className="col-md-12 form-group my-3">
+                                                    <textarea name="message" className="textBox form-control" placeholder="Write a review"></textarea>
                                                 </div>
-                                                <div class="col-12">
-                                                    <button class="button" type="submit">Post Review
+                                                <div className="col-12">
+                                                    <button className="button" type="submit">Post Review
                                                     </button>
                                                 </div>
                                             </div>

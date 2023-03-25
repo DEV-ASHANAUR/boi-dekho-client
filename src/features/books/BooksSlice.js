@@ -11,8 +11,8 @@ const initialState = {
     error: ""
 }
 
-export const fetchBooks = createAsyncThunk("books/fetchBooks",async({publisher,category,subcategory,author,page,search,sort})=>{
-    const books = await getbooks({publisher,category,subcategory,author,page,search,sort});
+export const fetchBooks = createAsyncThunk("books/fetchBooks",async({query})=>{
+    const books = await getbooks({query});
     return books;
 })
 

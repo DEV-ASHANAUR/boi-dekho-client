@@ -9,15 +9,15 @@ const ShoppingCart = () => {
         <>
             <div className="main-cart-area">
                 <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <div class="cart-text-area">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-12">
+                                <div className="cart-text-area">
                                     <h2>Shopping Cart</h2>
                                     <div>
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                                            <li class="breadcrumb-item active">Cart</li>
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li className="breadcrumb-item active">Cart</li>
                                         </ol>
                                     </div>
                                 </div>

@@ -12,6 +12,8 @@ import Header from "./components/SharedComponents/Navbar/Header";
 import Footer from "./components/SharedComponents/Footer/Footer";
 import Contact from "./pages/Contact/Contact";
 
+
+
 function Layout() {
     return (
         <>

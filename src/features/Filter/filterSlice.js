@@ -7,7 +7,10 @@ const initialState = {
     subcategory: [],
     sort:"-createdAt",
     search: "",
+    queryString: "",
     page: 1,
+    limit: 5,
+    trigger:false,
 }
 
 const filterSlice = createSlice({
@@ -15,10 +18,12 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         publisherSelected: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.publisher.push(action.payload);
         },
         publisherRemoved: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             const indexToRemove = state.publisher.indexOf(action.payload);
 
@@ -27,10 +32,12 @@ const filterSlice = createSlice({
             }
         },
         authorSelected: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.author.push(action.payload);
         },
         authorRemoved: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             const indexToRemove = state.author.indexOf(action.payload);
 
@@ -39,10 +46,12 @@ const filterSlice = createSlice({
             }
         },
         categorySelected: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.category.push(action.payload);
         },
         categoryRemoved: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             const indexToRemove = state.category.indexOf(action.payload);
 
@@ -51,10 +60,12 @@ const filterSlice = createSlice({
             }
         },
         subcategorySelected: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.subcategory.push(action.payload);
         },
         subcategoryRemoved: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             const indexToRemove = state.subcategory.indexOf(action.payload);
 
@@ -63,26 +74,36 @@ const filterSlice = createSlice({
             }
         },
         searched: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.search = action.payload;
         },
         sortBy: (state, action) => {
+            state.trigger = true;
             state.page = 1;
             state.sort = action.payload;
         },
         setPage: (state, action) => {
+            // state.trigger = true;
             state.page = action.payload
         },
+        setLimit: (state,action) =>{
+            state.limit = action.payload
+        },
         resetFilter: (state) => {
+            state.trigger = true;
             state.author = [];
             state.publisher = [];
             state.category = [];
             state.subcategory = [];
             state.search = "";
             state.page = 1;
+        },
+        setQueryString: (state,action)=>{
+            state.queryString = action.payload
         }
     }
 });
 
 export default filterSlice.reducer;
-export const { publisherSelected,publisherRemoved,authorSelected, authorRemoved,categorySelected,categoryRemoved,subcategorySelected,subcategoryRemoved, searched, setPage,sortBy,resetFilter } = filterSlice.actions;
+export const { publisherSelected,publisherRemoved,authorSelected, authorRemoved,categorySelected,categoryRemoved,subcategorySelected,subcategoryRemoved, searched, setPage,setLimit,sortBy,setQueryString,resetFilter } = filterSlice.actions;
