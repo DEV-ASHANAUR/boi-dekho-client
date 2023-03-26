@@ -39,18 +39,18 @@ export const cartSlice = createSlice({
       let itemIndex = state.cartItems.findIndex((item)=>item._id === action.payload._id);
       if(state.cartItems[itemIndex].cartQuantity > 1){
         state.cartItems[itemIndex].cartQuantity -=1;
-        toast.info("decrease product quantity!");
+        toast.success('quantity decress!')
       }else if(state.cartItems[itemIndex].cartQuantity ===1){
         const restCartItem = state.cartItems.filter((item)=>item._id !== action.payload._id);
         state.cartItems = restCartItem;
-        // toast.info("Item removed from cart!");
+        toast.error('removed item!')
       }
       localStorage.setItem('cartItems',JSON.stringify(state.cartItems));
     },
     removeCartItem(state,action){
       const restCartItem = state.cartItems.filter((cartItems)=>cartItems._id !== action.payload._id);
       state.cartItems = restCartItem;
-    //   toast.error("Item removed from cart!");
+      toast.error('removed item!')
       localStorage.setItem('cartItems',JSON.stringify(state.cartItems));
     },
     getTotals(state,action){

@@ -5,6 +5,8 @@ import ReletedProduct from "./reletedProduct";
 import moment from "moment/moment";
 import "./productView.css";
 import Review from "../../components/ProductView/Review/Review";
+import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
+
 const ProductView = () => {
     const [quantity, setQuantity] = useState(1);
     const { bookId } = useParams();
@@ -101,9 +103,13 @@ const ProductView = () => {
                                     <div className="quantity-area">
                                         <h5>Select Quantity</h5>
                                         <div className="select-quantity">
-                                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
+                                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>
+                                                <AiOutlineMinus />
+                                            </button>
                                             <span className="number-area">{quantity}</span>
-                                            <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
+                                            <button onClick={() => setQuantity(prev => prev + 1)}>
+                                                <AiOutlinePlus />
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="cart-area-wrapper d-md-flex">

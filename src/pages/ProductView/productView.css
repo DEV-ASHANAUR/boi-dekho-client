@@ -211,7 +211,7 @@ a {
 .product-deatils-wrapper .quantity-area .select-quantity {
     display: flex;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 .product-deatils-wrapper .quantity-area .select-quantity button {
     height: 50px;
@@ -248,7 +248,7 @@ a {
 }
 
 .number-area {
-    width: 80px;
+    width: 50px;
     font-size: 20px;
     font-weight: 700;
     text-align: center;
