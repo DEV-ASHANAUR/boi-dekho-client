@@ -62,7 +62,7 @@
 .price{
     flex: 1;
 }
-.quantity-area{
+.cart__quantity__area{
     flex: 1;
     display: flex;
 }

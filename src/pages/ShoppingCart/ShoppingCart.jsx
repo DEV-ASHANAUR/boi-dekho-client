@@ -61,7 +61,7 @@ const ShoppingCart = () => {
                                                     </div>
                                                 </div>
                                                 <div className="price"> <TbCurrencyTaka />{item.price} * {item.cartQuantity}</div>
-                                                <div className="quantity-area">
+                                                <div className="cart__quantity__area">
                                                     <button className='btn_min' onClick={() => dispatch(dereaseCart(item))}><AiOutlineMinus /></button>
                                                     <span className='quantity_value'>{item.cartQuantity}</span>
                                                     <button className='btn_plus' onClick={() => dispatch(addToCart(item))}><AiOutlinePlus /></button>

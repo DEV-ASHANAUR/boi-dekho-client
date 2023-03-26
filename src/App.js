@@ -11,6 +11,7 @@ import TopHeader from "./components/SharedComponents/Topbar/TopHeader";
 import Header from "./components/SharedComponents/Navbar/Header";
 import Footer from "./components/SharedComponents/Footer/Footer";
 import Contact from "./pages/Contact/Contact";
+import Login from "./pages/Login/Login";
 
 
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/" element={<Layout />}>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/home" element={<Home />}></Route>
+                    <Route path="/login" element={<Login />} />
                     <Route path="/books" element={<Books />}></Route>
                     <Route path="/book/:bookId" element={<ProductView />}></Route>
                     <Route path="/pre-order" element={<PreOrder />}></Route>
