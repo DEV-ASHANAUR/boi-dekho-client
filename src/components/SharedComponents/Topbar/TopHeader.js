@@ -3,21 +3,36 @@ import "./TopHeader.css";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searched } from "../../../features/Filter/filterSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase/firebase.config";
+import { signOut } from "firebase/auth";
+import { userLoggedOut } from "../../../features/Auth/AuthSlice";
 const TopHeader = () => {
-    const {search} = useSelector((state)=>state.filter)
+    const [user] = useAuthState(auth);
+
+    const { search } = useSelector((state) => state.filter)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [input,setInput] = useState(search);
+    const [input, setInput] = useState(search);
     const match = useMatch('/books');
 
     //handleSearch
-    const handleSearch = (e) =>{
+    const handleSearch = (e) => {
         e.preventDefault();
         dispatch(searched(input));
-        if(!match){
+        if (!match) {
             navigate("/books");
         }
     }
+
+
+    const handleLogOut = () => {
+        signOut(auth);
+        dispatch(userLoggedOut());
+    };
+    // const navigteLogIn = () => {
+    //     navigate("/login");
+    // };
     return (
         <div className="border-bottom bg-white">
             <div
@@ -44,7 +59,7 @@ const TopHeader = () => {
                                     id="search"
                                     name="search"
                                     value={input}
-                                    onChange={(e)=>setInput(e.target.value)}
+                                    onChange={(e) => setInput(e.target.value)}
                                     placeholder="I am shopping for..."
                                     autoComplete="off"
                                 />
@@ -77,7 +92,44 @@ const TopHeader = () => {
                             icon={faInstagram}
                         ></FontAwesomeIcon>
                     </Link> */}
-                    <Link
+                    {user ? (
+                        <Link
+                            className="login"
+                            style={{
+                                paddingRight: "0px",
+                            }}
+                            onClick={handleLogOut}
+                        >
+                            <i
+                                className="fas fa-user"
+                                style={{
+                                    fontSize: "22px",
+                                }}
+                            ></i>
+                            <span className="nav-box-text-logout d-none d-xl-block opacity-100">
+                                Logout
+                            </span>
+                        </Link>
+                    ) : (
+                        <Link
+                            className="login"
+                            style={{
+                                paddingRight: "0px",
+                            }}
+                            to="/login"
+                        >
+                            <i
+                                className="fas fa-user"
+                                style={{
+                                    fontSize: "22px",
+                                }}
+                            ></i>
+                            <span className="nav-box-text d-none d-xl-block opacity-100">
+                                Login
+                            </span>
+                        </Link>
+                    )}
+                    {/* <Link
                         className="login"
                         style={{
                             paddingRight: "0px",
@@ -93,7 +145,7 @@ const TopHeader = () => {
                         <span className="nav-box-text d-none d-xl-block opacity-100">
                             Login
                         </span>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>
