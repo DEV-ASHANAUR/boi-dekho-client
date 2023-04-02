@@ -65,3 +65,7 @@
     cursor: not-allowed;
     background: #ffa600ab;
 }
+
+.error_message{
+    color: red;
+}

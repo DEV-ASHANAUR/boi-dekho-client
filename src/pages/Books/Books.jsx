@@ -235,7 +235,7 @@ const Books = () => {
                                     }
 
                                 </div>
-                                <div className="row">
+                                <div className="row gy-3">
                                     {
                                         content
                                     }
