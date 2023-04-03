@@ -5,20 +5,24 @@ import ReletedProduct from "./reletedProduct";
 import moment from "moment/moment";
 import "./productView.css";
 import Review from "../../components/ProductView/Review/Review";
-import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBook } from "../../features/book/bookSlice";
+import Loading from "../../components/SharedComponents/Loading/Loading";
 
 const ProductView = () => {
     const [quantity, setQuantity] = useState(1);
+    const { book, isLoading, isError } = useSelector(state => state.book);
     const { bookId } = useParams();
-    const [book, setBook] = useState({});
+    const dispatch = useDispatch();
     useEffect(() => {
-        const url = `http://localhost:5000/api/v1/boikini/book/${bookId}`;
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                setBook(data);
-            });
-    }, [bookId]);
+        dispatch(fetchBook(bookId))
+    }, [dispatch, bookId])
+
+    if(isLoading){
+        return <Loading />
+    }
+
     return (
         <>
             {/* <TopHeader />
@@ -43,7 +47,7 @@ const ProductView = () => {
                                         <span>Back To Product</span>
                                     </Link>
                                     <div className="name-area">
-                                        <h2>Anti-septic Dry Hand Gel</h2>
+                                        <h2>{book.bookTitle}</h2>
 
                                         <div className="rating-area d-flex align-items-center">
                                             <div className="rating-icon">
