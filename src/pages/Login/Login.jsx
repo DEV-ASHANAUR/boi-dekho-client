@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import './login.css'
-
 import {
     useAuthState,
     useSignInWithEmailAndPassword,
@@ -20,8 +19,6 @@ const Login = () => {
     const [verfiyError, setVerifyError] = useState("");
     const { isError } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const location = useLocation();
     const [loguser] = useAuthState(auth);
 
     useEffect(() => {
@@ -30,8 +27,6 @@ const Login = () => {
             toast.error("something went worng!");
         }
     }, [dispatch, isError, loguser])
-    // form setting
-    let from = location.state?.from?.pathname || "/";
     // error variable
     let errorElement;
 
@@ -40,15 +35,6 @@ const Login = () => {
             customParameters: { linkWithCredential: false },
         },
     });
-
-    // const [user1] = useAuthState(auth);
-
-    // if (user1) {
-    //     if (user1?.email) {
-    //         dispatch(loginUser({ eemail, password }))
-    //         // navigate(from, { replace: true });
-    //     }
-    // }
 
     if (loading) {
         return <Loading></Loading>;
@@ -99,12 +85,11 @@ const Login = () => {
         if (resUser) {
             if (resUser.user.emailVerified) {
                 dispatch(loginUser({ email, password }))
-
-                console.log("check verified", resUser?.user.emailVerified);
+                // console.log("check verified", resUser?.user.emailVerified);
             } else {
                 setVerifyError("Please verify your email!");
                 signOut(auth);
-                console.log("verified nai")
+                // console.log("verified nai")
             }
         }
     };

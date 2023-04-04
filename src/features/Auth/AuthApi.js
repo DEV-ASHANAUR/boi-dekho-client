@@ -5,7 +5,7 @@ export const registerUser = async (data) => {
     return response.data
 }
 export const googleUser = async (data) => {
-    console.log("google data",data)
+    // console.log("google data",data)
     const response = await axios.post("/auth/google",data);
     return response.data
 }

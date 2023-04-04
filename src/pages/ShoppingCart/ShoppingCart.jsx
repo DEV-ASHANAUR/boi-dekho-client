@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import pimg2 from "../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import banner from "../../images/banner/CoverPage.jpg"
 import "./ShoppingCart.css";

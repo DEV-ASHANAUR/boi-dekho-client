@@ -1,10 +1,13 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const PublicRoute = ({children}) => {
     const isLoggedIn = useAuth();
-    return !isLoggedIn ? children : <Navigate to="/" />
+    const location = useLocation();
+    let from = location.state?.from || "/";
+    console.log("first",from);
+    return !isLoggedIn ? children : <Navigate to={from} />
 }
 
 export default PublicRoute

@@ -6,6 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReview, saveReview, clearSuccessMessage } from '../../../features/review/reviewSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const Review = ({ bookId }) => {
     const [value, setValue] = useState(0);
     const [text, setText] = useState("");
@@ -13,7 +14,7 @@ const Review = ({ bookId }) => {
     const { reviews, isCreateLoading, isSuccess, successMessage, isError, error } = useSelector(state => state.review);
     const isLoggedIn = useAuth();
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     useEffect(() => {
         dispatch(fetchReview(bookId))
     }, [dispatch, bookId])
@@ -45,7 +46,10 @@ const Review = ({ bookId }) => {
         setText("");
         setValue(0);
     }
-
+    //handleGoTo
+    const handleGoTo = () => {
+        navigate("/login", { state: { from: `/book/${bookId}` } });
+    }
 
     return (
         <div className="container">
@@ -123,7 +127,7 @@ const Review = ({ bookId }) => {
                                                             <button className="button" type="submit" disabled={isCreateLoading}>Post Review
                                                             </button>
                                                         ) : (
-                                                            <button className="button" type="submit" disabled>You have to login!
+                                                            <button className="button" onClick={handleGoTo}>login!
                                                             </button>
                                                         )
                                                     }
