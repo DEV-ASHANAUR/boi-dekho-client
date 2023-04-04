@@ -8,6 +8,7 @@ import publisherReducer  from '../features/Publisher/PublisherSlice';
 import filterReducer from '../features/Filter/filterSlice'
 import cartReducer from '../features/Cart/CartSlice'
 import authReducer from '../features/Auth/AuthSlice';
+import reviewReducer from '../features/review/reviewSlice';
 export const store = configureStore({
   reducer: {
     books: booksReducer,
@@ -18,7 +19,8 @@ export const store = configureStore({
     publisher:publisherReducer,
     filter: filterReducer,
     cart: cartReducer,
-    auth:authReducer
+    auth:authReducer,
+    review:reviewReducer,
   },
 })
 

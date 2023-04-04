@@ -10,6 +10,8 @@ import { userLoggedOut } from "../../../features/Auth/AuthSlice";
 const TopHeader = () => {
     const [user] = useAuthState(auth);
 
+    // console.log("user",user);
+
     const { search } = useSelector((state) => state.filter)
     const dispatch = useDispatch();
     const navigate = useNavigate();

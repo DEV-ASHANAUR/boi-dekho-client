@@ -137,7 +137,7 @@ const ProductView = () => {
                 </div>
             </div>
 
-            <Review />
+            <Review bookId={bookId} />
             <ReletedProduct />
             <SubscriptionArea />
             {/* <Footer /> */}

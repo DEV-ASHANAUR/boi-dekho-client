@@ -50,7 +50,7 @@ const Register = () => {
         if (errorCode === 'auth/email-already-in-use') {
             errorElement = (
                 <div>
-                    <p className="text-danger">Error : User Already Exist!</p>
+                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : User Already Exist!</p>
                 </div>
             );
         } else {

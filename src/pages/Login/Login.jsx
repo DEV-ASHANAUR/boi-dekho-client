@@ -59,27 +59,27 @@ const Login = () => {
         if (errorCode === 'auth/wrong-password') {
             errorElement = (
                 <div>
-                    <p className="text-danger">Error : Wrong credential!</p>
+                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Wrong credential!</p>
                 </div>
             );
         } else if (errorCode === 'auth/user-not-found') {
             errorElement = (
                 <div>
-                    <p className="text-danger">Error : User Not Exist!</p>
+                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : User Not Exist!</p>
                 </div>
             );
         }
         else if (errorCode === 'auth/invalid-email') {
             errorElement = (
                 <div>
-                    <p className="text-danger">Error : Invalid Email!</p>
+                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Invalid Email!</p>
                 </div>
             );
         }
         else {
             errorElement = (
                 <div>
-                    <p className="text-danger">Error : Something Went Worng!</p>
+                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Something Went Worng!</p>
                 </div>
             );
         }
@@ -88,7 +88,7 @@ const Login = () => {
     if (verfiyError !== "") {
         errorElement = (
             <div>
-                <p className="text-danger">Error: {verfiyError}</p>
+                <p className="text-white bg-danger text-uppercase text-center p-1">Error: {verfiyError}</p>
             </div>
         );
     }
