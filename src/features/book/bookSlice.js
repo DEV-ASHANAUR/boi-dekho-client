@@ -3,6 +3,8 @@ import { getBook } from './bookApi';
 
 const initialState = {
     book: {},
+    avgRating: null,
+    totalRating: null,
     isLoading: false,
     isError: false,
     error: ""
@@ -24,12 +26,16 @@ export const bookSlice = createSlice({
             .addCase(fetchBook.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isError = false;
-                state.book = action.payload;
+                state.book = action.payload.book;
+                state.avgRating = action.payload.averageRating;
+                state.totalRating = action.payload.count;
             })
             .addCase(fetchBook.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.book = {};
+                state.avgRating = null;
+                state.totalRating = null;
                 state.error = action.error?.message;
             })
     }

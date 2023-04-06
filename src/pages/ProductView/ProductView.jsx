@@ -9,17 +9,19 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBook } from "../../features/book/bookSlice";
 import Loading from "../../components/SharedComponents/Loading/Loading";
+import { Rating } from "@mui/material";
 
 const ProductView = () => {
     const [quantity, setQuantity] = useState(1);
-    const { book, isLoading, isError } = useSelector(state => state.book);
+    const { book, isLoading } = useSelector(state => state.book);
+    const { avgRating,totalRating } = useSelector(state => state.review);
     const { bookId } = useParams();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchBook(bookId))
     }, [dispatch, bookId])
 
-    if(isLoading){
+    if (isLoading) {
         return <Loading />
     }
 
@@ -48,16 +50,14 @@ const ProductView = () => {
                                     </Link>
                                     <div className="name-area">
                                         <h2>{book.bookTitle}</h2>
-
                                         <div className="rating-area d-flex align-items-center">
-                                            <div className="rating-icon">
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                            </div>
-                                            <p className="mb-0">4.4(328 reviews)</p>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={avgRating}
+                                                precision={0.1}
+                                                readOnly
+                                            />
+                                            <p className="mb-0">{avgRating}({totalRating} reviews)</p>
                                         </div>
                                     </div>
 

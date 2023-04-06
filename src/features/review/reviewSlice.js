@@ -5,6 +5,8 @@ const initialState = {
     reviews: [],
     isFetchLoading: false,
     isCreateLoading: false,
+    avgRating: null,
+    totalRating: null,
     isError: false,
     isSuccess: false,
     successMessage: null,
@@ -44,6 +46,7 @@ export const reviewSlice = createSlice({
             state.isError = false;
             state.isSuccess = true;
             state.reviews.push(action.payload);
+            state.totalRating += 1;
             state.successMessage = "Thanks for Review!";
         })
         .addCase(saveReview.rejected,(state,action)=>{
@@ -61,7 +64,9 @@ export const reviewSlice = createSlice({
         .addCase(fetchReview.fulfilled,(state,action)=>{
             state.isFetchLoading = false;
             state.isError = false;
-            state.reviews = action.payload;
+            state.reviews = action.payload.reviews;
+            state.avgRating = action.payload.averageRating;
+            state.totalRating = action.payload.count;
         })
         .addCase(fetchReview.rejected,(state,action)=>{
             state.isFetchLoading = false;

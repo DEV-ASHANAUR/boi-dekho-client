@@ -80,7 +80,6 @@ const Review = ({ bookId }) => {
                                                         value={item.rating}
                                                         precision={0.5}
                                                         readOnly
-
                                                     />
                                                     <br />
                                                     <span>{item.reviewText}</span>
