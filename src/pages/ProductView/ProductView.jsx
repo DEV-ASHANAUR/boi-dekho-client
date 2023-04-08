@@ -10,9 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBook } from "../../features/book/bookSlice";
 import Loading from "../../components/SharedComponents/Loading/Loading";
 import { Rating } from "@mui/material";
+import { addToCartView } from "../../features/Cart/CartSlice";
 
 const ProductView = () => {
-    const [quantity, setQuantity] = useState(1);
+    const [cartQuantity, setCartQuantity] = useState(1);
     const { book, isLoading } = useSelector(state => state.book);
     const { avgRating,totalRating } = useSelector(state => state.review);
     const { bookId } = useParams();
@@ -23,6 +24,12 @@ const ProductView = () => {
 
     if (isLoading) {
         return <Loading />
+    }
+
+    const handleAddToCard = (e) => {
+        e.preventDefault();
+        let data = {...book,cartQuantity}
+        dispatch(addToCartView(data));
     }
 
     return (
@@ -107,11 +114,11 @@ const ProductView = () => {
                                     <div className="quantity-area">
                                         <h5>Select Quantity</h5>
                                         <div className="select-quantity">
-                                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>
+                                            <button onClick={() => setCartQuantity(prev => prev === 1 ? 1 : prev - 1)}>
                                                 <AiOutlineMinus />
                                             </button>
-                                            <span className="number-area">{quantity}</span>
-                                            <button onClick={() => setQuantity(prev => prev + 1)}>
+                                            <span className="number-area">{cartQuantity}</span>
+                                            <button onClick={() => setCartQuantity(prev => prev + 1)}>
                                                 <AiOutlinePlus />
                                             </button>
                                         </div>
@@ -125,7 +132,7 @@ const ProductView = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Link to="#" className="add-cart button mt-3">
+                                        <Link to="#" onClick={handleAddToCard} className="add-cart button mt-3">
                                             Add To Cart
                                             <i className="fas fa-cart-arrow-down"></i>
                                         </Link>

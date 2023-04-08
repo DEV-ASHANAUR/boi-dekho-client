@@ -1,7 +1,7 @@
 import axios from "../../utils/axois";
 
 export const getReletedBooks = async({categories,bookId})=>{
-    console.log("bbb",bookId)
+    // console.log("bbb",bookId)
     let querystring = '';
     if(categories?.length > 0){
         let cat = categories.join(",");
