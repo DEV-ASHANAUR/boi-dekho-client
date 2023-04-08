@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SubscriptionArea from "./../../components/SharedComponents/SubscriptionArea/subscriptionArea";
-import ReletedProduct from "./reletedProduct";
+import ReletedProduct from "./ReletedProduct";
 import moment from "moment/moment";
 import "./productView.css";
 import Review from "../../components/ProductView/Review/Review";
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBook } from "../../features/book/bookSlice";
+import Loading from "../../components/SharedComponents/Loading/Loading";
+import { Rating } from "@mui/material";
+import { addToCartView } from "../../features/Cart/CartSlice";
+
 const ProductView = () => {
-    const [quantity, setQuantity] = useState(1);
+    const [cartQuantity, setCartQuantity] = useState(1);
+    const { book, isLoading } = useSelector(state => state.book);
+    const { avgRating,totalRating } = useSelector(state => state.review);
     const { bookId } = useParams();
-    const [book, setBook] = useState({});
+    const dispatch = useDispatch();
     useEffect(() => {
-        const url = `http://localhost:5000/api/v1/boikini/book/${bookId}`;
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                setBook(data);
-            });
-    }, [bookId]);
+        dispatch(fetchBook(bookId))
+    }, [dispatch, bookId])
+
+    if (isLoading) {
+        return <Loading />
+    }
+
+    const handleAddToCard = (e) => {
+        e.preventDefault();
+        let data = {...book,cartQuantity}
+        dispatch(addToCartView(data));
+    }
+
     return (
         <>
             {/* <TopHeader />
@@ -41,17 +56,15 @@ const ProductView = () => {
                                         <span>Back To Product</span>
                                     </Link>
                                     <div className="name-area">
-                                        <h2>Anti-septic Dry Hand Gel</h2>
-
+                                        <h2>{book.bookTitle}</h2>
                                         <div className="rating-area d-flex align-items-center">
-                                            <div className="rating-icon">
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                                <i className="fas fa-star"></i>
-                                            </div>
-                                            <p className="mb-0">4.4(328 reviews)</p>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={avgRating}
+                                                precision={0.1}
+                                                readOnly
+                                            />
+                                            <p className="mb-0">{avgRating}({totalRating} reviews)</p>
                                         </div>
                                     </div>
 
@@ -101,9 +114,13 @@ const ProductView = () => {
                                     <div className="quantity-area">
                                         <h5>Select Quantity</h5>
                                         <div className="select-quantity">
-                                            <button onClick={() => setQuantity(prev => prev === 1 ? 1 : prev - 1)}>-</button>
-                                            <span className="number-area">{quantity}</span>
-                                            <button onClick={() => setQuantity(prev => prev + 1)}>+</button>
+                                            <button onClick={() => setCartQuantity(prev => prev === 1 ? 1 : prev - 1)}>
+                                                <AiOutlineMinus />
+                                            </button>
+                                            <span className="number-area">{cartQuantity}</span>
+                                            <button onClick={() => setCartQuantity(prev => prev + 1)}>
+                                                <AiOutlinePlus />
+                                            </button>
                                         </div>
                                     </div>
                                     <div className="cart-area-wrapper d-md-flex">
@@ -115,7 +132,7 @@ const ProductView = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Link to="#" className="add-cart button mt-3">
+                                        <Link to="#" onClick={handleAddToCard} className="add-cart button mt-3">
                                             Add To Cart
                                             <i className="fas fa-cart-arrow-down"></i>
                                         </Link>
@@ -127,8 +144,8 @@ const ProductView = () => {
                 </div>
             </div>
 
-            <Review />
-            <ReletedProduct />
+            <Review bookId={bookId} />
+            <ReletedProduct bookId={bookId} categories={book.categories} />
             <SubscriptionArea />
             {/* <Footer /> */}
         </>

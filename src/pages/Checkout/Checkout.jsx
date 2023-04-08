@@ -9,15 +9,15 @@ const Checkout = () => {
         <>
             <div className="checkout-main-area">
                 <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <div class="cart-text-area">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-12">
+                                <div className="cart-text-area">
                                     <h2>Billing Details</h2>
                                     <div>
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                                            <li class="breadcrumb-item active">billing</li>
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li className="breadcrumb-item active">billing</li>
                                         </ol>
                                     </div>
                                 </div>

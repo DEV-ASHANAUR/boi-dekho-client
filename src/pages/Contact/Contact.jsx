@@ -6,17 +6,17 @@ import "./Contact.css";
 const Contact = () => {
     return (
         <>
-            <div class="contact_wrapper overflow-hidden" id="contact">
+            <div className="contact_wrapper overflow-hidden" id="contact">
                 <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <div class="cart-text-area">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-12">
+                                <div className="cart-text-area">
                                     <h2>Contact Us</h2>
                                     <div>
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                                            <li class="breadcrumb-item active">Contact</li>
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li className="breadcrumb-item active">Contact</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -24,15 +24,15 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        {/* <div class="col-12 text-center mb-5">
-                            <h2 class="title_1">Contact Us</h2>
-                            <p class="title_2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+                <div className="container">
+                    <div className="row">
+                        {/* <div className="col-12 text-center mb-5">
+                            <h2 className="title_1">Contact Us</h2>
+                            <p className="title_2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
                         </div> */}
-                        <div class="col-lg-5 col-xl-4 mt-5">
+                        <div className="col-lg-5 col-xl-4 mt-5">
                             <aside>
-                                <div class="address">
+                                <div className="address">
                                     <h4>Get in touch with us</h4>
                                     <ul>
                                         <li>
@@ -51,23 +51,23 @@ const Contact = () => {
                                 </div>
                             </aside>
                         </div>
-                        <div class="col-lg-7 col-xl-8 mt-5 text-center">
+                        <div className="col-lg-7 col-xl-8 mt-5 text-center">
                             <form action="#" method="post">
-                                <div class="row">
-                                    <div class="col-md-6 form-group mb-3">
-                                        <input type="text" name="name" class="inputBox form-control" placeholder="Your Name" />
+                                <div className="row">
+                                    <div className="col-md-6 form-group mb-3">
+                                        <input type="text" name="name" className="inputBox form-control" placeholder="Your Name" />
                                     </div>
-                                    <div class="col-md-6 form-group mb-3">
-                                        <input type="email" name="email" class="inputBox form-control" placeholder="Your Email" />
+                                    <div className="col-md-6 form-group mb-3">
+                                        <input type="email" name="email" className="inputBox form-control" placeholder="Your Email" />
                                     </div>
-                                    <div class="col-md-12 form-group mb-3">
-                                        <input type="text" name="subject" class="inputBox form-control" placeholder="Subject" />
+                                    <div className="col-md-12 form-group mb-3">
+                                        <input type="text" name="subject" className="inputBox form-control" placeholder="Subject" />
                                     </div>
-                                    <div class="col-md-12 form-group mb-3">
-                                        <textarea name="message" class="textBox form-control" placeholder="Message"></textarea>
+                                    <div className="col-md-12 form-group mb-3">
+                                        <textarea name="message" className="textBox form-control" placeholder="Message"></textarea>
                                     </div>
-                                    <div class="col-12">
-                                        <button class="button" type="submit">Send message</button>
+                                    <div className="col-12">
+                                        <button className="button" type="submit">Send message</button>
                                     </div>
                                 </div>
                             </form>

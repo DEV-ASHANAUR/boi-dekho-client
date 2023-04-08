@@ -9,6 +9,7 @@
     justify-content: space-between;
     border: 1px solid #f2f3f8;
     transition: 0.3s;
+    background: #fff;
 }
 .porduct-inner-box:hover {
     transform: translateY(-10px);
@@ -44,34 +45,17 @@
     color: #fff !important;
 }
 .porduct-inner-box .onsale .badge {
-    background: #000;
+    background: #0c84ff;
     font-size: 12px;
     padding: 5px 14px;
     top: 30px;
     left: 0px;
     position: absolute;
     z-index: 1;
+    clip-path: polygon(100% 0, 89% 50%, 100% 100%, 0 100%, 0 0);
 }
-.porduct-inner-box .onsale .badge::before {
-    border-width: 10px 0px 0px 10px;
-    border-color: transparent transparent transparent #000;
-    content: "";
-    position: absolute;
-    right: -8px;
-    width: 0;
-    bottom: 0;
-    border-style: solid;
-}
-.porduct-inner-box .onsale .badge::after {
-    border-width: 10px 8px 0px 10px;
-    border-color: #000 transparent transparent;
-    content: "";
-    position: absolute;
-    right: -8px;
-    width: 0;
-    top: 0;
-    border-style: solid;
-}
+
+
 
 .productImage {
     overflow: hidden;
@@ -89,7 +73,7 @@
 }
 
 .product-name h3 {
-    margin: 0px 0px 6px;
+    margin: 15px 0px 6px;
 }
 .product-name h3 a {
     color: #333;
@@ -97,6 +81,10 @@
     font-size: 16px;
     font-weight: 600;
     overflow: hidden;
+    line-height: 1.4;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .product-price span {
     font-size: 16px;

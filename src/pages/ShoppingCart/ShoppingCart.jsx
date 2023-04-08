@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import pimg2 from "../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import banner from "../../images/banner/CoverPage.jpg"
 import "./ShoppingCart.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, dereaseCart, getTotals, removeCartItem } from '../../features/Cart/CartSlice';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { TbCurrencyTaka } from 'react-icons/tb';
+
+import { Toaster } from 'react-hot-toast';
+import numberWithCommas from '../../utils/numberFormat';
 const ShoppingCart = () => {
+    const { cartItems,cartTotalQuantity,cartTotalAmount } = useSelector(state => state.cart);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getTotals());
+    },[dispatch,cartItems])
+    // console.log("cartitem",cartItems);
     return (
         <>
             <div className="main-cart-area">
                 <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <div class="cart-text-area">
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-12">
+                                <div className="cart-text-area">
                                     <h2>Shopping Cart</h2>
                                     <div>
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-                                            <li class="breadcrumb-item active">Cart</li>
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+                                            <li className="breadcrumb-item active">Cart</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,78 +43,64 @@ const ShoppingCart = () => {
                     <div className="row">
                         <div className="col-lg-8 mt-3">
                             <div className="cart-item-box-wrapper px-2 py-4 px-md-4 py-md-3 bg-white box-shadow">
-                                <div className="cart-box">
-                                    <div className="product">
-                                        <div className="media">
-                                            <img className="me-4 lazy-load" src={pimg2} alt="img" />
-                                            <div className="media-body">
-                                                <h4>Anti-septic Dry Hand Gel</h4>
-                                                <p>Assisories, Medical</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="price">$12.00</div>
-                                    <div className="number-area">
-                                        <input className="form-control quantity" type="number" min="0" value="1" />
-                                    </div>
-                                    <Link href="#" className="close-item">
-                                        <i className="fas fa-trash"></i>
-                                    </Link>
-                                </div>
-                                <div className="cart-box">
-                                    <div className="product">
-                                        <div className="media">
-                                            <img className="me-4 lazy-load" src={pimg2} alt="img" />
-                                            <div className="media-body">
-                                                <h4>Anti-septic Dry Hand Gel</h4>
-                                                <p>Assisories, Medical</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="price">$12.00</div>
-                                    <div className="number-area">
-                                        <input className="form-control quantity" type="number" min="0" value="1" />
-                                    </div>
-                                    <Link href="#" className="close-item">
-                                        <i className="fas fa-trash"></i>
-                                    </Link>
-                                </div>
-                                <div className="cart-box">
-                                    <div className="product">
-                                        <div className="media">
-                                            <img className="me-4 lazy-load" src={pimg2} alt="img" />
-                                            <div className="media-body">
-                                                <h4>Anti-septic Dry Hand Gel</h4>
-                                                <p>Assisories, Medical</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="price">$12.00</div>
-                                    <div className="number-area">
-                                        <input className="form-control quantity" type="number" min="0" value="1" />
-                                    </div>
-                                    <Link href="#" className="close-item">
-                                        <i className="fas fa-trash"></i>
-                                    </Link>
-                                </div>
+                                {
+                                    cartItems?.length > 0 ? (
 
-                                {/* <div className="row mt-5">
-                                <div className="col-md-7">
-                                    <div className="cupon-area">
-                                        <form action="#" className="d-flex">
-                                            <div className="w-100">
-                                                <input type="text" placeholder="Cupon code" />
+                                        cartItems.map((item, i) => (
+                                            <div className="cart-box" key={i}>
+                                                <div className="product">
+                                                    <div className="media">
+                                                        <img className="me-4 lazy-load" src={item.coverImage} alt="img" />
+                                                        <div className="media-body">
+                                                            <h4>{item.bookTitle}</h4>
+                                                            <p>{item.categories?.map((cat)=>(
+                                                                cat +" "
+                                                            ))}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="price"> <TbCurrencyTaka />{item.price} * {item.cartQuantity}</div>
+                                                <div className="cart__quantity__area">
+                                                    <button className='btn_min' onClick={() => dispatch(dereaseCart(item))}><AiOutlineMinus /></button>
+                                                    <span className='quantity_value'>{item.cartQuantity}</span>
+                                                    <button className='btn_plus' onClick={() => dispatch(addToCart(item))}><AiOutlinePlus /></button>
+                                                </div>
+                                                <div className='remove_cart_btn'>
+                                                    <Link href="#" className="close-item" onClick={() => dispatch(removeCartItem(item))}>
+                                                        <i className="fas fa-trash"></i>
+                                                    </Link>
+                                                </div>
                                             </div>
-                                            <button type="submit" className="cupon-btn">Apply</button>
-                                        </form>
+                                        ))
+
+                                    ) : (
+                                        <h1 className='empty_cart'>Your Cart is empty!</h1>
+                                    )
+                                }
+
+
+
+
+                                <div className="row mt-5">
+                                    <div className='mb-4'>
+                                        <Link to="/books" className="continue_btn">Continue Shopping</Link>
                                     </div>
-                                </div>
-                                <div className="col-md-5">
-                                    <div className="cart-update-btn">
-                                        <Link className="button cart-up-btn" href="#">Update Cart</Link>
+                                    {/* <div className="col-md-7">
+                                        <div className="cupon-area">
+                                            <form action="#" className="d-flex">
+                                                <div className="w-100">
+                                                    <input type="text" placeholder="Cupon code" />
+                                                </div>
+                                                <button type="submit" className="cupon-btn">Apply</button>
+                                            </form>
+                                        </div>
                                     </div>
+                                    <div className="col-md-5">
+                                        <div className="cart-update-btn">
+                                            <Link className="button cart-up-btn" href="#">Update Cart</Link>
+                                        </div>
+                                    </div> */}
                                 </div>
-                            </div> */}
                             </div>
                         </div>
 
@@ -112,7 +111,7 @@ const ShoppingCart = () => {
                                         <h4>Summary</h4>
                                         <div className="order-total sm-box d-flex justify-content-between">
                                             <p>Order Total :</p>
-                                            <span>$120.00</span>
+                                            <span><TbCurrencyTaka />{numberWithCommas(cartTotalAmount)}</span>
                                         </div>
                                         <div className="cupon sm-box d-flex justify-content-between">
                                             <p>Apply Cupon :</p>
@@ -137,6 +136,7 @@ const ShoppingCart = () => {
                     </div>
                 </div>
             </div>
+            <Toaster />
             <SubscriptionArea />
         </>
     );
