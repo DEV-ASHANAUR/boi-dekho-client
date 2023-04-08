@@ -1,63 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SingleReletedProduct from '../../components/ProductView/SingleReletedProduct';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReletedBooks } from '../../features/reletedBooks/reletedBooksSlice';
+import Skeleton from '../../components/SharedComponents/skeleton/Skeleton';
+const ReletedProduct = ({categories,bookId}) => {
+    const {reletedBooks,isLoading,isError} = useSelector(state=>state.reletedBooks);
+    const dispatch = useDispatch();
 
-import pimg1 from "../../images/product/mahfil-192x254.jpg";
-import pimg2 from "../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
-import pimg3 from "../../images/product/nari192x254.jpg";
-const reletedProduct = () => {
+    useEffect(()=>{
+        dispatch(fetchReletedBooks({categories,bookId}));
+    },[dispatch,categories,bookId])
 
-    const reletedBooks = [
+    // console.log("releted book",reletedBooks);
 
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-    ];
+    let content = null;
+
+    if(isLoading){
+        content = <Skeleton type="books" />
+    }
+    if(!isLoading && isError){
+        content = <p>Something Went Wrong</p>
+    }
+    if(!isLoading && !isError && reletedBooks?.length === 0){
+        content = <p>Books Not found!</p>
+    }
+    if(!isLoading && !isError && reletedBooks?.length > 0){
+        content = reletedBooks.map((book,i)=>(
+            <SingleReletedProduct book={book} key={i} />
+        ))
+    }
+
+
 
     return (
         <section className="reletedProduct-main-area">
@@ -66,7 +40,7 @@ const reletedProduct = () => {
                     <div className="d-flex mb-3 align-items-baseline justify-content-between border-bottom">
                         <h3 className="h5 fw-700 mb-0">
                             <span className="border-bottom border-primary pb-3 d-inline-block">
-                                Releted Product
+                                Releted Books
                             </span>
                         </h3>
                         <div>
@@ -77,9 +51,7 @@ const reletedProduct = () => {
 
                     <div className="row">
                         {
-                            reletedBooks.map((item, index) => (
-                                <SingleReletedProduct item={item} key={index} />
-                            ))
+                            content
                         }
                     </div>
                 </div>
@@ -88,4 +60,4 @@ const reletedProduct = () => {
     );
 };
 
-export default reletedProduct;
+export default ReletedProduct;

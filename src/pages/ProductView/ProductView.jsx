@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SubscriptionArea from "./../../components/SharedComponents/SubscriptionArea/subscriptionArea";
-import ReletedProduct from "./reletedProduct";
+import ReletedProduct from "./ReletedProduct";
 import moment from "moment/moment";
 import "./productView.css";
 import Review from "../../components/ProductView/Review/Review";
@@ -138,7 +138,7 @@ const ProductView = () => {
             </div>
 
             <Review bookId={bookId} />
-            <ReletedProduct />
+            <ReletedProduct bookId={bookId} categories={book.categories} />
             <SubscriptionArea />
             {/* <Footer /> */}
         </>
