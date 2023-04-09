@@ -6,11 +6,6 @@ import "./Checkout.css";
 import { Link } from 'react-router-dom';
 import CustomizedSteppers from '../../components/step/Step';
 const Checkout = () => {
-    const steps = [
-        'Shipping',
-        'Payment',
-        'Success',
-      ];
     return (
         <>
             <div className="checkout-main-area">
