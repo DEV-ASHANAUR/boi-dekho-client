@@ -4,16 +4,8 @@ import paymentImg from "../../images/banner/payment.jpg"
 import banner from "../../images/banner/CoverPage.jpg"
 import "./Checkout.css";
 import { Link } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+import CustomizedSteppers from '../../components/step/Step';
 const Checkout = () => {
-    const steps = [
-        'Shipping',
-        'Payment',
-        'Success',
-      ];
     return (
         <>
             <div className="checkout-main-area">
@@ -35,15 +27,7 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="container">
-                    <Box sx={{ width: '100%' }}>
-                        <Stepper activeStep={0} alternativeLabel>
-                            {steps.map((label) => (
-                                <Step key={label}>
-                                    <StepLabel>{label}</StepLabel>
-                                </Step>
-                            ))}
-                        </Stepper>
-                    </Box>
+                    <CustomizedSteppers step={0} />
                 </div>
                 <form className="needs-validation billing-form" noValidate="">
                     <div className="container">
