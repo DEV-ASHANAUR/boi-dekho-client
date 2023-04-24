@@ -16,6 +16,7 @@ import Register from "./pages/Register/Register";
 import useAuthCheck from "./hooks/useAuthCheck";
 import Loading from "./components/SharedComponents/Loading/Loading";
 import PublicRoute from "./components/PublicRoute";
+import Dashboard from "./components/user/dashboard/Dashboard";
 
 
 
@@ -55,6 +56,9 @@ function App() {
                             element={<ProductView />}
                         ></Route>
                         <Route path="/contact-us" element={<Contact />}></Route>
+                        {/* user route start */}
+                        <Route path="/user-dashboard" element={<Dashboard />}></Route>
+                        {/* user route end */}
                         <Route path="*" element={<NoPage />}></Route>
                     </Route>
                 </Routes>

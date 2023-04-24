@@ -32,6 +32,11 @@ const TopHeader = () => {
         signOut(auth);
         dispatch(userLoggedOut());
     };
+    const myAccount = () => {
+        // <Link></Link>
+        // navigate("/books");
+        console.log("hello");
+    }
     // const navigteLogIn = () => {
     //     navigate("/login");
     // };
@@ -100,7 +105,7 @@ const TopHeader = () => {
                             style={{
                                 paddingRight: "0px",
                             }}
-                            onClick={handleLogOut}
+                            to="/user-dashboard"
                         >
                             <i
                                 className="fas fa-user"
@@ -109,7 +114,7 @@ const TopHeader = () => {
                                 }}
                             ></i>
                             <span className="nav-box-text-logout d-none d-xl-block opacity-100">
-                                Logout
+                                Account
                             </span>
                         </Link>
                     ) : (
