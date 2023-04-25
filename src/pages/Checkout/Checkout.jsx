@@ -29,125 +29,66 @@ const Checkout = () => {
                 <div className="container">
                     <CustomizedSteppers step={0} />
                 </div>
-                <form className="needs-validation billing-form" noValidate="">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-8">
-                                <div className="row">
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Email address *</label>
-                                            <input className="form-control" type="email" required="" />
+                <div className="container mt-5">
+                    <div className="row">
+                        <div className="col-md-8">
+                            <div className="address__wrapper shadow">
+                                <h4>Shipping Address</h4>
+                                <form action="">
+                                    <div class="row mt-5">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Full Name</label>
+                                            <input type="text" class="form-control mt-2" placeholder="Full Name" />
                                         </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>First name *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Last name *</label>
-                                            <input className="form-control" type="text" required="" />
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Email</label>
+                                            <input type="email" class="form-control mt-2" placeholder="Email" />
                                         </div>
                                     </div>
 
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Street address *</label>
-                                            <input className="form-control" type="text" placeholder="House number and street name" required="" />
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Contact Number</label>
+                                            <input type="text" class="form-control mt-2" placeholder="Contact Number" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Zip code</label>
+                                            <input type="text" class="form-control mt-2" placeholder="Contact Number" />
                                         </div>
                                     </div>
-                                    <div className="col-md-12 mt-2">
-                                        <div className="input_group">
-                                            <input className="form-control" type="text" placeholder="Apartment,suite,unit etc(optional)" required="" />
+                                    <div className='mt-3'>
+                                        <input type="checkbox" id="daddress" className='form-check-input me-2' />
+                                        <label htmlFor="daddress"> Use default Address</label>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Division</label>
+                                            <input type="text" class="form-control mt-2" placeholder="Division" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">District</label>
+                                            <input type="email" class="form-control mt-2" placeholder="District" />
                                         </div>
                                     </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Town/City *</label>
-                                            <input className="form-control" type="text" required="" />
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Upazila</label>
+                                            <input type="text" class="form-control mt-2" placeholder="Upazila Number" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Address</label>
+                                            <input type="email" class="form-control mt-2" placeholder="Full Address" />
                                         </div>
                                     </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Postcode *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Country(optional)</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Phone *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Aditional information(optional)</label>
-                                            <textarea className="form-control" placeholder="Notes about your order" required=""></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-4 mt-5">
-                                <div className="order-place-wrapper">
-                                    <div className="box">
-                                        <h2>Your Order</h2>
-                                        <div className="label common-checkout">
-                                            <p>Product</p>
-                                            <p>Subtotal</p>
-                                        </div>
-                                        <div className="p-name common-checkout">
-                                            <p>Anti-septic Dry Hand Gel</p>
-                                            <span>$120.00</span>
-                                        </div>
-                                        <div className="p-name common-checkout">
-                                            <p>Surgical Latex Glovex</p>
-                                            <span>$80.65</span>
-                                        </div>
-                                        <div className="sub-t common-checkout">
-                                            <p>Subtotal</p>
-                                            <span>$814.85</span>
-                                        </div>
-                                        <div className="ship common-checkout">
-                                            <p>Shipping</p>
-                                            <span>$10.00</span>
-                                        </div>
-                                        <div className="total common-checkout">
-                                            <p>Total</p>
-                                            <p>814.85</p>
-                                        </div>
-                                        <div className="payment-img b-none common-checkout">
-                                            <div className="check-group paypal">
-                                                <input className="form-check-input" type="checkbox" id="pa" required="" />
-                                                <label className="form-check-label" for="pa">
-                                                    Paypal
-                                                    <img className="lazy-load" src={paymentImg} alt="img" />
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="condition b-none common-checkout">
-                                            <div className="check-group">
-                                                <input className="form-check-input" type="checkbox" id="co" required="" />
-                                                <label className="form-check-label" for="co">I have read and agree to the website terms and conditions *</label>
-                                            </div>
-                                        </div>
-                                        <div className="btn-area">
-                                            <button type="submit" className="button">Place order</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <button type="submit" className='btn btn-flat btn-primary d-block mt-5 w-25 ms-auto mb-3'>payment</button>
+                                </form>
                             </div>
                         </div>
+                        <div className="col-md-4">
+                            information
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
             <SubscriptionArea />
         </>

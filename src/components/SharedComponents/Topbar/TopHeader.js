@@ -28,15 +28,7 @@ const TopHeader = () => {
     }
 
 
-    const handleLogOut = () => {
-        signOut(auth);
-        dispatch(userLoggedOut());
-    };
-    const myAccount = () => {
-        // <Link></Link>
-        // navigate("/books");
-        console.log("hello");
-    }
+    
     // const navigteLogIn = () => {
     //     navigate("/login");
     // };

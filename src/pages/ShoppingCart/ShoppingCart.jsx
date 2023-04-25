@@ -128,7 +128,7 @@ const ShoppingCart = () => {
                                     </div>
                                     <div className="checkout-btn-area mt-5">
                                         <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
-                                        <Link to="/books" className="continue-shoping">Continue To Shopping</Link>
+                                        {/* <Link to="/books" className="continue-shoping">Continue To Shopping</Link> */}
                                     </div>
                                 </div>
                             </div>

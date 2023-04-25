@@ -17,6 +17,11 @@ import useAuthCheck from "./hooks/useAuthCheck";
 import Loading from "./components/SharedComponents/Loading/Loading";
 import PublicRoute from "./components/PublicRoute";
 import Dashboard from "./components/user/dashboard/Dashboard";
+import UserRoute from "./components/UserRoute";
+import AccountPanel from "./components/user/account/AccountPanel";
+import Profile from "./components/user/account/Profile";
+import Address from "./components/user/account/Address";
+import Password from "./components/user/account/Password";
 
 
 
@@ -50,14 +55,18 @@ function App() {
                             path="/shopping-cart"
                             element={<ShoppingCart />}
                         ></Route>
-                        <Route path="/check-out" element={<Checkout />}></Route>
+                        <Route path="/check-out" element={<UserRoute><Checkout /></UserRoute>}></Route>
                         <Route
                             path="/product-view/:id"
                             element={<ProductView />}
                         ></Route>
                         <Route path="/contact-us" element={<Contact />}></Route>
                         {/* user route start */}
-                        <Route path="/user-dashboard" element={<Dashboard />}></Route>
+                        <Route path="/user-dashboard" element={<UserRoute><Dashboard /></UserRoute>}></Route>
+                        <Route path="/manage-account" element={<UserRoute><AccountPanel /></UserRoute>}></Route>
+                        <Route path="/user-profile" element={<UserRoute><Profile /></UserRoute>}></Route>
+                        <Route path="/user-address" element={<UserRoute><Address /></UserRoute>}></Route>
+                        <Route path="/user-change-password" element={<UserRoute><Password /></UserRoute>}></Route>
                         {/* user route end */}
                         <Route path="*" element={<NoPage />}></Route>
                     </Route>

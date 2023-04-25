@@ -4,7 +4,19 @@ import { AiFillGift } from 'react-icons/ai'
 import { MdOutlineFavoriteBorder, MdOutlineDashboardCustomize } from 'react-icons/md'
 import damiProfile from '../../../images/avatar/avater1.png';
 import { Link, NavLink } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase/firebase.config';
+import { userLoggedOut } from '../../../features/Auth/AuthSlice';
+import { signOut } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 const Sidebar = () => {
+    const [user] = useAuthState(auth);
+    const dispatch = useDispatch();
+    const handleLogOut = () => {
+        // console.log("hello");
+        signOut(auth);
+        dispatch(userLoggedOut());
+    };
     return (
         <div className="col-lg-3 col-md-3">
             <div className="profile__wrapper shadow-sm">
@@ -32,10 +44,14 @@ const Sidebar = () => {
                         <FaAddressCard />
                     </div>
                     <div className="side__menu">
-                        <Link>Manage Account</Link>
-                        <Link>Profile Information</Link>
-                        <Link>Manage Address</Link>
-                        <Link>Change Password</Link>
+                        <NavLink to="/manage-account" className={({ isActive }) => isActive ? "active" : ""
+                        }>Manage Account</NavLink>
+                        <NavLink to="/user-profile" className={({ isActive }) => isActive ? "active" : ""
+                        }>Profile Information</NavLink>
+                        <NavLink to="/user-address" className={({ isActive }) => isActive ? "active" : ""
+                        }>Manage Address</NavLink>
+                        <NavLink to="/user-change-password" className={({ isActive }) => isActive ? "active" : ""
+                        }>Change Password</NavLink>
                     </div>
                 </div>
                 <hr />
@@ -65,7 +81,7 @@ const Sidebar = () => {
                         <FaPowerOff />
                     </div>
                     <div className="side__menu">
-                        <Link>Logout</Link>
+                        <Link onClick={handleLogOut}>Logout</Link>
                     </div>
                 </div>
             </div>
