@@ -1,11 +1,15 @@
 import React from 'react';
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
-import paymentImg from "../../images/banner/payment.jpg"
 import banner from "../../images/banner/CoverPage.jpg"
 import "./Checkout.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { TbCurrencyTaka } from 'react-icons/tb';
 import CustomizedSteppers from '../../components/step/Step';
 const Checkout = () => {
+    const navigate = useNavigate();
+    const handleToPayment = () => {
+        navigate('/payment');
+    }
     return (
         <>
             <div className="checkout-main-area">
@@ -31,11 +35,11 @@ const Checkout = () => {
                 </div>
                 <div className="container mt-5">
                     <div className="row">
-                        <div className="col-md-8">
-                            <div className="address__wrapper shadow">
+                        <div className="col-md-8 mt-5">
+                            <div className="address__wrapper shadow pt-4">
                                 <h4>Shipping Address</h4>
                                 <form action="">
-                                    <div class="row mt-5">
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <label htmlFor="">Full Name</label>
                                             <input type="text" class="form-control mt-2" placeholder="Full Name" />
@@ -80,12 +84,37 @@ const Checkout = () => {
                                             <input type="email" class="form-control mt-2" placeholder="Full Address" />
                                         </div>
                                     </div>
-                                    <button type="submit" className='btn btn-flat btn-primary d-block mt-5 w-25 ms-auto mb-3'>payment</button>
+                                    <button className='btn btn-flat btn-dark d-block mt-5 ms-auto mb-3 text-capitalize' onClick={handleToPayment}>go to payment</button>
                                 </form>
                             </div>
                         </div>
-                        <div className="col-md-4">
-                            information
+                        <div className="col-md-4 mt-5">
+                            <div className="checkout-box-wrapper shadow">
+                                <div className="checkout-box">
+                                    <div className="b-1">
+                                        <div className="order-total sm-box d-flex justify-content-between">
+                                            <p className='text-capitalize m-0'>subTotal :</p>
+                                            <span><b><TbCurrencyTaka />20,000</b></span>
+                                        </div>
+                                        <div className="shipping-item sm-box d-flex justify-content-between">
+                                            <p className='text-capitalize m-0'>Shipping :</p>
+                                            <span><b><TbCurrencyTaka />20.00</b></span>
+                                        </div>
+                                        <div className="shipping-item sm-box d-flex justify-content-between">
+                                            <p className='text-capitalize m-0'>Discount :</p>
+                                            <span><b>-</b></span>
+                                        </div>
+                                    </div>
+                                    <div className="subtotal-box sm-box d-flex justify-content-between">
+                                        <p className='text-capitalize m-0'><b>Grandtotal :</b></p>
+                                        <span><b><TbCurrencyTaka />140.00</b></span>
+                                    </div>
+                                    <div className="checkout-btn-area mt-5">
+                                        <input type="text" className='form-control' placeholder='Have any cupon?' />
+                                        <button className="button checkout-btn mt-3">apply cupon</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

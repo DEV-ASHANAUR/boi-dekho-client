@@ -22,6 +22,8 @@ import AccountPanel from "./components/user/account/AccountPanel";
 import Profile from "./components/user/account/Profile";
 import Address from "./components/user/account/Address";
 import Password from "./components/user/account/Password";
+import Payment from "./pages/Payment/Payment";
+import OrderSuccess from "./pages/OrderSuccess/OrderSuccess";
 
 
 
@@ -56,6 +58,8 @@ function App() {
                             element={<ShoppingCart />}
                         ></Route>
                         <Route path="/check-out" element={<UserRoute><Checkout /></UserRoute>}></Route>
+                        <Route path="/payment" element={<UserRoute><Payment /></UserRoute>}></Route>
+                        <Route path="/order-success" element={<UserRoute><OrderSuccess /></UserRoute>}></Route>
                         <Route
                             path="/product-view/:id"
                             element={<ProductView />}

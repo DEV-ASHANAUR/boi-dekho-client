@@ -108,27 +108,25 @@ const ShoppingCart = () => {
                             <div className="checkout-box-wrapper">
                                 <div className="checkout-box">
                                     <div className="b-1">
-                                        <h4>Summary</h4>
                                         <div className="order-total sm-box d-flex justify-content-between">
-                                            <p>Order Total :</p>
-                                            <span><TbCurrencyTaka />{numberWithCommas(cartTotalAmount)}</span>
-                                        </div>
-                                        <div className="cupon sm-box d-flex justify-content-between">
-                                            <p>Apply Cupon :</p>
-                                            <span>Sel45</span>
+                                            <p className='text-capitalize m-0'>subTotal :</p>
+                                            <span><b><TbCurrencyTaka />{numberWithCommas(cartTotalAmount)}</b></span>
                                         </div>
                                         <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p>Shipping :</p>
-                                            <span>$20.00</span>
+                                            <p className='text-capitalize m-0'>Shipping :</p>
+                                            <span><b><TbCurrencyTaka />20.00</b></span>
+                                        </div>
+                                        <div className="shipping-item sm-box d-flex justify-content-between">
+                                            <p className='text-capitalize m-0'>Discount :</p>
+                                            <span><b>-</b></span>
                                         </div>
                                     </div>
                                     <div className="subtotal-box sm-box d-flex justify-content-between">
-                                        <p><b>Subtotal :</b></p>
-                                        <span><b>$140.00</b></span>
+                                        <p className='text-capitalize m-0'><b>Grandtotal :</b></p>
+                                        <span><b><TbCurrencyTaka />140.00</b></span>
                                     </div>
                                     <div className="checkout-btn-area mt-5">
                                         <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
-                                        {/* <Link to="/books" className="continue-shoping">Continue To Shopping</Link> */}
                                     </div>
                                 </div>
                             </div>
