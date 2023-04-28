@@ -8,9 +8,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase/firebase.config';
 import { userLoggedOut } from '../../../features/Auth/AuthSlice';
 import { signOut } from 'firebase/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const Sidebar = () => {
     const [user] = useAuthState(auth);
+    const {currentUser} = useSelector(state=>state.auth);
     const dispatch = useDispatch();
     const handleLogOut = () => {
         // console.log("hello");
@@ -18,14 +19,14 @@ const Sidebar = () => {
         dispatch(userLoggedOut());
     };
     return (
-        <div className="col-lg-3 col-md-3">
+        <div className="col-lg-3 col-md-3 mb-3">
             <div className="profile__wrapper shadow-sm">
                 <div className="profile__image">
-                    <img src={damiProfile} alt="" />
+                    <img src={currentUser.avater ? currentUser.avater : damiProfile} alt="" />
                 </div>
                 <div className="profile__name">
                     <p>Hello,</p>
-                    <h4>Jone Doe</h4>
+                    <h4 className='text-capitalize'>{currentUser.username}</h4>
                 </div>
             </div>
             <div className="sidebar__wrapper shadow-sm mt-4">

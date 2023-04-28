@@ -20,6 +20,11 @@ export const loginUser = createAsyncThunk("auth/login", async (data) => {
     return user;
 })
 
+// export const updateUser = createAsyncThunk("auth/update", async (data) => {
+//     const user = await update(data);
+//     return user;
+// })
+
 export const googleProvider = createAsyncThunk("auth/google", async (data) => {
     const user = await googleUser(data);
     return user;
@@ -37,6 +42,13 @@ export const authSlice = createSlice({
             state.accessToken = undefined;
             state.currentUser = undefined;
             localStorage.removeItem("auth");
+        },
+        updateAvater: (state,action) => {
+            state.currentUser.avater = action.payload;
+            localStorage.setItem("auth", JSON.stringify({
+                accessToken: state.accessToken,
+                user: state.currentUser
+            }));
         }
     },
     extraReducers: (builder) => {
@@ -107,5 +119,5 @@ export const authSlice = createSlice({
             })
     }
 });
-export const { userLoggedinIn, userLoggedOut } = authSlice.actions;
+export const { userLoggedinIn, userLoggedOut,updateAvater } = authSlice.actions;
 export default authSlice.reducer;

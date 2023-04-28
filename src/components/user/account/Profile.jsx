@@ -1,13 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './account.css'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import axoisInstance from '../../../utils/axois';
 import { FaHome } from 'react-icons/fa'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import Sidebar from '../sidebar/Sidebar';
 import damiProfile from '../../../images/avatar/avater1.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAvater } from '../../../features/Auth/AuthSlice';
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Profile = () => {
+    const { register, watch, formState: { errors }, handleSubmit } = useForm();
+    const { currentUser } = useSelector(state => state.auth);
+    const [username, setUserName] = useState(currentUser.username);
+    const [contact, setContact] = useState(currentUser.contactNumber || '');
+    const dispatch = useDispatch();
+    //onImageChange
+    const onImageChange = async (event) => {
+        if (event.target.files && event.target.files[0]) {
+            let img = event.target.files[0];
+            if (img) {
+                const data = new FormData();
+                data.append("file", img);
+                data.append("upload_preset", "waeorw8w");
+                try {
+                    const res = await axios.post("https://api.cloudinary.com/v1_1/dmgagw7ec/image/upload", data);
+                    const imageUrl = res.data.url;
+                    const imgdata = { avater: res.data.url };
+                    try {
+                        const response = await axoisInstance.put(`/user/${currentUser._id}`, imgdata);
+                        console.log("response", response.data);
+                        dispatch(updateAvater(imageUrl));
+                        toast.success("Profile updated!")
+                    } catch (error) {
+                        toast.error("someting went worng!");
+                        console.log(" server image error", error);
+                    }
+                } catch (error) {
+                    console.log(error);
+                    toast.error("someting went worng!");
+                }
+            }
+        }
+
+    }
+    //updateProfile data
+    // const updateProfile = async(e)=>{
+    //     e.preventDefault();
+    //     console.log("hello");
+    //     let formData = {
+    //         username:username,
+    //         contactNumber:contact,
+    //     }
+    //     console.log(formData);
+    // }
+    const handleProfielUpdate = async (data) => {
+        console.log("data", data);
+        const { username, email, password } = data;
+
+    }
+
+
     return (
         <div className="container">
             <div className="breadcrum"><FaHome style={{ color: "#ffa500", fontSize: "1.2rem" }} /> <RiArrowRightSLine style={{ fontWeight: "700", fontSize: "1.2rem" }} /><span className='account'>Account</span></div>
@@ -18,26 +74,32 @@ const Profile = () => {
                         <div className="col-md-12">
                             <div className="profile__img__wrapper shadow-sm">
                                 <div className="profile__img">
-                                    <img src={damiProfile} alt="profile" />
+                                    <img src={currentUser.avater ? currentUser.avater : damiProfile} alt="profile" />
                                     <label htmlFor="profileImg" className='imgLabel'><AiFillCamera /></label>
                                 </div>
-                                
-                                <input type='file' id="profileImg" />
-                                <form action="">
+                                <input type="file" name='profileImage' id="profileImg" onChange={onImageChange} />
+                                <form onSubmit={handleSubmit(handleProfielUpdate)}>
                                     <div class="row mt-5">
                                         <div class="col-md-6">
-                                            <label htmlFor="">Full Name</label>
-                                            <input type="text" class="form-control mt-2" placeholder="Full Name" />
+                                        <label htmlFor="">Username</label>
+                                            <input type="text" className='form-control mt-2' value={currentUser.username || ''} name='name' placeholder='Enter Name' {...register("username", {
+                                                required: "Name is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 3!"
+                                                }
+                                            })} />
+                                            {errors.username && <span className='error_message' role="alert">{errors.username?.message}</span>}
                                         </div>
                                         <div class="col-md-6">
                                             <label htmlFor="">Email</label>
-                                            <input type="email" class="form-control mt-2" placeholder="Email" />
+                                            <input type="email" class="form-control mt-2" value={currentUser?.email} placeholder="Email" readOnly />
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col">
                                             <label htmlFor="">Contact Number</label>
-                                            <input type="text" class="form-control mt-2" placeholder="Contact Number" />
+                                            <input type="text" class="form-control mt-2" value={contact} onChange={e => setContact(e.target.value)} placeholder="Contact Number" required />
                                         </div>
                                     </div>
                                     <button type="submit" className='btn btn-flat btn-primary d-block mt-5 w-25 m-auto mb-3'>Update</button>
@@ -47,6 +109,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+            <Toaster />
         </div>
     )
 }

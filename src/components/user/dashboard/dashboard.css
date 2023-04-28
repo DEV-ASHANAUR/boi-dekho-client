@@ -38,8 +38,8 @@
 }
 .profile__name h4{
     margin: 0;
-    font-weight: 500;
-    font-size: 1.2rem;
+    font-weight: 700;
+    font-size: 1rem;
 }
 .sidebar__wrapper{
     display: flex;
