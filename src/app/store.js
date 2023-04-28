@@ -11,6 +11,7 @@ import authReducer from '../features/Auth/AuthSlice';
 import reviewReducer from '../features/review/reviewSlice';
 import reletedBookReducer from '../features/reletedBooks/reletedBooksSlice';
 import shippingReducer from '../features/shipping/shippingSlice';
+import wishlistReducer from '../features/wishlist/wishlistSlice';
 export const store = configureStore({
   reducer: {
     books: booksReducer,
@@ -25,6 +26,7 @@ export const store = configureStore({
     review:reviewReducer,
     reletedBooks: reletedBookReducer,
     shipping:shippingReducer,
+    wishlist:wishlistReducer,
   },
 })
 

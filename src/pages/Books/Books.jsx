@@ -60,7 +60,7 @@ const Books = () => {
     if (keys.indexOf('limit') === -1) {
         query += `limit=${limit}`
     }
-    else if(keys.includes('limit')){
+    else if (keys.includes('limit')) {
         dispatch(setLimit(parseInt(searchParams.get('limit'))))
     }
 

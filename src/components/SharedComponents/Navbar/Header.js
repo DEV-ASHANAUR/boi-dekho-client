@@ -78,8 +78,8 @@ const Header = () => {
                         </CustomLink>
                     </Nav>
                     <Nav>
-                        <CustomLink className="nav-link wishlist" to="/login">
-                            <span className="num-area">3</span>
+                        <CustomLink className="nav-link wishlist" to="/wishlist">
+                            {/* <span className="num-area">3</span> */}
                             <i
                                 className="far fa-heart"
                                 style={{

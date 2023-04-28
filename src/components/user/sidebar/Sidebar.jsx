@@ -19,7 +19,7 @@ const Sidebar = () => {
         dispatch(userLoggedOut());
     };
     return (
-        <div className="col-lg-3 col-md-3 mb-3">
+        <div className="col-lg-3 col-md-12 mb-3">
             <div className="profile__wrapper shadow-sm">
                 <div className="profile__image">
                     <img src={currentUser.avater ? currentUser.avater : damiProfile} alt="" />
@@ -73,7 +73,8 @@ const Sidebar = () => {
                         <MdOutlineFavoriteBorder />
                     </div>
                     <div className="side__menu">
-                        <Link>My Wishlist</Link>
+                        <NavLink to="/wishlist" className={({ isActive }) => isActive ? "active" : ""
+                        }>My Wishlist</NavLink>
                     </div>
                 </div>
                 <hr />
