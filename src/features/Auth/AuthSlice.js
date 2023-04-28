@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { registerUser,login,googleUser } from './AuthApi';
+import { registerUser, login, googleUser } from './AuthApi';
 
 const initialState = {
     currentUser: undefined,
     accessToken: undefined,
     isLoading: false,
-    isSuccess:false,
+    isSuccess: false,
     isError: false,
     error: ""
 }
@@ -43,8 +43,26 @@ export const authSlice = createSlice({
             state.currentUser = undefined;
             localStorage.removeItem("auth");
         },
-        updateAvater: (state,action) => {
+        updateAvater: (state, action) => {
             state.currentUser.avater = action.payload;
+            localStorage.setItem("auth", JSON.stringify({
+                accessToken: state.accessToken,
+                user: state.currentUser
+            }));
+        },
+        updateUserInfo: (state, action) => {
+            state.currentUser.username = action.payload.username;
+            state.currentUser.contactNumber = action.payload.contactNumber;
+            localStorage.setItem("auth", JSON.stringify({
+                accessToken: state.accessToken,
+                user: state.currentUser
+            }));
+        },
+        updateAddress: (state, action) => {
+            state.currentUser.division = action.payload.division;
+            state.currentUser.district = action.payload.district;
+            state.currentUser.upazila = action.payload.upazila;
+            state.currentUser.address = action.payload.address;
             localStorage.setItem("auth", JSON.stringify({
                 accessToken: state.accessToken,
                 user: state.currentUser
@@ -119,5 +137,5 @@ export const authSlice = createSlice({
             })
     }
 });
-export const { userLoggedinIn, userLoggedOut,updateAvater } = authSlice.actions;
+export const { userLoggedinIn, userLoggedOut, updateAvater,updateUserInfo,updateAddress } = authSlice.actions;
 export default authSlice.reducer;

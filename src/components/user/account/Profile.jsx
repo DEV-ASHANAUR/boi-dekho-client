@@ -8,15 +8,19 @@ import { RiArrowRightSLine } from 'react-icons/ri'
 import Sidebar from '../sidebar/Sidebar';
 import damiProfile from '../../../images/avatar/avater1.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAvater } from '../../../features/Auth/AuthSlice';
+import { updateAvater, updateUserInfo } from '../../../features/Auth/AuthSlice';
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
 
 const Profile = () => {
-    const { register, watch, formState: { errors }, handleSubmit } = useForm();
     const { currentUser } = useSelector(state => state.auth);
-    const [username, setUserName] = useState(currentUser.username);
-    const [contact, setContact] = useState(currentUser.contactNumber || '');
+    const { register, watch, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: {
+            username: currentUser?.username,
+            contactNumber: currentUser?.contactNumber || '',
+        }
+    });
+
     const dispatch = useDispatch();
     //onImageChange
     const onImageChange = async (event) => {
@@ -32,7 +36,7 @@ const Profile = () => {
                     const imgdata = { avater: res.data.url };
                     try {
                         const response = await axoisInstance.put(`/user/${currentUser._id}`, imgdata);
-                        console.log("response", response.data);
+                        
                         dispatch(updateAvater(imageUrl));
                         toast.success("Profile updated!")
                     } catch (error) {
@@ -47,22 +51,27 @@ const Profile = () => {
         }
 
     }
-    //updateProfile data
-    // const updateProfile = async(e)=>{
-    //     e.preventDefault();
-    //     console.log("hello");
-    //     let formData = {
-    //         username:username,
-    //         contactNumber:contact,
-    //     }
-    //     console.log(formData);
-    // }
+    //handle update profile data
     const handleProfielUpdate = async (data) => {
         console.log("data", data);
-        const { username, email, password } = data;
+        // const { username, contactNumber } = data;
+        try {
+            const response = await axoisInstance.put(`/user/${currentUser._id}`, data);
+            console.log("response", response.data);
+            if(response.data){
+                dispatch(updateUserInfo(data));
+                toast.success("Info updated!");
+            }else{
+                toast.error("someting went worng!");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("someting went worng!");
+        }
 
     }
 
+    const phoneNumberRegex = /^\d{11}$/; // Regular expression to match a 10-digit phone number
 
     return (
         <div className="container">
@@ -81,8 +90,8 @@ const Profile = () => {
                                 <form onSubmit={handleSubmit(handleProfielUpdate)}>
                                     <div class="row mt-5">
                                         <div class="col-md-6">
-                                        <label htmlFor="">Username</label>
-                                            <input type="text" className='form-control mt-2' value={currentUser.username || ''} name='name' placeholder='Enter Name' {...register("username", {
+                                            <label htmlFor="">Username</label>
+                                            <input type="text" className='form-control mt-2' name='username' placeholder='Enter Name' {...register("username", {
                                                 required: "Name is required!",
                                                 minLength: {
                                                     value: 3,
@@ -99,7 +108,8 @@ const Profile = () => {
                                     <div class="row mt-3">
                                         <div class="col">
                                             <label htmlFor="">Contact Number</label>
-                                            <input type="text" class="form-control mt-2" value={contact} onChange={e => setContact(e.target.value)} placeholder="Contact Number" required />
+                                            <input type="text" className='form-control mt-2' name='username' placeholder='Enter contact number' {...register("contactNumber", { required: true, pattern: phoneNumberRegex })} />
+                                            {errors.contactNumber && <span className='error_message' role="alert">Enter a valid 11-digit phone number.</span>}
                                         </div>
                                     </div>
                                     <button type="submit" className='btn btn-flat btn-primary d-block mt-5 w-25 m-auto mb-3'>Update</button>
