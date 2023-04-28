@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './account.css'
 import axios from 'axios';
-import axoisInstance from '../../../utils/axois';
 import { FaHome } from 'react-icons/fa'
 import { AiFillCamera } from 'react-icons/ai'
 import { RiArrowRightSLine } from 'react-icons/ri'
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateAvater, updateUserInfo } from '../../../features/Auth/AuthSlice';
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
+import tokenaAxiosInstance from '../../../utils/tokenAxios';
 
 const Profile = () => {
     const { currentUser } = useSelector(state => state.auth);
@@ -35,7 +35,7 @@ const Profile = () => {
                     const imageUrl = res.data.url;
                     const imgdata = { avater: res.data.url };
                     try {
-                        const response = await axoisInstance.put(`/user/${currentUser._id}`, imgdata);
+                        const response = await tokenaAxiosInstance.put(`/user/${currentUser._id}`, imgdata);
                         
                         dispatch(updateAvater(imageUrl));
                         toast.success("Profile updated!")
@@ -56,7 +56,7 @@ const Profile = () => {
         console.log("data", data);
         // const { username, contactNumber } = data;
         try {
-            const response = await axoisInstance.put(`/user/${currentUser._id}`, data);
+            const response = await tokenaAxiosInstance.put(`/user/${currentUser._id}`, data);
             console.log("response", response.data);
             if(response.data){
                 dispatch(updateUserInfo(data));

@@ -4,10 +4,10 @@ import { FaHome } from 'react-icons/fa'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import Sidebar from '../sidebar/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import axoisInstance from '../../../utils/axois';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { updateAddress } from '../../../features/Auth/AuthSlice';
+import tokenaAxiosInstance from '../../../utils/tokenAxios';
 
 const Address = () => {
     const { currentUser } = useSelector(state => state.auth);
@@ -24,7 +24,7 @@ const Address = () => {
     const handleAddressUpdate = async (data) => {
         // console.log("data", data);
         try {
-            const response = await axoisInstance.put(`/user/${currentUser._id}`, data);
+            const response = await tokenaAxiosInstance.put(`/user/${currentUser._id}`, data);
             console.log("response", response.data);
             if(response.data){
                 dispatch(updateAddress(data));
