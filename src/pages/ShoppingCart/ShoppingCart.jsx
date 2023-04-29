@@ -9,7 +9,8 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TbCurrencyTaka } from 'react-icons/tb';
 
 import { Toaster } from 'react-hot-toast';
-import numberWithCommas from '../../utils/numberFormat';
+import CartSummary from './CartSummary';
+
 const ShoppingCart = () => {
     const { cartItems,cartTotalQuantity,cartTotalAmount } = useSelector(state => state.cart);
     const dispatch = useDispatch();
@@ -107,24 +108,7 @@ const ShoppingCart = () => {
                         <div className="col-lg-4 mt-3">
                             <div className="checkout-box-wrapper">
                                 <div className="checkout-box">
-                                    <div className="b-1">
-                                        <div className="order-total sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>subTotal :</p>
-                                            <span><b><TbCurrencyTaka />{numberWithCommas(cartTotalAmount)}</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Shipping :</p>
-                                            <span><b><TbCurrencyTaka />20.00</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Discount :</p>
-                                            <span><b>-</b></span>
-                                        </div>
-                                    </div>
-                                    <div className="subtotal-box sm-box d-flex justify-content-between">
-                                        <p className='text-capitalize m-0'><b>Grandtotal :</b></p>
-                                        <span><b><TbCurrencyTaka />140.00</b></span>
-                                    </div>
+                                    <CartSummary />
                                     <div className="checkout-btn-area mt-5">
                                         <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
                                     </div>

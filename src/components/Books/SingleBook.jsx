@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addToCart } from '../../features/Cart/CartSlice';
+import { addToCart, getTotals } from '../../features/Cart/CartSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import { createhWishlist, resetMessage } from '../../features/wishlist/wishlistSlice';
 
@@ -20,6 +20,7 @@ const SingleBook = ({ book }) => {
     const handleAddToCart = (e) => {
         e.preventDefault();
         dispatch(addToCart(book));
+        dispatch(getTotals());
     }
     //handleWishlist
     const handleWishlist = (productId) => {

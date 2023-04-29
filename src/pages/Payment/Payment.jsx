@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import banner from "../../images/banner/CoverPage.jpg"
 // import "./Checkout.css";
@@ -6,8 +6,13 @@ import "./payment.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import CustomizedSteppers from '../../components/step/Step';
+import CartSummary from '../ShoppingCart/CartSummary';
 const Payment = () => {
+    const [paymentMethod, setPaymentMethod] = useState('cash');
     const navigate = useNavigate();
+    const changePaymentMethod = (method) => {
+        setPaymentMethod(method);
+    }
     const goto = () => {
         navigate('/order-success');
     }
@@ -41,41 +46,30 @@ const Payment = () => {
                                 <h4 className='mb-5'>Choses Payment Option</h4>
 
                                 <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="paytype" id="pay1" checked />
+                                    <input className="form-check-input" type="radio" name="paytype" id="pay1" onClick={() => changePaymentMethod('sslpayment')} checked={(paymentMethod == 'sslpayment') && true} />
                                     <label className="form-check-label" for="pay1">
                                         SSL Payment
                                     </label>
                                 </div>
                                 <div className="form-check mt-3">
-                                    <input className="form-check-input" type="radio" name="paytype" id="pay2" />
+                                    <input className="form-check-input" type="radio" name="paytype" id="pay2" onClick={() => changePaymentMethod('cash')} checked={(paymentMethod == 'cash') && true} />
                                     <label className="form-check-label" for="pay2">
                                         Cash on Delivery
                                     </label>
                                 </div>
-                                <button className='btn btn-flat btn-dark d-block mt-5 ms-auto mb-3 text-capitalize' onClick={goto}>pay now</button>
+                                {
+                                    paymentMethod == 'cash' ? (
+                                        <button className='btn btn-flat btn-success d-block mt-5 ms-auto mb-3 text-capitalize' onClick={goto}>Confirm Order</button>
+                                    ) : (
+                                        <button className='btn btn-flat btn-primary d-block mt-5 ms-auto mb-3 text-capitalize' onClick={goto}>pay now</button>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="col-md-4 mt-5">
                             <div className="checkout-box-wrapper shadow">
                                 <div className="checkout-box">
-                                    <div className="b-1">
-                                        <div className="order-total sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>subTotal :</p>
-                                            <span><b><TbCurrencyTaka />20,000</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Shipping :</p>
-                                            <span><b><TbCurrencyTaka />20.00</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Discount :</p>
-                                            <span><b>-</b></span>
-                                        </div>
-                                    </div>
-                                    <div className="subtotal-box sm-box d-flex justify-content-between">
-                                        <p className='text-capitalize m-0'><b>Grandtotal :</b></p>
-                                        <span><b><TbCurrencyTaka />140.00</b></span>
-                                    </div>
+                                    <CartSummary />
                                 </div>
                             </div>
                         </div>

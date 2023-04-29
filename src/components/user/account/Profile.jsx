@@ -53,11 +53,11 @@ const Profile = () => {
     }
     //handle update profile data
     const handleProfielUpdate = async (data) => {
-        console.log("data", data);
+        // console.log("data", data);
         // const { username, contactNumber } = data;
         try {
             const response = await tokenaAxiosInstance.put(`/user/${currentUser._id}`, data);
-            console.log("response", response.data);
+            // console.log("response", response.data);
             if(response.data){
                 dispatch(updateUserInfo(data));
                 toast.success("Info updated!");

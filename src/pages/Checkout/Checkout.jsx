@@ -8,6 +8,7 @@ import CustomizedSteppers from '../../components/step/Step';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createShipping } from '../../features/shipping/shippingSlice';
+import CartSummary from '../ShoppingCart/CartSummary';
 const Checkout = () => {
     const { currentUser } = useSelector(state => state.auth);
     const { register, watch, formState: { errors }, handleSubmit } = useForm({
@@ -15,7 +16,7 @@ const Checkout = () => {
             username: currentUser?.username || '',
             email: currentUser?.email || '',
             contactNumber: currentUser?.contactNumber || '',
-            address: currentUser?.address || '',
+            peakpoint: currentUser?.address || '',
             division: currentUser?.division || '',
             district: currentUser?.district || '',
             upazila: currentUser?.upazila || '',
@@ -100,7 +101,7 @@ const Checkout = () => {
                                         </div>
                                         <div class="col-md-6">
                                             <label htmlFor="">Zip code</label>
-                                            <input type="number" className='form-control mt-2' name='zipcode' placeholder='Enter Zipcode' {...register("zipcode", { required: true })} />
+                                            <input type="number" className='form-control mt-2' name='zipcode' placeholder='Enter Zipcode' {...register("zipcode", { required: false })} />
                                             {errors.zipcode && <span className='error_message' role="alert">Enter a zip code.</span>}
                                         </div>
                                     </div>
@@ -143,8 +144,8 @@ const Checkout = () => {
                                         </div>
                                         <div class="col-md-6">
                                             <label htmlFor="">Pick Point</label>
-                                            <input type="text" className='form-control mt-2 text-capitalize' name='address' placeholder='Enter Specific address' {...register("address", {
-                                                required: "Address is required!",
+                                            <input type="text" className='form-control mt-2 text-capitalize' name='peakpoint' placeholder='Enter Specific address' {...register("peakpoint", {
+                                                required: "peakpoint is required!",
                                                 minLength: {
                                                     value: 3,
                                                     message: "Min length is 5!"
@@ -160,24 +161,7 @@ const Checkout = () => {
                         <div className="col-md-4 mt-5">
                             <div className="checkout-box-wrapper shadow">
                                 <div className="checkout-box">
-                                    <div className="b-1">
-                                        <div className="order-total sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>subTotal :</p>
-                                            <span><b><TbCurrencyTaka />20,000</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Shipping :</p>
-                                            <span><b><TbCurrencyTaka />20.00</b></span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p className='text-capitalize m-0'>Discount :</p>
-                                            <span><b>-</b></span>
-                                        </div>
-                                    </div>
-                                    <div className="subtotal-box sm-box d-flex justify-content-between">
-                                        <p className='text-capitalize m-0'><b>Grandtotal :</b></p>
-                                        <span><b><TbCurrencyTaka />140.00</b></span>
-                                    </div>
+                                    <CartSummary />
                                     <div className="checkout-btn-area mt-5">
                                         <input type="text" className='form-control' placeholder='Have any cupon?' />
                                         <button className="button checkout-btn mt-3">apply cupon</button>
