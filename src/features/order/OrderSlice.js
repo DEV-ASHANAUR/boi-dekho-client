@@ -40,7 +40,7 @@ export const orderSlice = createSlice({
             state.isLoading = false;
             state.isError = false;
             state.isSuccess = true;
-            state.orders.push(action.payload);
+            // state.orders.push(action.payload);
         })
         .addCase(createOrder.rejected, (state, action) => {
             state.isLoading = false;

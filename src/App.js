@@ -25,6 +25,8 @@ import Password from "./components/user/account/Password";
 import Payment from "./pages/Payment/Payment";
 import OrderSuccess from "./pages/OrderSuccess/OrderSuccess";
 import Wishlist from "./components/user/wishlist/Wishlist";
+import OrderDetails from "./components/user/order/orderdetails/OrderDetails";
+import OrderHistory from "./components/user/order/OrderHistory";
 
 
 
@@ -72,6 +74,8 @@ function App() {
                         <Route path="/user-profile" element={<UserRoute><Profile /></UserRoute>}></Route>
                         <Route path="/user-address" element={<UserRoute><Address /></UserRoute>}></Route>
                         <Route path="/user-change-password" element={<UserRoute><Password /></UserRoute>}></Route>
+                        <Route path="/user-order-history" element={<UserRoute><OrderHistory /></UserRoute>}></Route>
+                        <Route path="/user-order-details" element={<UserRoute><OrderDetails /></UserRoute>}></Route>
                         <Route path="/wishlist" element={<UserRoute><Wishlist /></UserRoute>}></Route>
                         {/* user route end */}
                         <Route path="*" element={<NoPage />}></Route>

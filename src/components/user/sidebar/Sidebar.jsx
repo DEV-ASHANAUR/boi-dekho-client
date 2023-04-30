@@ -61,7 +61,8 @@ const Sidebar = () => {
                         <AiFillGift />
                     </div>
                     <div className="side__menu">
-                        <Link>My Order History</Link>
+                        <NavLink to="/user-order-history" className={({ isActive }) => isActive ? "active" : ""
+                        }>My Order History</NavLink>
                         <Link>My Returns</Link>
                         <Link>My Cancellations</Link>
                         <Link>My Reviews</Link>
