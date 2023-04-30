@@ -75,7 +75,7 @@ function App() {
                         <Route path="/user-address" element={<UserRoute><Address /></UserRoute>}></Route>
                         <Route path="/user-change-password" element={<UserRoute><Password /></UserRoute>}></Route>
                         <Route path="/user-order-history" element={<UserRoute><OrderHistory /></UserRoute>}></Route>
-                        <Route path="/user-order-details" element={<UserRoute><OrderDetails /></UserRoute>}></Route>
+                        <Route path="/user-order-details/:orderId" element={<UserRoute><OrderDetails /></UserRoute>}></Route>
                         <Route path="/wishlist" element={<UserRoute><Wishlist /></UserRoute>}></Route>
                         {/* user route end */}
                         <Route path="*" element={<NoPage />}></Route>

@@ -27,7 +27,7 @@ const OrderHistory = () => {
     let content = null;
 
     if (isLoading) {
-        content = <Loading />
+        content = <tr><td colSpan={6}><Loading /></td></tr>
     }
     if (!isLoading && isError) {
         content = (<tr>
@@ -45,10 +45,10 @@ const OrderHistory = () => {
                 <td>{order._id}</td>
                 <td><Moment format="DD-MMM-YYYY">{order.createdAt}</Moment></td>
                 <td>{order.paymentMethod}</td>
-                <td><TbCurrencyTaka />{numberWithCommas(order.total)}</td>
+                <td><TbCurrencyTaka />{numberWithCommas(parseFloat(order.total))}</td>
                 <td><span class="badge bg-success">{order.status}</span></td>
                 <td>
-                    <Link className='btn btn-primary'>view</Link>
+                    <Link to={`/user-order-details/${order._id}`} className='btn btn-primary'>view</Link>
                 </td>
             </tr>
         ))

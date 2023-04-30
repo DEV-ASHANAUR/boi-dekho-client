@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addOrder, getOrders } from "./orderApi";
+import { addOrder, getOrders, payOrder } from "./orderApi";
 
 const initialState = {
     orders: [],
@@ -18,6 +18,13 @@ export const createOrder = createAsyncThunk("order/createOrder", async (data) =>
     const order = await addOrder(data);
     return order;
 })
+
+export const createPayment = createAsyncThunk("order/createPayment", async (data) => {
+    const order = await payOrder(data);
+    return order;
+})
+
+
 
 export const orderSlice = createSlice({
     name: "orderSlice",
@@ -43,6 +50,25 @@ export const orderSlice = createSlice({
             // state.orders.push(action.payload);
         })
         .addCase(createOrder.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.orders = [];
+            state.isSuccess = false;
+            state.error = action.error?.message;
+        })
+
+        builder.addCase(createPayment.pending, (state) => {
+            state.isLoading = true;
+            state.isError = false;
+            state.isSuccess = false;
+        })
+        .addCase(createPayment.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.isSuccess = true;
+            // state.orders.push(action.payload);
+        })
+        .addCase(createPayment.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.orders = [];
