@@ -31,12 +31,12 @@ const OrderHistory = () => {
     }
     if (!isLoading && isError) {
         content = (<tr>
-            <td colSpan={6} className="bg-info text-white text-center p-2 d-block mt-5">Something Went Wrong!</td>
+            <td colSpan={6} className="bg-info text-white text-center p-2">Something Went Wrong!</td>
         </tr>)
     }
     if (!isLoading && !isError && orders?.length === 0) {
         content = (<tr>
-            <td colSpan={6} className="bg-info text-white text-center p-2 d-block mt-5">Your Order List is empty!</td>
+            <td colSpan="6" className="bg-info text-white text-center p-2">Your Order List is empty!</td>
         </tr>)
     }
     if (!isLoading && !isError && orders?.length > 0) {

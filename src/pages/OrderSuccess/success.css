@@ -1,0 +1,9 @@
+.errorimgWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.errorImg{
+    width: 20rem;
+    height: 20rem;
+}

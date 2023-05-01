@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast';
 import { clearCart } from '../../features/Cart/CartSlice';
 import axios from '../../utils/axois';
 const Payment = () => {
+    const [sslLoading,setSslLoading] = useState(false);
     const { currentUser } = useSelector(state => state.auth);
     const { cartItems,cartTotalQuantity,cartTotalAmount,shippingFee,grandTotal } = useSelector(state => state.cart);
     const { shipping } = useSelector(state => state.shipping);
@@ -51,6 +52,7 @@ const Payment = () => {
         dispatch(createOrder(data));
     }
     const handleSSLPayment = async() => {
+        setSslLoading(true);
         const currDate = new Date();
         const data = {
             userId:currentUser?._id,
@@ -77,12 +79,14 @@ const Payment = () => {
             valId:'',
         }
         try {
+            
             const response = await axios.post('/payment/init', {PayInfo:data});
-            // console.log("data",response.data);
             window.location.replace(response.data);
         } catch (error) {
             toast.error(error);
+            setSslLoading(false);
         }
+        setSslLoading(false);
         // dispatch(createPayment(data));
     }
 
@@ -142,7 +146,7 @@ const Payment = () => {
                                     paymentMethod === 'cash' ? (
                                         <button className='btn btn-flat btn-success d-block mt-5 ms-auto mb-3 text-capitalize' onClick={handleCashOnPayment} disabled={isLoading}>{isLoading ? 'processing': 'Confirm Order'}</button>
                                     ) : (
-                                        <button className='btn btn-flat btn-primary d-block mt-5 ms-auto mb-3 text-capitalize' onClick={handleSSLPayment}>pay now</button>
+                                        <button className='btn btn-flat btn-primary d-block mt-5 ms-auto mb-3 text-capitalize' onClick={handleSSLPayment} disabled={sslLoading}>{isLoading ? 'processing': 'pay now'}</button>
                                     )
                                 }
                             </div>

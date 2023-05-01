@@ -53,83 +53,269 @@ const OrderDetails = () => {
                                             <div className="card-body">
                                                 <article className="card">
                                                     <div className="card-body row" style={{ padding: "10px" }}>
-                                                        <div className="col-md-4">
+                                                        <div className="col-md-5">
                                                             <strong>Order Id:</strong> <br /> {data?._id}
                                                         </div>
                                                         <div className="col-md-3"> <strong>Order Date:</strong> <br /><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment> </div>
                                                         {/* <div className="col-md-5"> <strong>Shipping By: Jishan</strong> <br /> Rangpur,Gaibandha,Sadullapur | <i className="fa fa-phone"></i> 01722260010</div> */}
-                                                        <div className="col-md-3"> <strong>Status:</strong> <br /> {data?.status} </div>
+                                                        <div className="col-md-2"> <strong>Status:</strong> <br /> {data?.status} </div>
                                                         <div className="col-md-2"> <strong>Total: </strong> <br />৳ {numberWithCommas(parseFloat(data.total))}</div>
                                                     </div>
                                                 </article>
-                                                <div className="track">
-                                                    <div className="step active">
-                                                        <span className="icon"> <i className="fa fa-spinner"></i> </span>
-                                                        <span className="text">Pending</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    <div className="step active">
-                                                        <span className="icon "><i className="fa fa-check"></i> </span>
-                                                        <span className="text">confirmed</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    <div className="step">
-                                                        <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
-                                                        <span className="text">Processing</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    <div className="step">
-                                                        <span className="icon"> <i className="fa fa-truck"></i> </span>
-                                                        <span className="text">Picked</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    <div className="step">
-                                                        <span className="icon"> <i className="fa fa-user"></i> </span>
-                                                        <span className="text">Shipped</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    <div className="step">
-                                                        <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
-                                                        <span className="text">Delivered</span>
-                                                        <small className="text-danger">Date</small>
-                                                    </div>
-                                                    {/* for cancel order start */}
-                                                    {/* <div className="cancel done">
-                                                    <span className="icon "> <i className="fa fa-close "></i> </span>
-                                                    <span className="text">Order Pending</span>
-                                                </div>
-                                                <div className="cancel done">
-                                                    <span className="icon "><i className="fa fa-close"></i> </span>
-                                                    <span className="text">Order confirmed</span>
-                                                </div>
-                                                <div className="cancel done">
-                                                    <span className="icon"> <i className="fa fa-close"></i> </span>
-                                                    <span className="text">Order Processing</span>
-    
-                                                </div>
-                                                <div className="cancel done">
-                                                    <span className="icon"> <i className="fa fa-close"></i> </span>
-                                                    <span className="text">Picked Order</span>
-    
-                                                </div>
-    
-                                                <div className="cancel done">
-                                                    <span className="icon"><i className="fa fa-close"></i> </span>
-                                                    <span className="text">Shipped Order</span>
-    
-                                                </div>
-                                                <div className="cancel done">
-                                                    <span className="icon"> <i className="fa fa-close"></i></span>
-                                                    <span className="text">Delivered</span>
-    
-                                                </div> */}
-                                                    {/* for cancel order end */}
+                                                {
+                                                    data?.status === 'pending' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon "><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'confirmed' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.confirmedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'processing' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.confirmedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.processingDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'picked' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.confirmedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.processingDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.pickedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'shipped' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.confirmedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.processingDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.pickedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.shippedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger">-</small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'delivered' && (
+                                                        <div className="track">
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-spinner"></i> </span>
+                                                                <span className="text">Pending</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.createdAt}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"><i className="fa fa-check"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.confirmedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-shopping-cart"></i> </span>
+                                                                <span className="text">Processing</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.processingDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-truck"></i> </span>
+                                                                <span className="text">Picked</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.pickedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-user"></i> </span>
+                                                                <span className="text">Shipped</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.shippedDate}</Moment></small>
+                                                            </div>
+                                                            <div className="step active">
+                                                                <span className="icon"> <i className="fa fa-hand-lizard-o"></i> </span>
+                                                                <span className="text">Delivered</span>
+                                                                <small className="text-danger"><Moment format="DD-MMM-YYYY">{data?.deliveredDate}</Moment></small>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {
+                                                    data?.status === 'cancelled' && (
+                                                        <div className="track">
+                                                            <div className="cancel done">
+                                                                <span className="icon "> <i className="fa fa-close "></i> </span>
+                                                                <span className="text">Pending</span>
+                                                            </div>
+                                                            <div className="cancel done">
+                                                                <span className="icon "><i className="fa fa-close"></i> </span>
+                                                                <span className="text">confirmed</span>
+                                                            </div>
+                                                            <div className="cancel done">
+                                                                <span className="icon"> <i className="fa fa-close"></i> </span>
+                                                                <span className="text">Processing</span>
 
-                                                </div>
+                                                            </div>
+                                                            <div className="cancel done">
+                                                                <span className="icon"> <i className="fa fa-close"></i> </span>
+                                                                <span className="text">Picked</span>
+
+                                                            </div>
+
+                                                            <div className="cancel done">
+                                                                <span className="icon"><i className="fa fa-close"></i> </span>
+                                                                <span className="text">Shipped</span>
+
+                                                            </div>
+                                                            <div className="cancel done">
+                                                                <span className="icon"> <i className="fa fa-close"></i></span>
+                                                                <span className="text">Delivered</span>
+
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                {/* </div> */}
                                                 <div className="empty"></div>
-
                                                 <hr />
-
                                                 <div className='order__details'>
                                                     <h2>hello order</h2>
                                                 </div>

@@ -8,7 +8,7 @@ import { addToCart, dereaseCart, getTotals, removeCartItem } from '../../feature
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TbCurrencyTaka } from 'react-icons/tb';
 
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import CartSummary from './CartSummary';
 
 const ShoppingCart = () => {
@@ -19,6 +19,10 @@ const ShoppingCart = () => {
         dispatch(getTotals());
     },[dispatch,cartItems])
     // console.log("cartitem",cartItems);
+
+    const handleShop = () =>{
+        toast.error("Your bag is Empty!");
+    }
     return (
         <>
             <div className="main-cart-area">
@@ -79,28 +83,10 @@ const ShoppingCart = () => {
                                     )
                                 }
 
-
-
-
                                 <div className="row mt-5">
                                     <div className='mb-4'>
                                         <Link to="/books" className="continue_btn">Continue Shopping</Link>
                                     </div>
-                                    {/* <div className="col-md-7">
-                                        <div className="cupon-area">
-                                            <form action="#" className="d-flex">
-                                                <div className="w-100">
-                                                    <input type="text" placeholder="Cupon code" />
-                                                </div>
-                                                <button type="submit" className="cupon-btn">Apply</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-5">
-                                        <div className="cart-update-btn">
-                                            <Link className="button cart-up-btn" href="#">Update Cart</Link>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -110,7 +96,14 @@ const ShoppingCart = () => {
                                 <div className="checkout-box">
                                     <CartSummary />
                                     <div className="checkout-btn-area mt-5">
-                                        <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
+                                        {
+                                            cartItems?.length > 0 ? (
+                                                <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
+                                            ):(
+                                                <button className="button checkout-btn" onClick={handleShop}>Proceed To Checkout</button>
+                                            )
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>

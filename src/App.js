@@ -27,6 +27,8 @@ import OrderSuccess from "./pages/OrderSuccess/OrderSuccess";
 import Wishlist from "./components/user/wishlist/Wishlist";
 import OrderDetails from "./components/user/order/orderdetails/OrderDetails";
 import OrderHistory from "./components/user/order/OrderHistory";
+import OrderFail from "./pages/OrderSuccess/OrderFail";
+import OrderCancel from "./pages/OrderSuccess/OrderCancel";
 
 
 
@@ -62,7 +64,9 @@ function App() {
                         ></Route>
                         <Route path="/check-out" element={<UserRoute><Checkout /></UserRoute>}></Route>
                         <Route path="/payment" element={<UserRoute><Payment /></UserRoute>}></Route>
-                        <Route path="/order-success" element={<UserRoute><OrderSuccess /></UserRoute>}></Route>
+                        <Route path="/order-success" element={<OrderSuccess />}></Route>
+                        <Route path="/order-fail" element={<OrderFail />}></Route>
+                        <Route path="/order-cancel" element={<OrderCancel />}></Route>
                         <Route
                             path="/product-view/:id"
                             element={<ProductView />}
