@@ -8,7 +8,7 @@ import { createhWishlist, resetMessage } from '../../features/wishlist/wishlistS
 
 const SingleBook = ({ book }) => {
     const { currentUser } = useSelector(state => state.auth);
-    const { success,error,isError,isLoading } = useSelector(state => state.wishlist);
+    const { success:wishSuccess,error,isError,isLoading } = useSelector(state => state.wishlist);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { _id, coverImage, bookTitle, author, discount, price } = book;
@@ -35,7 +35,7 @@ const SingleBook = ({ book }) => {
         }
     }
 
-    if(!isLoading && success){
+    if(!isLoading && wishSuccess){
         toast.success("Book added to Wishlist!");
         dispatch(resetMessage());
     }
@@ -47,9 +47,6 @@ const SingleBook = ({ book }) => {
         }
         dispatch(resetMessage());
     }
-
-    
-
 
     return (
         <div className="col-xl-3 col-md-4 col-sm-6 col-6">
@@ -101,7 +98,6 @@ const SingleBook = ({ book }) => {
                     </button>
                 </div>
             </div>
-            <Toaster />
         </div>
     );
 };

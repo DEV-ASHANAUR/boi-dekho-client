@@ -54,9 +54,9 @@ const BestOfferProduct = () => {
                                 Special Discount
                             </span>
                         </h3>
-                        <div>
+                        {/* <div>
                             <button className="btn btn-custom">View All</button>
-                        </div>
+                        </div> */}
                     </div>
 
 

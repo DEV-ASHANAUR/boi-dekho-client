@@ -65,7 +65,6 @@ const Books = () => {
     }
 
     useEffect(() => {
-
         dispatch(setQueryString(query))
     }, [searchParams, dispatch]);
 

@@ -61,12 +61,7 @@ const NewArrival = () => {
                                 New-Arrivel Books
                             </span>
                         </h3>
-                        <div>
-                            <button className="btn btn-custom">View All</button>
-                        </div>
                     </div>
-
-
                     <div className="row">
                         {
                             content
