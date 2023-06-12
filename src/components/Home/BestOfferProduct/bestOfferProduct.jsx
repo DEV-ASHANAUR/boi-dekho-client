@@ -1,63 +1,49 @@
-import React from 'react';
+import React,{useEffect,useState} from "react";
+import axois from "../../../utils/axois";
+import BookCard from "../../BookCard";
+import Skeleton from "../../SharedComponents/skeleton/Skeleton";
 
+const BestOfferProduct = () => {
+    const [books,setBooks] = useState([]);
+    const [isLoading,setIsloading] = useState(false);
+    const [isError,setIsError] = useState(false);
+    // console.log("books",books)
+    useEffect(()=>{
+        fetchData("best-offer");
 
-import pimg1 from "../../../images/product/mahfil-192x254.jpg";
-import pimg2 from "../../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
-import pimg3 from "../../../images/product/nari192x254.jpg";
-import SingleBestOfferProduct from './SingleBestOfferProduct';
+    },[])
 
+    const fetchData = async(type)=>{
+        try {
+            setIsloading(true);
+            const res = await axois.get(`/book/${type}`);
+            setBooks(res.data);
+            setIsloading(false);
+            // return res.data;
+        } catch (error) {
+            setIsloading(false);
+            console.log("error occur");
+            setIsError(true);
+        }
+    }
+    
+    //decide what to render
+    let content = null;
 
-const bestOfferProduct = () => {
-    const bestOfferBooks = [
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-    ];
+    if(isLoading){
+        content = <Skeleton type="books" />
+    }
+    if(!isLoading && isError){
+        content = <p>Something Went Wrong</p>
+    }
+    if(!isLoading && !isError && books?.length === 0){
+        content = <p>Books Not found!</p>
+    }
+    if(!isLoading && !isError && books?.length > 0){
+        content = books.map((book,i)=>(
+            <BookCard book={book} key={i} />
+        ))
+    }
     return (
         <section className="bestOfferProduct-main-area">
             <div className="container">
@@ -68,16 +54,16 @@ const bestOfferProduct = () => {
                                 Special Discount
                             </span>
                         </h3>
-                        <div>
+                        {/* <div>
                             <button className="btn btn-custom">View All</button>
-                        </div>
+                        </div> */}
                     </div>
 
 
                     <div className="row">
-                        {bestOfferBooks.map((item, index) => (
-                            <SingleBestOfferProduct item={item} key={index} />
-                        ))}
+                        {
+                            content
+                        }
                     </div>
                 </div>
             </div>
@@ -85,4 +71,4 @@ const bestOfferProduct = () => {
     );
 };
 
-export default bestOfferProduct;
+export default BestOfferProduct;

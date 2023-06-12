@@ -1,11 +1,11 @@
 .review-tab-element .box-area h3 {
-    font-size: 30px;
+    font-size: 1.5rem;
     color: #222;
     font-weight: 700;
     text-align: center;
 }
 .review-tab-element .box-area .overflow-review {
-    height: 40vh;
+    height: 70vh;
     overflow: auto;
 }
 .review-tab-element .box-area .review-box {
@@ -20,7 +20,7 @@
     border-radius: 50%;
 }
 .review-tab-element .box-area .review-box .inner .media h3 {
-    font-size: 20px;
+    font-size: 1rem;
     color: #222;
     text-align: left;
 }
@@ -29,8 +29,9 @@
     color: #222;
 }
 .review-tab-element .box-area .review-box span {
-    color: #222;
-    font-size: 16px;
+    /* color: #222; */
+    font-size: 1rem;
+    text-transform: capitalize;
 }
 
 .review-box .button {
@@ -51,10 +52,21 @@
     background-color: #222;
     border-color: transparent;
 }
+.my-rating{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 .my-rating h4 {
     font-size: 18px;
     font-weight: 700;
-    margin-right: 30px;
     margin-bottom: 0px;
+}
+/* .my-rating-wrapper span{
+    font-size: 1.5rem!important;
+    color: #ffa500!important;
+} */
+.MuiRating-root>span>label{
+ display: flex!important;
 }

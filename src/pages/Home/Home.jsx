@@ -10,20 +10,20 @@ import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea
 
 import Banner from "../../components/Home/Banner/Banner";
 import Services from "../../components/Home/Services/services";
-import BestOfferProduct from "../../components/Home/BestOfferProduct/bestOfferProduct";
-import NewArrivalBooks from "../../components/Home/NewArrival/newArrival";
-import BestSellingBooks from "../../components/Home/BestSelling/BestSelling";
-import IslamicBooks from "../../components/Home/Islamic/islamic";
-import FictionBooks from "../../components/Home/Fiction/fiction";
-import NonFictionBooks from "../../components/Home/Non-Fiction/nonFiction";
-import ChildishBooks from "../../components/Home/Childish/childish";
+import IslamicBooks from "../../components/Home/Islamic/Islamic";
+import FictionBooks from "../../components/Home/Fiction/Fiction";
+import NonFictionBooks from "../../components/Home/Non-Fiction/NonFiction.jsx";
+import ChildishBooks from "../../components/Home/Childish/Childish.jsx";
 
 
 import fiction from "../../images/fiction.jpg";
 import nonFiction from "../../images/non-fiction.jpg";
 import islamic from "../../images/islamic.jpg";
 import childish from "../../images/childish.jpg";
-
+import toast, { Toaster } from 'react-hot-toast';
+import BestSelling from "../../components/Home/BestSelling/BestSelling";
+import BestOfferProduct from "../../components/Home/BestOfferProduct/BestOfferProduct";
+import NewArrival from "../../components/Home/NewArrival/NewArrival";
 
 
 
@@ -33,8 +33,8 @@ const Home = () => {
             {/* <TopHeader />
             <Header /> */}
             <Banner />
-            <BestSellingBooks />
-            <NewArrivalBooks />
+            <BestSelling />
+            <NewArrival />
 
             <section id="fetcher">
                 <div className="container text-center">
@@ -96,6 +96,7 @@ const Home = () => {
             <BestOfferProduct />
             <SubscriptionArea />
             {/* <Footer /> */}
+            <Toaster />
         </>
     );
 };

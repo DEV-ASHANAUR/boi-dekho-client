@@ -64,6 +64,10 @@
     outline: 0;
     box-shadow: none;
 }
+.subscribe-area .search-box-area input::placeholder {
+    /* color: #212529; */
+    color: #000;
+}
 .subscribe-area .search-box-area .btn-area button {
     position: absolute;
     top: 50%;

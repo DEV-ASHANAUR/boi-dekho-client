@@ -1,13 +1,37 @@
-import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import {
-//     faFacebook,
-//     faTwitter,
-//     faInstagram,
-// } from "@fortawesome/free-brands-svg-icons";
+import React, { useState } from "react";
 import "./TopHeader.css";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { searched } from "../../../features/Filter/filterSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase/firebase.config";
+import { signOut } from "firebase/auth";
+import { userLoggedOut } from "../../../features/Auth/AuthSlice";
 const TopHeader = () => {
+    const [user] = useAuthState(auth);
+
+    // console.log("user",user);
+
+    const { search } = useSelector((state) => state.filter)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [input, setInput] = useState(search);
+    const match = useMatch('/books');
+
+    //handleSearch
+    const handleSearch = (e) => {
+        e.preventDefault();
+        dispatch(searched(input));
+        if (!match) {
+            navigate("/books");
+        }
+    }
+
+
+    
+    // const navigteLogIn = () => {
+    //     navigate("/login");
+    // };
     return (
         <div className="border-bottom bg-white">
             <div
@@ -25,14 +49,16 @@ const TopHeader = () => {
                 </div>
 
                 <div className="search-box d-lg-block d-none col-md-6">
-                    <form action="">
+                    <form onSubmit={handleSearch}>
                         <div className="d-flex position-relative align-items-center">
                             <div className="input-group">
                                 <input
                                     type="text"
                                     className="search-input form-control"
                                     id="search"
-                                    name="keyword"
+                                    name="search"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
                                     placeholder="I am shopping for..."
                                     autoComplete="off"
                                 />
@@ -65,7 +91,44 @@ const TopHeader = () => {
                             icon={faInstagram}
                         ></FontAwesomeIcon>
                     </Link> */}
-                    <Link
+                    {user ? (
+                        <Link
+                            className="login"
+                            style={{
+                                paddingRight: "0px",
+                            }}
+                            to="/user-dashboard"
+                        >
+                            <i
+                                className="fas fa-user"
+                                style={{
+                                    fontSize: "22px",
+                                }}
+                            ></i>
+                            <span className="nav-box-text-logout d-none d-xl-block opacity-100">
+                                Account
+                            </span>
+                        </Link>
+                    ) : (
+                        <Link
+                            className="login"
+                            style={{
+                                paddingRight: "0px",
+                            }}
+                            to="/login"
+                        >
+                            <i
+                                className="fas fa-user"
+                                style={{
+                                    fontSize: "22px",
+                                }}
+                            ></i>
+                            <span className="nav-box-text d-none d-xl-block opacity-100">
+                                Login
+                            </span>
+                        </Link>
+                    )}
+                    {/* <Link
                         className="login"
                         style={{
                             paddingRight: "0px",
@@ -81,7 +144,7 @@ const TopHeader = () => {
                         <span className="nav-box-text d-none d-xl-block opacity-100">
                             Login
                         </span>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </div>

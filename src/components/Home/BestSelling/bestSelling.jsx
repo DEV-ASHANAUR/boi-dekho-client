@@ -1,73 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./bestSelling.css";
-
-
-import pimg1 from "../../../images/product/mahfil-192x254.jpg";
-import pimg2 from "../../../images/product/Muslim-itihase-utthan-poton-192x254.jpg";
-import pimg3 from "../../../images/product/nari192x254.jpg";
-import SingleBestSellingBook from "./SingleBestSellingBook";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBooks } from "../../../features/books/BooksSlice";
-import Skeleton from '../../../components/SharedComponents/skeleton/Skeleton'
+import axois from "../../../utils/axois";
+import Skeleton from '../../SharedComponents/skeleton/Skeleton'
+import BookCard from "../../BookCard";
 
 
 const BestSelling = () => {
-    const dispatch = useDispatch();
-    const { books, isLoading, isError, error } = useSelector((state) => state.books);
-    console.log("books", books)
+    const [books, setBooks] = useState([]);
+    const [isLoading, setIsloading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    // const dispatch = useDispatch();
+    // const {books,isLoading,isError} = useSelector((state)=>state.books);
+    // console.log("books",books)
     useEffect(() => {
-        dispatch(fetchBooks());
-    }, [dispatch])
-    const bestSellingBooks = [
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg1,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg2,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-        {
-            img: pimg3,
-            title: "Mahfil theke Mahfile",
-            author: "লাইফ উইথ আল্লাহ টিম",
-            orginalPrice: 189,
-            discount: 20,
-            offeredPrice: 180,
-        },
-    ];
+        fetchData("trending");
+
+    }, [])
+
+    const fetchData = async (type) => {
+        try {
+            setIsloading(true);
+            const res = await axois.get(`/book/${type}`);
+            setBooks(res.data);
+            setIsloading(false);
+            // return res.data;
+        } catch (error) {
+            setIsloading(false);
+            console.log("error occur");
+            setIsError(true);
+        }
+    }
+
     //decide what to render
     let content = null;
 
@@ -77,12 +40,12 @@ const BestSelling = () => {
     if (!isLoading && isError) {
         content = <p>Something Went Wrong</p>
     }
-    if (!isLoading && !isError && books?.length == 0) {
+    if (!isLoading && !isError && books?.length === 0) {
         content = <p>Books Not found!</p>
     }
     if (!isLoading && !isError && books?.length > 0) {
         content = books.map((book, i) => (
-            <SingleBestSellingBook book={book} key={i} />
+            <BookCard book={book} key={i} />
         ))
     }
 
@@ -96,9 +59,6 @@ const BestSelling = () => {
                                 Best-Selling Books
                             </span>
                         </h3>
-                        <div>
-                            <button className="btn btn-custom">View All</button>
-                        </div>
                     </div>
 
 

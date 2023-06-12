@@ -1,16 +1,9 @@
-.books-main-area {
+ .books-main-area {
     padding: 50px 0 100px;
 }
-.books-side-cat-list {
-    height: 35vh;
-    overflow: auto;
-}
-.books-side-pub-list {
-    height: 35vh;
-    overflow: auto;
-}
-.books-side-author-list {
-    height: 35vh;
+
+.books-side-list{
+    height: 100%;
     overflow: auto;
 }
 .books-filter {
@@ -22,7 +15,13 @@
     font-size: 20px;
     font-weight: 600;
 }
-
+.filterdata{
+    font-size: 18px;
+}
+.filteritem{
+    background-color: #ffa500;
+    cursor: pointer;
+}
 .check-inner {
     display: flex;
     justify-content: space-between;
@@ -168,12 +167,15 @@
 
 .productImage {
     overflow: hidden;
+    height: 190px;
+    border-radius: 10px;
 }
 .porduct-box img {
     display: block;
     margin: 0 auto;
-    border-radius: 10px;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .porduct-box:hover .icons {
     transform: rotateY(-3%);
@@ -200,4 +202,8 @@
 .pagination .page-item .page-link:hover {
     background-color: #ffa500;
     color: #fff;
+}
+
+:disabled{
+    cursor: not-allowed;
 }
