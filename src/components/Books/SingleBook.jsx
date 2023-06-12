@@ -1,10 +1,14 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { addToCart } from '../../features/Cart/CartSlice';
+import { addToCart, getTotals } from '../../features/Cart/CartSlice';
+import toast, { Toaster } from 'react-hot-toast';
+import { createhWishlist, resetMessage } from '../../features/wishlist/wishlistSlice';
 
 
 const SingleBook = ({ book }) => {
+    const { currentUser } = useSelector(state => state.auth);
+    const { success:wishSuccess,error,isError,isLoading } = useSelector(state => state.wishlist);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { _id, coverImage, bookTitle, author, discount, price } = book;
@@ -16,6 +20,32 @@ const SingleBook = ({ book }) => {
     const handleAddToCart = (e) => {
         e.preventDefault();
         dispatch(addToCart(book));
+        dispatch(getTotals());
+    }
+    //handleWishlist
+    const handleWishlist = (productId) => {
+        if(currentUser?._id){
+            const data = {
+                userId: currentUser._id,
+                bookId: productId
+            }
+            dispatch(createhWishlist(data));
+        }else{
+            toast.error("Login Please!");
+        }
+    }
+
+    if(!isLoading && wishSuccess){
+        toast.success("Book added to Wishlist!");
+        dispatch(resetMessage());
+    }
+    if(!isLoading && isError){
+        if(error == 'Request failed with status code 409'){
+            toast.error("Already Exist!");
+        }else{
+            toast.error(error);
+        }
+        dispatch(resetMessage());
     }
 
     return (
@@ -23,19 +53,18 @@ const SingleBook = ({ book }) => {
             <div className="porduct-inner-box position-relative">
                 <div className="icons position-absolute">
                     <Link
-                        href=""
+                        onClick={() => handleWishlist(_id)}
                         className="text-decoration-none text-dark"
                     >
                         <i className="fas fa-heart"></i>
                     </Link>
-                    <Link
-                        href=""
+                    <a
+                        onClick={() => handleViewProduct(_id)}
                         className="text-decoration-none text-dark"
                     >
                         <i className="fas fa-eye"></i>
-                    </Link>
+                    </a>
                     <Link
-                        href=""
                         onClick={handleAddToCart}
                         className="text-decoration-none text-dark"
                     >

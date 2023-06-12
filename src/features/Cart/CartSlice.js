@@ -7,6 +7,8 @@ const initialState = {
   cartItems: getCart ? getCart : [],
   cartTotalQuantity: 0,
   cartTotalAmount: 0,
+  shippingFee: 50,
+  grandTotal: 0,
 }
 
 export const cartSlice = createSlice({
@@ -78,8 +80,8 @@ export const cartSlice = createSlice({
     getTotals(state, action) {
       let { total, quantity } = state.cartItems.reduce((cartTotal, cartItem) => {
         const { price, cartQuantity } = cartItem;
-        console.log("price", price);
-        console.log("cartQuantity", cartQuantity);
+        // console.log("price", price);
+        // console.log("cartQuantity", cartQuantity);
         const itemTotal = price * cartQuantity;
         cartTotal.total += itemTotal;
         cartTotal.quantity += cartQuantity;
@@ -88,9 +90,13 @@ export const cartSlice = createSlice({
       total = parseFloat(total.toFixed(2));
       state.cartTotalAmount = total;
       state.cartTotalQuantity = quantity;
+      state.grandTotal = state.cartTotalAmount + state.shippingFee;
     },
     clearCart(state, action) {
       state.cartItems = [];
+      state.cartTotalQuantity = 0;
+      state.cartTotalAmount = 0;
+      state.grandTotal = 0;
       //   toast.info("All Item removed!");
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     }
@@ -98,6 +104,6 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCart,addToCartView, removeCartItem, getTotals, clearCart, dereaseCart } = cartSlice.actions
+export const { addToCart, addToCartView, removeCartItem, getTotals, clearCart, dereaseCart } = cartSlice.actions
 
 export default cartSlice.reducer

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css/effect-fade";
@@ -12,8 +12,23 @@ import catimg from "../../../images/iwvoEIDLV6KFpO1bbyXYrAzEVERJvnH6I6pnSJiE.jpg
 import banner1 from "../../../images/banner/CoverPage.jpg";
 import banner2 from "../../../images/banner/banner-1.webp";
 
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { EffectFade, Autoplay, Pagination, Navigation } from "swiper";
+import { categorySelected, resetFilter } from "../../../features/Filter/filterSlice";
+
 const Banner = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    //view all this category
+    const handleCheck = (category) => {
+        console.log("hello",category)
+        dispatch(resetFilter());
+        dispatch(categorySelected(category));
+        navigate(`/books?categories=${category}`);
+    }
     return (
         <div className="home-banner-area pt-3">
             <div className="container">
@@ -32,8 +47,7 @@ const Banner = () => {
 
                             <ul className="list-unstyled categories py-2 mb-0 text-left">
                                 <li className="category-nav-element">
-                                    <Link
-                                        href="https://www.oofymart.com/category/home-appliances-4kvj1"
+                                    <Link to={`/books?categories=Islamic`} onClick={()=>handleCheck('Islamic')}
                                         className="text-truncate text-reset py-2 px-3 d-block"
                                     >
                                         <img
@@ -49,7 +63,7 @@ const Banner = () => {
                                 </li>
                                 <li className="category-nav-element">
                                     <Link
-                                        to=""
+                                        to={`/books?categories=Fiction`} onClick={()=>handleCheck('Fiction')}
                                         className="text-truncate text-reset py-2 px-3 d-block"
                                     >
                                         <img
@@ -65,7 +79,7 @@ const Banner = () => {
                                 </li>
                                 <li className="category-nav-element">
                                     <Link
-                                        href="https://www.oofymart.com/category/electronic-devices-bdcwi"
+                                        to={`/books?categories=Non-Fiction`} onClick={()=>handleCheck('Non-Fiction')}
                                         className="text-truncate text-reset py-2 px-3 d-block"
                                     >
                                         <img
@@ -82,7 +96,7 @@ const Banner = () => {
 
                                 <li className="category-nav-element">
                                     <Link
-                                        href="https://www.oofymart.com/category/health--beauty-bipdp"
+                                        to={`/books?categories=Childish`} onClick={()=>handleCheck('Childish')}
                                         className="text-truncate text-reset py-2 px-3 d-block"
                                     >
                                         <img
@@ -98,7 +112,7 @@ const Banner = () => {
                                 </li>
                                 <li className="category-nav-element">
                                     <Link
-                                        href="https://www.oofymart.com/category/babies--toys-upvvx"
+                                        to="/books"
                                         className="text-truncate text-reset py-2 px-3 d-block"
                                     >
                                         <img
@@ -112,7 +126,7 @@ const Banner = () => {
                                         </span>
                                     </Link>
                                 </li>
-                                <li className="category-nav-element">
+                                {/* <li className="category-nav-element">
                                     <Link
                                         href="https://www.oofymart.com/category/babies--toys-upvvx"
                                         className="text-truncate text-reset py-2 px-3 d-block"
@@ -127,7 +141,7 @@ const Banner = () => {
                                             Publishers
                                         </span>
                                     </Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>

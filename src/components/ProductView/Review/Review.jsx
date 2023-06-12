@@ -48,7 +48,7 @@ const Review = ({ bookId }) => {
     }
     //handleGoTo
     const handleGoTo = () => {
-        navigate("/login", { state: { from: `/book/${bookId}` } });
+        navigate("/login", { state: { from: {pathname:`/book/${bookId}`} } });
     }
 
     return (
@@ -126,7 +126,7 @@ const Review = ({ bookId }) => {
                                                             <button className="button" type="submit" disabled={isCreateLoading}>Post Review
                                                             </button>
                                                         ) : (
-                                                            <button className="button" onClick={handleGoTo}>login!
+                                                            <button className="button" onClick={handleGoTo}>login
                                                             </button>
                                                         )
                                                     }

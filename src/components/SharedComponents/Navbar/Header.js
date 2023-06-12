@@ -6,7 +6,7 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { searched } from "../../../features/Filter/filterSlice";
-
+import { BsFillBagCheckFill } from 'react-icons/bs';
 
 const Header = () => {
     const { search } = useSelector((state) => state.filter)
@@ -78,8 +78,8 @@ const Header = () => {
                         </CustomLink>
                     </Nav>
                     <Nav>
-                        <CustomLink className="nav-link wishlist" to="/login">
-                            <span className="num-area">3</span>
+                        <CustomLink className="nav-link wishlist" to="/wishlist">
+                            {/* <span className="num-area">3</span> */}
                             <i
                                 className="far fa-heart"
                                 style={{
@@ -93,15 +93,16 @@ const Header = () => {
 
                         <CustomLink
                             className="nav-link shoppingCart"
-                            to="/shopping-cart"
+                            to="/shopping-cart" pheader
                         >
                             <span className="num-area">{cartItems?.length}</span>
-                            <i
+                            {/* <i
                                 className="fas fa-cart-arrow-down"
                                 style={{
                                     fontSize: "22px",
                                 }}
-                            ></i>
+                            ></i> */}
+                            <BsFillBagCheckFill style={{ fontSize: "1.4rem" }} />
                             <span className="nav-box-text d-none d-xl-block opacity-100">
                                 Cart
                             </span>

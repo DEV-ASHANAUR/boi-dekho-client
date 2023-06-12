@@ -23,7 +23,7 @@ import fiction from "../../images/fiction.jpg";
 import nonFiction from "../../images/non-fiction.jpg";
 import islamic from "../../images/islamic.jpg";
 import childish from "../../images/childish.jpg";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -96,6 +96,7 @@ const Home = () => {
             <BestOfferProduct />
             <SubscriptionArea />
             {/* <Footer /> */}
+            <Toaster />
         </>
     );
 };

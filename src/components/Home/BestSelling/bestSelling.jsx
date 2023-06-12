@@ -59,9 +59,6 @@ const BestSelling = () => {
                                 Best-Selling Books
                             </span>
                         </h3>
-                        <div>
-                            <button className="btn btn-custom">View All</button>
-                        </div>
                     </div>
 
 

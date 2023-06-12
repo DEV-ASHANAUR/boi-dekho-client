@@ -61,7 +61,13 @@ a.shoppingCart {
     position: relative;
     border-bottom: none !important;
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
 }
+
 
 @media screen and (min-width: 1200px) {
     .wishlist .num-area {

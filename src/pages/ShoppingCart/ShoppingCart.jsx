@@ -8,8 +8,9 @@ import { addToCart, dereaseCart, getTotals, removeCartItem } from '../../feature
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TbCurrencyTaka } from 'react-icons/tb';
 
-import { Toaster } from 'react-hot-toast';
-import numberWithCommas from '../../utils/numberFormat';
+import { Toaster, toast } from 'react-hot-toast';
+import CartSummary from './CartSummary';
+
 const ShoppingCart = () => {
     const { cartItems,cartTotalQuantity,cartTotalAmount } = useSelector(state => state.cart);
     const dispatch = useDispatch();
@@ -18,6 +19,10 @@ const ShoppingCart = () => {
         dispatch(getTotals());
     },[dispatch,cartItems])
     // console.log("cartitem",cartItems);
+
+    const handleShop = () =>{
+        toast.error("Your bag is Empty!");
+    }
     return (
         <>
             <div className="main-cart-area">
@@ -78,28 +83,10 @@ const ShoppingCart = () => {
                                     )
                                 }
 
-
-
-
                                 <div className="row mt-5">
                                     <div className='mb-4'>
                                         <Link to="/books" className="continue_btn">Continue Shopping</Link>
                                     </div>
-                                    {/* <div className="col-md-7">
-                                        <div className="cupon-area">
-                                            <form action="#" className="d-flex">
-                                                <div className="w-100">
-                                                    <input type="text" placeholder="Cupon code" />
-                                                </div>
-                                                <button type="submit" className="cupon-btn">Apply</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-5">
-                                        <div className="cart-update-btn">
-                                            <Link className="button cart-up-btn" href="#">Update Cart</Link>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -107,28 +94,16 @@ const ShoppingCart = () => {
                         <div className="col-lg-4 mt-3">
                             <div className="checkout-box-wrapper">
                                 <div className="checkout-box">
-                                    <div className="b-1">
-                                        <h4>Summary</h4>
-                                        <div className="order-total sm-box d-flex justify-content-between">
-                                            <p>Order Total :</p>
-                                            <span><TbCurrencyTaka />{numberWithCommas(cartTotalAmount)}</span>
-                                        </div>
-                                        <div className="cupon sm-box d-flex justify-content-between">
-                                            <p>Apply Cupon :</p>
-                                            <span>Sel45</span>
-                                        </div>
-                                        <div className="shipping-item sm-box d-flex justify-content-between">
-                                            <p>Shipping :</p>
-                                            <span>$20.00</span>
-                                        </div>
-                                    </div>
-                                    <div className="subtotal-box sm-box d-flex justify-content-between">
-                                        <p><b>Subtotal :</b></p>
-                                        <span><b>$140.00</b></span>
-                                    </div>
+                                    <CartSummary />
                                     <div className="checkout-btn-area mt-5">
-                                        <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
-                                        <Link to="/books" className="continue-shoping">Continue To Shopping</Link>
+                                        {
+                                            cartItems?.length > 0 ? (
+                                                <Link to="/check-out" className="button checkout-btn">Proceed To Checkout</Link>
+                                            ):(
+                                                <button className="button checkout-btn" onClick={handleShop}>Proceed To Checkout</button>
+                                            )
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>

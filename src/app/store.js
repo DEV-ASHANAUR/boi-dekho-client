@@ -4,25 +4,31 @@ import bookReducer from '../features/book/bookSlice';
 import categoryReducer from '../features/Category/CategorySlice';
 import subCategoryReducer from '../features/SubCategory/SubCategorySlice';
 import authorReducer from '../features/Author/AuthorSlice';
-import publisherReducer  from '../features/Publisher/PublisherSlice';
+import publisherReducer from '../features/Publisher/PublisherSlice';
 import filterReducer from '../features/Filter/filterSlice'
 import cartReducer from '../features/Cart/CartSlice'
 import authReducer from '../features/Auth/AuthSlice';
 import reviewReducer from '../features/review/reviewSlice';
 import reletedBookReducer from '../features/reletedBooks/reletedBooksSlice';
+import shippingReducer from '../features/shipping/shippingSlice';
+import wishlistReducer from '../features/wishlist/wishlistSlice';
+import orderReducer from '../features/order/OrderSlice';
 export const store = configureStore({
   reducer: {
     books: booksReducer,
     book: bookReducer,
     category: categoryReducer,
     subCategory: subCategoryReducer,
-    author:authorReducer,
-    publisher:publisherReducer,
+    author: authorReducer,
+    publisher: publisherReducer,
     filter: filterReducer,
     cart: cartReducer,
-    auth:authReducer,
-    review:reviewReducer,
+    auth: authReducer,
+    review: reviewReducer,
     reletedBooks: reletedBookReducer,
+    shipping: shippingReducer,
+    wishlist: wishlistReducer,
+    order: orderReducer,
   },
 })
 

@@ -73,7 +73,7 @@ const Register = () => {
 
     return (
         <div className='container py-5'>
-            <form action="" onSubmit={handleSubmit(handleRegister)}>
+            <form onSubmit={handleSubmit(handleRegister)}>
                 <div className="login_wrapper">
                     <h2 className='login__title'>Create an account</h2>
                     <div className="input__group">

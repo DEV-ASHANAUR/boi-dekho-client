@@ -1,11 +1,43 @@
 import React from 'react';
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
-import paymentImg from "../../images/banner/payment.jpg"
 import banner from "../../images/banner/CoverPage.jpg"
 import "./Checkout.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { TbCurrencyTaka } from 'react-icons/tb';
 import CustomizedSteppers from '../../components/step/Step';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { createShipping } from '../../features/shipping/shippingSlice';
+import CartSummary from '../ShoppingCart/CartSummary';
 const Checkout = () => {
+    const { currentUser } = useSelector(state => state.auth);
+    const { register, watch, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: {
+            username: currentUser?.username || '',
+            email: currentUser?.email || '',
+            contactNumber: currentUser?.contactNumber || '',
+            peakpoint: currentUser?.address || '',
+            division: currentUser?.division || '',
+            district: currentUser?.district || '',
+            upazila: currentUser?.upazila || '',
+            address: currentUser?.address || '',
+        }
+    });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // const handleToPayment = () => {
+    //     navigate('/payment');
+    // }
+    //
+    const phoneNumberRegex = /^\d{11}$/; // Regular expression to match a 10-digit phone number
+
+    //handlecheckoutInfo 
+    const handleToPayment = async(data) => {
+        // console.log("checout info",data)
+        dispatch(createShipping(data));
+        navigate('/payment');
+    }
+
     return (
         <>
             <div className="checkout-main-area">
@@ -29,125 +61,116 @@ const Checkout = () => {
                 <div className="container">
                     <CustomizedSteppers step={0} />
                 </div>
-                <form className="needs-validation billing-form" noValidate="">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-8">
-                                <div className="row">
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Email address *</label>
-                                            <input className="form-control" type="email" required="" />
+                <div className="container mt-5">
+                    <div className="row">
+                        <div className="col-md-8 mt-5">
+                            <div className="address__wrapper shadow pt-4">
+                                <h4 className='mb-4'>Shipping Address</h4>
+                                <form onSubmit={handleSubmit(handleToPayment)}>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Full Name</label>
+                                            <input type="text" className='form-control mt-2' name='username' placeholder='Enter Name' {...register("username", {
+                                                required: "Name is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 3!"
+                                                }
+                                            })} />
+                                            {errors.username && <span className='error_message' role="alert">{errors.username?.message}</span>}
                                         </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>First name *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Last name *</label>
-                                            <input className="form-control" type="text" required="" />
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Email</label>
+                                            <input type="text" className='form-control mt-2' placeholder='Enter Email' {...register("email", {
+                                                required: "Email is required!",
+                                                pattern: {
+                                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                                    message: 'Please enter a valid email!',
+                                                },
+                                            })
+                                            } />
+                                            {errors.email && <span className='error_message' role="alert">{errors.email?.message}</span>}
                                         </div>
                                     </div>
 
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Street address *</label>
-                                            <input className="form-control" type="text" placeholder="House number and street name" required="" />
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Contact Number</label>
+                                            <input type="text" className='form-control mt-2' name='username' placeholder='Enter contact number' {...register("contactNumber", { required: true, pattern: phoneNumberRegex })} />
+                                            {errors.contactNumber && <span className='error_message' role="alert">Enter a valid 11-digit phone number.</span>}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Zip code</label>
+                                            <input type="number" className='form-control mt-2' name='zipcode' placeholder='Enter Zipcode' {...register("zipcode", { required: false })} />
+                                            {errors.zipcode && <span className='error_message' role="alert">Enter a zip code.</span>}
                                         </div>
                                     </div>
-                                    <div className="col-md-12 mt-2">
-                                        <div className="input_group">
-                                            <input className="form-control" type="text" placeholder="Apartment,suite,unit etc(optional)" required="" />
+
+                                    <div class="row mt-5">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Division</label>
+                                            <input type="text" className='form-control mt-2 text-capitalize' name='division' placeholder='Enter division' {...register("division", {
+                                                required: "Division is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 3!"
+                                                }
+                                            })} />
+                                            {errors.division && <span className='error_message' role="alert">{errors.division?.message}</span>}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">District</label>
+                                            <input type="text" className='form-control mt-2 text-capitalize' name='district' placeholder='Enter district' {...register("district", {
+                                                required: "District is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 3!"
+                                                }
+                                            })} />
+                                            {errors.district && <span className='error_message' role="alert">{errors.district?.message}</span>}
                                         </div>
                                     </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Town/City *</label>
-                                            <input className="form-control" type="text" required="" />
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Upazila</label>
+                                            <input type="text" className='form-control mt-2 text-capitalize' name='upazila' placeholder='Enter district' {...register("upazila", {
+                                                required: "Upazila is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 3!"
+                                                }
+                                            })} />
+                                            {errors.upazila && <span className='error_message' role="alert">{errors.upazila?.message}</span>}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label htmlFor="">Pick Point</label>
+                                            <input type="text" className='form-control mt-2 text-capitalize' name='peakpoint' placeholder='Enter Specific address' {...register("peakpoint", {
+                                                required: "peakpoint is required!",
+                                                minLength: {
+                                                    value: 3,
+                                                    message: "Min length is 5!"
+                                                }
+                                            })} />
+                                            {errors.address && <span className='error_message' role="alert">{errors.address?.message}</span>}
                                         </div>
                                     </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Postcode *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Country(optional)</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6 mt-4">
-                                        <div className="input_group">
-                                            <label>Phone *</label>
-                                            <input className="form-control" type="text" required="" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12 mt-4">
-                                        <div className="input_group">
-                                            <label>Aditional information(optional)</label>
-                                            <textarea className="form-control" placeholder="Notes about your order" required=""></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <button className='btn btn-flat btn-dark d-block mt-5 ms-auto mb-3 text-capitalize' onClick={handleToPayment}>go to payment</button>
+                                </form>
                             </div>
-                            <div className="col-lg-4 mt-5">
-                                <div className="order-place-wrapper">
-                                    <div className="box">
-                                        <h2>Your Order</h2>
-                                        <div className="label common-checkout">
-                                            <p>Product</p>
-                                            <p>Subtotal</p>
-                                        </div>
-                                        <div className="p-name common-checkout">
-                                            <p>Anti-septic Dry Hand Gel</p>
-                                            <span>$120.00</span>
-                                        </div>
-                                        <div className="p-name common-checkout">
-                                            <p>Surgical Latex Glovex</p>
-                                            <span>$80.65</span>
-                                        </div>
-                                        <div className="sub-t common-checkout">
-                                            <p>Subtotal</p>
-                                            <span>$814.85</span>
-                                        </div>
-                                        <div className="ship common-checkout">
-                                            <p>Shipping</p>
-                                            <span>$10.00</span>
-                                        </div>
-                                        <div className="total common-checkout">
-                                            <p>Total</p>
-                                            <p>814.85</p>
-                                        </div>
-                                        <div className="payment-img b-none common-checkout">
-                                            <div className="check-group paypal">
-                                                <input className="form-check-input" type="checkbox" id="pa" required="" />
-                                                <label className="form-check-label" for="pa">
-                                                    Paypal
-                                                    <img className="lazy-load" src={paymentImg} alt="img" />
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div className="condition b-none common-checkout">
-                                            <div className="check-group">
-                                                <input className="form-check-input" type="checkbox" id="co" required="" />
-                                                <label className="form-check-label" for="co">I have read and agree to the website terms and conditions *</label>
-                                            </div>
-                                        </div>
-                                        <div className="btn-area">
-                                            <button type="submit" className="button">Place order</button>
-                                        </div>
+                        </div>
+                        <div className="col-md-4 mt-5">
+                            <div className="checkout-box-wrapper shadow">
+                                <div className="checkout-box">
+                                    <CartSummary />
+                                    <div className="checkout-btn-area mt-5">
+                                        <input type="text" className='form-control' placeholder='Have any cupon?' />
+                                        <button className="button checkout-btn mt-3">apply cupon</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <SubscriptionArea />
         </>

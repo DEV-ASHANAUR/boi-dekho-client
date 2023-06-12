@@ -2,13 +2,18 @@ import React,{useEffect, useState} from "react";
 import axois from "../../../utils/axois";
 import BookCard from "../../BookCard";
 import Skeleton from "../../SharedComponents/skeleton/Skeleton";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { categorySelected, resetFilter } from "../../../features/Filter/filterSlice";
 
 
 const Fiction = () => {
     const [books,setBooks] = useState([]);
     const [isLoading,setIsloading] = useState(false);
     const [isError,setIsError] = useState(false);
-    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {category:selected} = useSelector(state=>state.filter);
     // console.log("books",books)
     useEffect(()=>{
         fetchData("fiction");
@@ -26,6 +31,19 @@ const Fiction = () => {
             setIsloading(false);
             console.log("error occur");
             setIsError(true);
+        }
+    }
+    //view all this category
+    const isSelected = selected.includes('Fiction') ? true : false;
+
+    const handleCheck = (category) => {
+        dispatch(resetFilter());
+        if(isSelected){
+            // dispatch(categoryRemoved(category));
+            navigate(`/books?categories=${category}`);
+        }else{
+            dispatch(categorySelected(category));
+            navigate(`/books?categories=${category}`);
         }
     }
     
@@ -57,7 +75,7 @@ const Fiction = () => {
                             </span>
                         </h3>
                         <div>
-                            <button className="btn btn-custom">View All</button>
+                            <button className="btn btn-custom" onClick={()=>handleCheck('Fiction')}>View All</button>
                         </div>
                     </div>
 

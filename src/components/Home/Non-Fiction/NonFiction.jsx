@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import BookCard from "../../BookCard";
 import Skeleton from "../../SharedComponents/skeleton/Skeleton";
 import axois from "../../../utils/axois";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { categorySelected, resetFilter } from "../../../features/Filter/filterSlice";
 //non-fiction
 const NonFiction = () => {
 
     const [books, setBooks] = useState([]);
     const [isLoading, setIsloading] = useState(false);
     const [isError, setIsError] = useState(false);
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     // console.log("books", books)
     useEffect(() => {
         fetchData("non-fiction");
@@ -27,6 +31,13 @@ const NonFiction = () => {
             console.log("error occur");
             setIsError(true);
         }
+    }
+    //view all this category
+
+    const handleCheck = (category) => {
+        dispatch(resetFilter());
+        dispatch(categorySelected(category));
+        navigate(`/books?categories=${category}`);
     }
 
     //decide what to render
@@ -57,7 +68,7 @@ const NonFiction = () => {
                             </span>
                         </h3>
                         <div>
-                            <button className="btn btn-custom">View All</button>
+                            <button className="btn btn-custom" onClick={()=>handleCheck('Non-Fiction')}>View All</button>
                         </div>
                     </div>
 

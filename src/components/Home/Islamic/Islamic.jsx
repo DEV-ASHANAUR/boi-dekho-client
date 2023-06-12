@@ -2,16 +2,21 @@ import React,{useEffect, useState} from "react";
 import BookCard from "../../BookCard";
 import Skeleton from "../../SharedComponents/skeleton/Skeleton";
 import axois from "../../../utils/axois";
+import { useDispatch, useSelector } from "react-redux";
+import { categoryRemoved, categorySelected, resetFilter } from "../../../features/Filter/filterSlice";
+import { useNavigate } from "react-router-dom";
 
 const Islamic = () => {
     const [books,setBooks] = useState([]);
     const [isLoading,setIsloading] = useState(false);
     const [isError,setIsError] = useState(false);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {category:selected} = useSelector(state=>state.filter);
     
     // console.log("books",books)
     useEffect(()=>{
         fetchData("islamic");
-
     },[])
 
     const fetchData = async(type)=>{
@@ -27,6 +32,20 @@ const Islamic = () => {
             setIsError(true);
         }
     }
+    //
+    const isSelected = selected.includes('Islamic') ? true : false;
+
+    const handleCheck = (category) => {
+        dispatch(resetFilter());
+        if(isSelected){
+            // dispatch(categoryRemoved(category));
+            navigate(`/books?categories=${category}`);
+        }else{
+            dispatch(categorySelected(category));
+            navigate(`/books?categories=${category}`);
+        }
+    }
+
     //decide what to render
     let content = null;
 
@@ -55,7 +74,7 @@ const Islamic = () => {
                             </span>
                         </h3>
                         <div>
-                            <button className="btn btn-custom">View All</button>
+                            <button className="btn btn-custom" onClick={()=>handleCheck('Islamic')}>View All</button>
                         </div>
                     </div>
 

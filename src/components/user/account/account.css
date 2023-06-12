@@ -1,0 +1,111 @@
+.acc__card__wrapper{
+    background-color: #fff;
+    padding: .8rem 1rem;
+    border-radius: .2rem;
+}
+.acc__card__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.acc__title__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.acc__title__wrapper h3{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+}
+.action__button a{
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .3s ease;
+}
+.action__button a:hover{
+    color: #ffa500;
+}
+.acc__info{
+    margin-top:1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.acc__info h4{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(55 65 81);
+    text-transform: capitalize;
+}
+.acc__info p{
+    margin: 0;
+    color: rgb(31 41 55);
+    text-transform: lowercase;
+}
+
+/* profile__img__section start  */
+.profile__img__wrapper{
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 3px;
+}
+.profile__img{
+    /* position: relative; */
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #ffa500;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.profile__img:hover{
+    position: relative;
+}
+.profile__img:hover .imgLabel{
+    display: flex!important;
+}
+.imgLabel{
+    transition: .3s ease;
+    cursor: pointer;
+    display: none!important;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999999999999;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffa500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.profile__img img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+#profileImg{
+    display: none!important;
+}
+/* profile__img__section end  */
+.address__wrapper{
+    background-color: #fff;
+    padding: 1rem;
+}
+.address__wrapper h4{
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+

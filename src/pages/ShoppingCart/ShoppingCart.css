@@ -168,15 +168,16 @@
     text-align: center;
     text-transform: capitalize;
     transition: .3s;
+    display: inline-block;
 }
 .continue_btn:hover{
     background-color: #ffa600cc;
     color: #fff;
 }
 
-.checkout-box-wrapper {
+/* .checkout-box-wrapper {
     padding-left: 50px;
-}
+} */
 
 .checkout-box {
     padding: 30px;
@@ -206,9 +207,9 @@
     font-size: 16px;
 }
 
-.checkout-box .shipping-item {
+/* .checkout-box .shipping-item {
     padding-bottom: 27px;
-}
+} */
 
 .checkout-box .subtotal-box {
     border-bottom: 1px solid #8d8d8d;
@@ -216,16 +217,20 @@
 }
 
 .checkout-box .checkout-btn {
-    display: block;
-    border-radius: 30px;
     background-color: #ffa500;
-    padding: 10px 9px;
-    font-weight: 700;
     color: #fff;
     transition: 0.3s;
-    font-size: 20px;
-    text-align: center;
-    text-transform: capitalize;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: 1.2rem;
+    width: 100%;
+    /* justify-content: flex-end; */
 }
 
 .checkout-box .checkout-btn:hover {
