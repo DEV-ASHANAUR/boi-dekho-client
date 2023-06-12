@@ -13,11 +13,11 @@ import Skeleton from '../../../components/SharedComponents/skeleton/Skeleton'
 
 const BestSelling = () => {
     const dispatch = useDispatch();
-    const {books,isLoading,isError,error} = useSelector((state)=>state.books);
-    console.log("books",books)
-    useEffect(()=>{
+    const { books, isLoading, isError, error } = useSelector((state) => state.books);
+    console.log("books", books)
+    useEffect(() => {
         dispatch(fetchBooks());
-    },[dispatch])
+    }, [dispatch])
     const bestSellingBooks = [
         {
             img: pimg1,
@@ -71,17 +71,17 @@ const BestSelling = () => {
     //decide what to render
     let content = null;
 
-    if(isLoading){
+    if (isLoading) {
         content = <Skeleton type="books" />
     }
-    if(!isLoading && isError){
+    if (!isLoading && isError) {
         content = <p>Something Went Wrong</p>
     }
-    if(!isLoading && !isError && books?.length == 0){
+    if (!isLoading && !isError && books?.length == 0) {
         content = <p>Books Not found!</p>
     }
-    if(!isLoading && !isError && books?.length > 0){
-        content = books.map((book,i)=>(
+    if (!isLoading && !isError && books?.length > 0) {
+        content = books.map((book, i) => (
             <SingleBestSellingBook book={book} key={i} />
         ))
     }
