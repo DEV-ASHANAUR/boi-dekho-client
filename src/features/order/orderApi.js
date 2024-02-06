@@ -7,7 +7,10 @@ export const addOrder = async (data) => {
 }
 
 export const getOrders = async (userId) => {
+    // const token = JSON.parse(localStorage.getItem("auth")).accessToken;
+    // console.log("token",token)
     const response = await axios.get(`/order/${userId}`);
+    
     return response.data;
 }
 

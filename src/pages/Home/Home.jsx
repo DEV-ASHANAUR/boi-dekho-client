@@ -20,7 +20,7 @@ import fiction from "../../images/fiction.jpg";
 import nonFiction from "../../images/non-fiction.jpg";
 import islamic from "../../images/islamic.jpg";
 import childish from "../../images/childish.jpg";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import BestSelling from "../../components/Home/BestSelling/BestSelling";
 import BestOfferProduct from "../../components/Home/BestOfferProduct/BestOfferProduct";
 import NewArrival from "../../components/Home/NewArrival/NewArrival";
