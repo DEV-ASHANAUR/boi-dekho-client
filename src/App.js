@@ -34,6 +34,7 @@ import AdminRoute from "./components/AdminRoute";
 import DashboardLayout from "./components/Dashboard/Layout/Layout";
 import ViewCategory from "./components/Dashboard/ManageCategory/ViewCategory";
 import AddCategory from "./components/Dashboard/ManageCategory/AddCategory";
+import UpdateCategory from "./components/Dashboard/ManageCategory/UpdateCategory";
 
 function Layout() {
   return (
@@ -197,6 +198,14 @@ function App() {
             element={
             //   <AdminRoute>
                 <AddCategory />
+            //   </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-category/:categoryId"
+            element={
+            //   <AdminRoute>
+                <UpdateCategory />
             //   </AdminRoute>
             }
           />

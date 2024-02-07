@@ -1,34 +1,60 @@
 import { IconButton, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CalendarViewDayIcon from "@mui/icons-material/CalendarViewDay";
 import { useForm } from "react-hook-form";
-import toast,{Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createCategory,
   resetState,
+  updateCategory,
 } from "../../../features/Category/CategorySlice";
+import { useEffect, useState } from "react";
+import axoisInstance from "../../../utils/axois";
 
-const AddCategory = () => {
+const UpdateCategory = () => {
+  const [categoryData, setCategoryData] = useState({});
+  const [loading, setIsLoading] = useState(false);
+  const { categoryId } = useParams();
   const { isLoading, isError, message, isSuccess } = useSelector(
     (state) => state.category
   );
+
+  useEffect(() => {
+    const fetchCategoryById = async (id) => {
+      try {
+        const result = await axoisInstance.get(`/category/${id}`);
+        if (result?.data) {
+          setCategoryData(result.data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchCategoryById(categoryId);
+  }, [categoryId]);
+
   const dispatch = useDispatch();
-  
+
   const {
     register,
+    setValue, // Added setValue from useForm
     formState: { errors },
     handleSubmit,
-  } = useForm({
-    defaultValues: {
-      category: "",
-    },
-  });
+  } = useForm();
 
-  // console.log("status",isLoading,isSuccess,message)
+  useEffect(() => {
+    // Set default values after data is fetched
+    if (!loading) {
+      setValue("category", categoryData.category);
+    }
+  }, [loading, categoryData.category, setValue]);
 
-  const handleAddCategory = (data) => {
-    dispatch(createCategory(data));
+  const handleAddCategory = (values) => {
+    const data = { ...values };
+    dispatch(updateCategory({ id: categoryId, data }));
   };
 
   if (!isLoading && isSuccess) {
@@ -64,7 +90,7 @@ const AddCategory = () => {
           <div className="row">
             <div className="col-md-8">
               <div className="pt-4">
-                <h4 className="mb-4">Create Category</h4>
+                <h4 className="mb-4">Edit Category</h4>
                 <form onSubmit={handleSubmit(handleAddCategory)}>
                   <div class="row">
                     <div class="col-md-6">
@@ -92,9 +118,10 @@ const AddCategory = () => {
 
                   <button
                     className="btn btn-flat btn-dark d-block mt-2 mb-3 text-capitalize"
-                    onClick={handleAddCategory} disabled={isLoading}
+                    onClick={handleAddCategory}
+                    disabled={isLoading}
                   >
-                    Add
+                    Edit
                   </button>
                 </form>
               </div>
@@ -107,4 +134,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default UpdateCategory;

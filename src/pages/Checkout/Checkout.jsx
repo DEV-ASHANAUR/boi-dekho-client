@@ -3,7 +3,6 @@ import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea
 import banner from "../../images/banner/CoverPage.jpg"
 import "./Checkout.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { TbCurrencyTaka } from 'react-icons/tb';
 import CustomizedSteppers from '../../components/step/Step';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';

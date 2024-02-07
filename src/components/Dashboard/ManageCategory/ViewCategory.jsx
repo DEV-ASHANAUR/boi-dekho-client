@@ -4,36 +4,11 @@ import { IconButton, Tooltip, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../../../features/Category/CategorySlice";
+import { fetchCategories, removeCategory, resetState } from "../../../features/Category/CategorySlice";
 import { Delete, Edit } from "@mui/icons-material";
+import toast,{Toaster} from "react-hot-toast";
 
-const columns = [
-  { field: "_id", headerName: "ID", width: 70 },
-  { field: "category", headerName: "Category", width: 130 },
-  {
-    field: "actions",
-    headerName: "Actions",
-    type: "actions",
-    width: 150,
-    renderCell: (params) => {
-      return (
-        <>
-          <Tooltip title="Edit this room">
-            <IconButton>
-              <Edit />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Delete this room">
-            <IconButton sx={{color:"red"}}
-            >
-              <Delete onClick={()=> console.log("id",params.id)} />
-            </IconButton>
-          </Tooltip>
-        </>
-      );
-    },
-  },
-];
+
 
 export default function ViewCategory() {
   const { categories } = useSelector((state) => state.category);
@@ -43,7 +18,7 @@ export default function ViewCategory() {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  console.log("categories", categories);
+  // console.log("categories", categories);
 
   const rows = categories?.map((item, index) => {
     return {
@@ -53,6 +28,46 @@ export default function ViewCategory() {
   });
 //   console.log("row", rows);
   const navigate = useNavigate();
+
+  const handleDelete = (id) => {
+    if (window.confirm("Delete! Are you sure!")) {
+      dispatch(removeCategory(id));
+      toast.success("Category deleted Successfully!");
+      dispatch(resetState());
+    } else {
+      console.log("cancle")
+    }
+  }
+
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "category", headerName: "Category", width: 130 },
+    {
+      field: "actions",
+      headerName: "Actions",
+      type: "actions",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <Tooltip title="Edit this room">
+              <IconButton>
+                <Edit onClick={()=> navigate(`/dashboard/manage-category/${params.id}`)} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Delete this room">
+              <IconButton sx={{color:"red"}}
+              >
+                <Delete onClick={()=> handleDelete(params.id)} />
+              </IconButton>
+            </Tooltip>
+          </>
+        );
+      },
+    },
+  ];
+
   return (
     <>
       <Typography
@@ -81,6 +96,7 @@ export default function ViewCategory() {
           checkboxSelection
         />
       </div>
+      <Toaster />
     </>
   );
 }

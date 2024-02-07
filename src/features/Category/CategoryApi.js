@@ -9,3 +9,12 @@ export const addCategory = async(data) =>{
     const response = await axios.post(`/category`,data);
     return response.data;
 }
+export const deleteCategory = async(id) =>{
+    const response = await axios.delete(`/category/${id}`);
+    return response.data;
+}
+export const editCategory = async({id,data}) =>{
+    const response = await axios.put(`/category/${id}`,{...data});
+    return response.data;
+}
+
