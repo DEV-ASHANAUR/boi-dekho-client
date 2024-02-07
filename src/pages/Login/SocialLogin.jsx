@@ -5,7 +5,7 @@ import auth from '../../firebase/firebase.config';
 import { useDispatch, useSelector } from 'react-redux';
 import { googleProvider } from '../../features/Auth/AuthSlice';
 import { signOut } from "firebase/auth";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 export const SocialLogin = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const SocialLogin = () => {
     }
   }, [dispatch, isError, loguser]);
 
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, loading, error] = useSignInWithGoogle(auth);
 
   if (error) {
     errorElement = (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import numberWithCommas from '../../utils/numberFormat';
 import { useDispatch, useSelector } from 'react-redux';
 import { TbCurrencyTaka } from 'react-icons/tb';

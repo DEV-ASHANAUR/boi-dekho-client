@@ -8,7 +8,7 @@ import {
 import Loading from '../../components/SharedComponents/Loading/Loading';
 import auth from '../../firebase/firebase.config';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, userLoggedOut } from '../../features/Auth/AuthSlice';
+import { loginUser } from '../../features/Auth/AuthSlice';
 import { SocialLogin } from './SocialLogin';
 import { signOut } from "firebase/auth";
 import toast, { Toaster } from 'react-hot-toast';
@@ -33,7 +33,7 @@ const Login = () => {
     // error variable
     let errorElement;
 
-    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth, {
+    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth, {
         providerOptions: {
             customParameters: { linkWithCredential: false },
         },

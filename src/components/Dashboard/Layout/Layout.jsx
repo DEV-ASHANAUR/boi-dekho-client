@@ -21,7 +21,7 @@ import { Avatar, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import { Home, Logout, Settings } from "@mui/icons-material";
 import { menuItem } from "../../../global/DashboardMenu";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -225,7 +225,7 @@ export default function DashboardLayout() {
               paddingLeft: "1.1rem",
             }}
           >
-            <h5 style={{ margin: 0, textTransform: "uppercase" }}>Boi Dekhi</h5>
+            <h5 style={{ margin: 0, textTransform: "uppercase" }}>Boi Dekho</h5>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <>

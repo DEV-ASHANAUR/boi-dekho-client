@@ -63,7 +63,7 @@ const AddCategory = () => {
           </Typography>
           <div className="row">
             <div className="col-md-8">
-              <div className="pt-4">
+              <div className="pt-4 px-3">
                 <h4 className="mb-4">Create Category</h4>
                 <form onSubmit={handleSubmit(handleAddCategory)}>
                   <div class="row">

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CustomizedSteppers from '../../components/step/Step';
 import CartSummary from '../ShoppingCart/CartSummary';
 import { useDispatch, useSelector } from 'react-redux';
-import { createOrder,createPayment,restOrderMessage } from '../../features/order/OrderSlice';
+import { createOrder,restOrderMessage } from '../../features/order/OrderSlice';
 import { toast } from 'react-hot-toast';
 import { clearCart } from '../../features/Cart/CartSlice';
 import axios from '../../utils/axois';

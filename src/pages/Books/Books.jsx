@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../features/books/BooksSlice';
 import Skeleton from '../../components/SharedComponents/skeleton/Skeleton';
 import { authorRemoved, categoryRemoved, publisherRemoved, setLimit, setPage, setQueryString, sortBy, subcategoryRemoved } from '../../features/Filter/filterSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const Books = () => {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -66,7 +66,7 @@ const Books = () => {
 
     useEffect(() => {
         dispatch(setQueryString(query))
-    }, [searchParams, dispatch]);
+    }, [searchParams, dispatch,query]);
 
     useEffect(() => {
         console.log("hello");

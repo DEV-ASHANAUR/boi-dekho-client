@@ -35,6 +35,9 @@ import DashboardLayout from "./components/Dashboard/Layout/Layout";
 import ViewCategory from "./components/Dashboard/ManageCategory/ViewCategory";
 import AddCategory from "./components/Dashboard/ManageCategory/AddCategory";
 import UpdateCategory from "./components/Dashboard/ManageCategory/UpdateCategory";
+import ViewSubCategory from "./components/Dashboard/ManageSubCategory/ViewSubCategory";
+import AddSubCategory from "./components/Dashboard/ManageSubCategory/AddSubCategory";
+import UpdateSubCategory from "./components/Dashboard/ManageSubCategory/UpdateSubCategory";
 
 function Layout() {
   return (
@@ -209,6 +212,31 @@ function App() {
             //   </AdminRoute>
             }
           />
+          <Route
+            path="manage-sub-category"
+            element={
+            //   <AdminRoute>
+                <ViewSubCategory />
+            //   </AdminRoute>
+            }
+          />
+          <Route
+            path="create-sub-category"
+            element={
+            //   <AdminRoute>
+                <AddSubCategory />
+            //   </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-sub-category/:subcategoryId"
+            element={
+            //   <AdminRoute>
+                <UpdateSubCategory />
+            //   </AdminRoute>
+            }
+          />
+          
         </Route>
       </Routes>
     </div>

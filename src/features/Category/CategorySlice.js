@@ -108,7 +108,7 @@ export const categorySlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.error = null;
-        state.message = "Category Created SuccessFully!";
+        state.message = "Category Deleted SuccessFully!";
         state.categories = state.categories.filter(
           (item) => item._id !== action.payload._id
         );

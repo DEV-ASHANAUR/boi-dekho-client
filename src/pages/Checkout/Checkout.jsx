@@ -10,7 +10,7 @@ import { createShipping } from '../../features/shipping/shippingSlice';
 import CartSummary from '../ShoppingCart/CartSummary';
 const Checkout = () => {
     const { currentUser } = useSelector(state => state.auth);
-    const { register, watch, formState: { errors }, handleSubmit } = useForm({
+    const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: {
             username: currentUser?.username || '',
             email: currentUser?.email || '',

@@ -12,7 +12,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import CartSummary from './CartSummary';
 
 const ShoppingCart = () => {
-    const { cartItems,cartTotalQuantity,cartTotalAmount } = useSelector(state => state.cart);
+    const { cartItems } = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
     useEffect(()=>{

@@ -34,10 +34,10 @@ const Register = () => {
             navigate("/login");
 
         }
-    }, [dispatch, isSuccess, loguser])
+    }, [dispatch, isSuccess, loguser,navigate])
 
     let errorElement;
-    const [createUserWithEmailAndPassword, user, loading, error] =
+    const [createUserWithEmailAndPassword, loading, error] =
         useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     //loading component 
     if (loading) {

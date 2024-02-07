@@ -5,26 +5,29 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  resetState,
-  updateCategory,
+  fetchCategories
 } from "../../../features/Category/CategorySlice";
 import { useEffect, useState } from "react";
 import axoisInstance from "../../../utils/axois";
+import { resetState, updateSubCategory } from "../../../features/SubCategory/SubCategorySlice";
 
-const UpdateCategory = () => {
-  const [categoryData, setCategoryData] = useState({});
+const UpdateSubCategory = () => {
+  const { categories } = useSelector((state) => state.category);
+  const [subCategoryData, setSubCategoryData] = useState({});
   const [loading, setIsLoading] = useState(false);
-  const { categoryId } = useParams();
+  const { subcategoryId } = useParams();
   const { isLoading, isError, message, isSuccess } = useSelector(
-    (state) => state.category
+    (state) => state.subCategory
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchCategories())
     const fetchCategoryById = async (id) => {
       try {
-        const result = await axoisInstance.get(`/category/${id}`);
+        const result = await axoisInstance.get(`/sub-category/${id}`);
         if (result?.data) {
-          setCategoryData(result.data);
+          setSubCategoryData(result.data);
           setIsLoading(false);
         }
       } catch (error) {
@@ -33,10 +36,8 @@ const UpdateCategory = () => {
       }
     };
 
-    fetchCategoryById(categoryId);
-  }, [categoryId]);
-
-  const dispatch = useDispatch();
+    fetchCategoryById(subcategoryId);
+  }, [subcategoryId,dispatch]);
 
   const {
     register,
@@ -48,13 +49,18 @@ const UpdateCategory = () => {
   useEffect(() => {
     // Set default values after data is fetched
     if (!loading) {
-      setValue("category", categoryData.category);
+      setValue("category", subCategoryData.category);
+      setValue("subCategory", subCategoryData.subCategory);
     }
-  }, [loading, categoryData.category, setValue]);
+  }, [
+    loading,
+    subCategoryData.category,
+    subCategoryData.subCategory,
+    setValue,
+  ]);
 
-  const handleAddCategory = (values) => {
-    const data = { ...values };
-    dispatch(updateCategory({ id: categoryId, data }));
+  const handleAddCategory = (data) => {
+    dispatch(updateSubCategory({ id: subcategoryId, data }));
   };
 
   if (!isLoading && isSuccess) {
@@ -82,7 +88,7 @@ const UpdateCategory = () => {
             <Typography variant="h5"></Typography>
             <IconButton
               sx={{ mr: 1 }}
-              onClick={() => navigate("/dashboard/manage-category")}
+              onClick={() => navigate("/dashboard/manage-sub-category")}
             >
               <CalendarViewDayIcon />
             </IconButton>
@@ -90,27 +96,51 @@ const UpdateCategory = () => {
           <div className="row">
             <div className="col-md-8">
               <div className="pt-4 px-3">
-                <h4 className="mb-4">Edit Category</h4>
+                <h4 className="mb-4">Edit Sub Category</h4>
                 <form onSubmit={handleSubmit(handleAddCategory)}>
                   <div class="row">
+                    <div className="col-md-6">
+                      <label htmlFor="category">Category</label>
+                      <select
+                        id="category"
+                        className="form-control mt-2"
+                        {...register("category", {
+                          required: "Category is required!",
+                        })}
+                      >
+                        <option value="" disabled>
+                          Select a category
+                        </option>
+                        {categories?.map((category) => (
+                          <option key={category._id} value={category.category}>
+                            {category.category}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.category && (
+                        <span className="error_message" role="alert">
+                          {errors.category?.message}
+                        </span>
+                      )}
+                    </div>
                     <div class="col-md-6">
-                      <label htmlFor="">Title</label>
+                      <label htmlFor="">Sub Category</label>
                       <input
                         type="text"
                         className="form-control mt-2"
-                        name="username"
+                        name="subCategory"
                         placeholder="Enter Name"
-                        {...register("category", {
-                          required: "category is required!",
+                        {...register("subCategory", {
+                          required: "sub category is required!",
                           minLength: {
                             value: 3,
                             message: "Min length is 3!",
                           },
                         })}
                       />
-                      {errors.category && (
+                      {errors.subCategory && (
                         <span className="error_message" role="alert">
-                          {errors.category?.message}
+                          {errors.subCategory?.message}
                         </span>
                       )}
                     </div>
@@ -134,4 +164,4 @@ const UpdateCategory = () => {
   );
 };
 
-export default UpdateCategory;
+export default UpdateSubCategory;

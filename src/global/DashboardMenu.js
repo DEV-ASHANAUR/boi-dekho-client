@@ -14,6 +14,11 @@ export const menuItem = [
     icon: <CategoryIcon />,
   },
   {
+    label: "Manage SubCategory",
+    link: "manage-sub-category",
+    icon: <CategoryIcon />,
+  },
+  {
     label: "Manage Book",
     link: "manage-product",
     icon: <LibraryBooksIcon />,
