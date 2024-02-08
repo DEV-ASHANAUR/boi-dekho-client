@@ -38,6 +38,12 @@ import UpdateCategory from "./components/Dashboard/ManageCategory/UpdateCategory
 import ViewSubCategory from "./components/Dashboard/ManageSubCategory/ViewSubCategory";
 import AddSubCategory from "./components/Dashboard/ManageSubCategory/AddSubCategory";
 import UpdateSubCategory from "./components/Dashboard/ManageSubCategory/UpdateSubCategory";
+import UpdateAuthor from "./components/Dashboard/ManageAuthor/UpdateAuthor";
+import AddAuthor from "./components/Dashboard/ManageAuthor/AddAuthor";
+import ViewAuthor from "./components/Dashboard/ManageAuthor/ViewAuthor";
+import UpdatePublisher from "./components/Dashboard/ManagePublisher/UpdatePublisher";
+import AddPublisher from "./components/Dashboard/ManagePublisher/AddPublisher";
+import ViewPublisher from "./components/Dashboard/ManagePublisher/ViewPublisher";
 
 function Layout() {
   return (
@@ -183,60 +189,107 @@ function App() {
           <Route
             index
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <DashHome />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="manage-category"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <ViewCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="create-category"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <AddCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="manage-category/:categoryId"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <UpdateCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="manage-sub-category"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <ViewSubCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="create-sub-category"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <AddSubCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
           <Route
             path="manage-sub-category/:subcategoryId"
             element={
-            //   <AdminRoute>
+              <AdminRoute>
                 <UpdateSubCategory />
-            //   </AdminRoute>
+              </AdminRoute>
             }
           />
-          
+          <Route
+            path="manage-author"
+            element={
+              <AdminRoute>
+                <ViewAuthor />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="create-author"
+            element={
+              <AdminRoute>
+                <AddAuthor />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-author/:authorId"
+            element={
+              <AdminRoute>
+                <UpdateAuthor />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-publisher"
+            element={
+              <AdminRoute>
+                <ViewPublisher />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="create-publisher"
+            element={
+              <AdminRoute>
+                <AddPublisher />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-publisher/:publisherId"
+            element={
+              <AdminRoute>
+                <UpdatePublisher />
+              </AdminRoute>
+            }
+          />
         </Route>
       </Routes>
     </div>

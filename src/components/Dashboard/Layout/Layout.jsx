@@ -20,6 +20,10 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { Avatar, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import { Home, Logout, Settings } from "@mui/icons-material";
 import { menuItem } from "../../../global/DashboardMenu";
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { userLoggedOut } from "../../../features/Auth/AuthSlice";
+import auth from "../../../firebase/firebase.config";
 
 const drawerWidth = 260;
 
@@ -92,6 +96,7 @@ export default function DashboardLayout() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [dark, setDark] = React.useState(false);
+  const dispatch = useDispatch();
 
   const darkTheme = createTheme({
     palette: {
@@ -116,6 +121,12 @@ export default function DashboardLayout() {
     setAnchorEl(null);
   };
   const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    console.log("hello");
+    signOut(auth);
+    dispatch(userLoggedOut());
+};
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -207,7 +218,7 @@ export default function DashboardLayout() {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogOut}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>
