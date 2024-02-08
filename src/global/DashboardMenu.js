@@ -32,7 +32,7 @@ export const menuItem = [
   },
   {
     label: "Manage Book",
-    link: "manage-product",
+    link: "manage-book",
     icon: <LibraryBooksIcon />,
   },
 ];

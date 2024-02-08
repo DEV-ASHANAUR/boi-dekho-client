@@ -21,6 +21,8 @@ const Books = () => {
     const { books, current_page, total_page, isLoading, isError } = useSelector(state => state.books);
     const { publisher, author, category, subcategory, search, sort, page, limit, trigger } = useSelector(state => state.filter);
 
+    // console.log("books",books)
+
     const params = [];
 
     searchParams.forEach((value, key) => {
@@ -69,8 +71,6 @@ const Books = () => {
     }, [searchParams, dispatch,query]);
 
     useEffect(() => {
-        console.log("hello");
-
 
         if (trigger) {
 

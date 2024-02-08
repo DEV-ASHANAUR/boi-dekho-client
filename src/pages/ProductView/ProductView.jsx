@@ -60,11 +60,11 @@ const ProductView = () => {
                                         <div className="rating-area d-flex align-items-center">
                                             <Rating
                                                 name="simple-controlled"
-                                                value={avgRating}
+                                                value={parseInt(avgRating)}
                                                 precision={0.1}
                                                 readOnly
                                             />
-                                            <p className="mb-0">{avgRating}({totalRating} reviews)</p>
+                                            <p className="mb-0">{parseInt(avgRating)}({totalRating} reviews)</p>
                                         </div>
                                     </div>
 

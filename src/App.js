@@ -44,6 +44,9 @@ import ViewAuthor from "./components/Dashboard/ManageAuthor/ViewAuthor";
 import UpdatePublisher from "./components/Dashboard/ManagePublisher/UpdatePublisher";
 import AddPublisher from "./components/Dashboard/ManagePublisher/AddPublisher";
 import ViewPublisher from "./components/Dashboard/ManagePublisher/ViewPublisher";
+import ViewBook from "./components/Dashboard/ManageBook/ViewBook";
+import AddBook from "./components/Dashboard/ManageBook/AddBook";
+import UpdateBook from "./components/Dashboard/ManageBook/UpdateBook";
 
 function Layout() {
   return (
@@ -287,6 +290,30 @@ function App() {
             element={
               <AdminRoute>
                 <UpdatePublisher />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-book"
+            element={
+              <AdminRoute>
+                <ViewBook />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="create-book"
+            element={
+              <AdminRoute>
+                <AddBook />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-book/:bookId"
+            element={
+              <AdminRoute>
+                <UpdateBook />
               </AdminRoute>
             }
           />
