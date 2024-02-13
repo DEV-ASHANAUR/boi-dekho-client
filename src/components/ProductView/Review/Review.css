@@ -1,72 +1,71 @@
 .review-tab-element .box-area h3 {
-    font-size: 1.5rem;
-    color: #222;
-    font-weight: 700;
-    text-align: center;
+  font-size: 1.5rem;
+  color: #222;
+  font-weight: 700;
+  text-align: center;
 }
 .review-tab-element .box-area .overflow-review {
-    height: 70vh;
-    overflow: auto;
+  height: 70vh;
+  overflow: auto;
 }
 .review-tab-element .box-area .review-box {
-    padding: 10px 20px;
-    background-color: #f2f3f8;
-    border-radius: 6px;
+  padding: 10px 20px;
+  background-color: #f2f3f8;
+  border-radius: 6px;
 }
 
 .review-tab-element .box-area .review-box .media img {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
 }
 .review-tab-element .box-area .review-box .inner .media h3 {
-    font-size: 1rem;
-    color: #222;
-    text-align: left;
+  font-size: 1rem;
+  color: #222;
+  text-align: left;
 }
 .review-tab-element .box-area .review-box .inner .media p {
-    font-size: 15px;
-    color: #222;
+  font-size: 15px;
+  color: #222;
 }
 .review-tab-element .box-area .review-box span {
-    /* color: #222; */
-    font-size: 1rem;
-    text-transform: capitalize;
+  font-size: 1.3rem;
+  text-transform: capitalize;
 }
 
 .review-box .button {
-    width: 100%;
-    border-radius: 0;
-    padding: 10px 0px 10px 0px;
-    text-align: center;
-    border: 1px solid #ffa500;
-    background-color: #ffa500;
-    color: #fff;
-    font-weight: 700;
-    display: inline-block;
-    font-size: 18px;
-    text-transform: capitalize;
-    transition: 0.3s;
+  width: 100%;
+  border-radius: 0;
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  border: 1px solid #ffa500;
+  background-color: #ffa500;
+  color: #fff;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: 0.3s;
 }
 .review-box .button:hover {
-    background-color: #222;
-    border-color: transparent;
+  background-color: #222;
+  border-color: transparent;
 }
-.my-rating{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.my-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .my-rating h4 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 0px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0px;
 }
 /* .my-rating-wrapper span{
     font-size: 1.5rem!important;
     color: #ffa500!important;
 } */
-.MuiRating-root>span>label{
- display: flex!important;
+.MuiRating-root > span > label {
+  display: flex !important;
 }

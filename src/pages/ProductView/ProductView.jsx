@@ -56,7 +56,7 @@ const ProductView = () => {
                                         <span>Back To Product</span>
                                     </Link>
                                     <div className="name-area">
-                                        <h2>{book.bookTitle}</h2>
+                                        <h2 className="text-capitalize">{book.bookTitle}</h2>
                                         <div className="rating-area d-flex align-items-center">
                                             <Rating
                                                 name="simple-controlled"
@@ -74,7 +74,7 @@ const ProductView = () => {
                                         {
                                             book.categories?.map((cat, i) => (
                                                 <>
-                                                    <Link to="" key={i}>{cat}</Link>
+                                                    <Link to="" key={i}>{cat} {" "}</Link>
                                                 </>
                                             ))
                                         }
@@ -93,7 +93,13 @@ const ProductView = () => {
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <h6>Publisher : </h6>
-                                            <Link className="link">{book.publisher}</Link>
+                                            {
+                                                book.publisher?.map((pub, i) => (
+                                                    <>
+                                                        <Link to="" key={i}>{pub}</Link>
+                                                    </>
+                                                ))
+                                            }
                                         </div>
                                         <div className="d-flex align-items-center">
                                             <h6>Version : </h6>

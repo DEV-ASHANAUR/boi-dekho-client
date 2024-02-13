@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import auth from "../firebase/firebase.config";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 const useAuth = () => {
-    const authh = useSelector((state) => state.auth);
-    const [user] = useAuthState(auth);
-    if(authh?.accessToken && authh?.currentUser && user){
-        return true;
-    }else{
-        return false;
-    }
-}
+  const authh = useSelector((state) => state.auth);
+  const [user, loading] = useAuthState(auth);
 
-export default useAuth
+  if (loading) {
+    // Still loading authentication state
+    return "loading";
+  } else {
+    if (authh?.accessToken && authh?.currentUser && user) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+};
+
+export default useAuth;

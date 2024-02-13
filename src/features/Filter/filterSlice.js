@@ -9,7 +9,7 @@ const initialState = {
     search: "",
     queryString: "",
     page: 1,
-    limit: 5,
+    limit: 12,
     trigger:false,
 }
 

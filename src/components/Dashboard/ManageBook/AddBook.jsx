@@ -1,14 +1,10 @@
-import { IconButton, TextField, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CalendarViewDayIcon from "@mui/icons-material/CalendarViewDay";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createPublisher,
-  fetchPublishers,
-  resetState,
-} from "../../../features/Publisher/PublisherSlice";
+import { fetchPublishers } from "../../../features/Publisher/PublisherSlice";
 import { Select } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { fetchCategories } from "../../../features/Category/CategorySlice";
@@ -16,13 +12,17 @@ import { fetchSubCategories } from "../../../features/SubCategory/SubCategorySli
 import { fetchAuthors } from "../../../features/Author/AuthorSlice";
 import JoditEditor from "jodit-react";
 import axios from "axios";
+import {
+  createBook,
+  resetState,
+} from "../../../features/books/ManageBooksSlice";
 
 const AddBook = () => {
   const editor = useRef(null);
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState("");
-  const { isLoading, isError, message, isSuccess } = useSelector(
-    (state) => state.publisher
+  const { isLoading, isError, message, isSuccess,error } = useSelector(
+    (state) => state.managebooks
   );
   const { authors } = useSelector((state) => state.author);
   const { publishers } = useSelector((state) => state.publisher);
@@ -98,12 +98,37 @@ const AddBook = () => {
       }
     }
   };
-  
-  // console.log("status",isLoading,isSuccess,message)
 
-  const handleAddCategory = (data) => {
-    console.log("value", data);
-    // dispatch(createPublisher(data));
+  const handleBook = (data) => {
+    data.tag = data.tag.split(",");
+    data.price = parseInt(data.price);
+    data.totalPageCount = parseInt(data.totalPageCount);
+    data.discount = parseInt(data.discount);
+    data.quantity = parseInt(data.quantity);
+    // data.preOrder = false;
+    if (
+      data.bookTitle === "" ||
+      data.tag.length === 0 ||
+      data.description === "" ||
+      data.coverImage === " " ||
+      data.preview === "" ||
+      data.price === "" ||
+      data.totalPageCount === "" ||
+      data.coverType === "" ||
+      data.discount === "" ||
+      data.language === "" ||
+      data.version === "" ||
+      data.quantity === "" ||
+      data.publishDate === "" ||
+      data.categories.length === 0 ||
+      data.subCategories.length === 0 ||
+      data.authors.length === 0 ||
+      data.publisher.length === 0
+    ) {
+      toast.error("All field are required!");
+    } else {
+      dispatch(createBook(data));
+    }
   };
 
   if (!isLoading && isSuccess) {
@@ -112,7 +137,7 @@ const AddBook = () => {
   }
 
   if (!isLoading && isError) {
-    // toast.error(error);
+    toast.error(error);
     dispatch(resetState());
   }
   const navigate = useNavigate();
@@ -131,7 +156,7 @@ const AddBook = () => {
             <Typography variant="h5"></Typography>
             <IconButton
               sx={{ mr: 1 }}
-              onClick={() => navigate("/dashboard/manage-publisher")}
+              onClick={() => navigate("/dashboard/manage-book")}
             >
               <CalendarViewDayIcon />
             </IconButton>
@@ -140,15 +165,15 @@ const AddBook = () => {
             <div className="col-md-12">
               <div className="pt-4 px-3">
                 <h4 className="mb-4">Create Book</h4>
-                <div dangerouslySetInnerHTML={{ __html: content }} />
-                <form onSubmit={handleSubmit(handleAddCategory)}>
+                {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+                <form onSubmit={handleSubmit(handleBook)}>
                   <div class="row">
                     <div class="col-md-4 mt-2">
                       <label htmlFor="">Book title</label>
                       <input
                         type="text"
                         className="form-control mt-2"
-                        name="publisher"
+                        name="bookTitle"
                         placeholder="Enter Name"
                         {...register("bookTitle", {
                           required: "Book Title is required!",
@@ -169,7 +194,7 @@ const AddBook = () => {
                       <input
                         type="text"
                         className="form-control mt-2"
-                        name="publisher"
+                        name="tag"
                         placeholder="Enter Tag with (,)"
                         {...register("tag")}
                       />
@@ -203,7 +228,7 @@ const AddBook = () => {
                         className="form-control mt-2"
                         name="price"
                         placeholder="Enter discount"
-                        {...register("price")}
+                        {...register("discount")}
                       />
                       {errors.discount && (
                         <span className="error_message" role="alert">
@@ -253,12 +278,12 @@ const AddBook = () => {
                     <div class="col-md-4 mt-2">
                       <label htmlFor="">Cover Type</label>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control mt-2"
                         name="coverType"
-                        placeholder="Enter price"
+                        placeholder="Enter cover type"
                         {...register("coverType", {
-                          required: "Total Page is required!",
+                          required: "Cover type is required!",
                         })}
                       />
                       {errors.coverType && (
@@ -393,6 +418,23 @@ const AddBook = () => {
                         </span>
                       )}
                     </div>
+                    <div class="col-md-4 mt-2">
+                      <label htmlFor="">Pre Order</label>
+                      <br />
+                      <Select
+                        style={{ width: "100%" }}
+                        placeholder="Select Sub categories.."
+                        name="preOrder"
+                        className="mt-2"
+                        onChange={(value) => setValue("preOrder", value)}
+                        options={[{label:"True",value:true},{label:"Fasle",value:false}]}
+                      />
+                      {errors.preOrder && (
+                        <span className="error_message" role="alert">
+                          {errors.preOrder?.message}
+                        </span>
+                      )}
+                    </div>
                     <div className="col-md-4">
                       <label htmlFor="" className="my-2">
                         Cover Image
@@ -402,24 +444,6 @@ const AddBook = () => {
                         name="profileImage"
                         onChange={onImageChange}
                       />
-                    </div>
-
-                    <div class="col-md-4 mt-2">
-                      <label htmlFor="">Book preview pdf url</label>
-                      <input
-                        type="text"
-                        className="form-control mt-2"
-                        name="preview"
-                        placeholder="Enter preview url"
-                        {...register("preview", {
-                          required: "Book preview is required!",
-                        })}
-                      />
-                      {errors.preview && (
-                        <span className="error_message" role="alert">
-                          {errors.preview?.message}
-                        </span>
-                      )}
                     </div>
 
                     <div className="col-md-4 my-2">
@@ -437,6 +461,25 @@ const AddBook = () => {
                       )}
                     </div>
 
+                    <div class="col-md-4 mt-2">
+                      <label htmlFor="">Book preview pdf url</label>
+                      <input
+                        type="url"
+                        className="form-control mt-2"
+                        name="preview"
+                        placeholder="Enter preview url"
+                        {...register("preview", {
+                          required: "Book preview is required!",
+                        })}
+                      />
+                      {errors.preview && (
+                        <span className="error_message" role="alert">
+                          {errors.preview?.message}
+                        </span>
+                      )}
+                    </div>
+
+                    
 
                     <div class="col-md-12 mt-2">
                       <label htmlFor="" className="my-2">
@@ -452,8 +495,8 @@ const AddBook = () => {
                     </div>
                   </div>
                   <button
+                    type="submit"
                     className="btn btn-flat btn-dark d-block my-3 mb-3 text-capitalize"
-                    onClick={handleAddCategory}
                     disabled={isLoading}
                   >
                     Create

@@ -89,7 +89,7 @@ export const manageBooksSlice = createSlice({
         state.message = null;
         state.isError = true;
         state.books = [];
-        state.error = action.error?.message;
+        state.error = "Something went wrong! please try again!";
       })
       .addCase(removeBook.pending, (state) => {
         state.isLoading = true;
