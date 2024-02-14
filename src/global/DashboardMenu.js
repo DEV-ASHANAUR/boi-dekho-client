@@ -3,6 +3,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import CategoryIcon from "@mui/icons-material/Category";
 import Person2Icon from "@mui/icons-material/Person2";
 import PublishIcon from "@mui/icons-material/Publish";
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 export const menuItem = [
   {
@@ -34,5 +35,10 @@ export const menuItem = [
     label: "Manage Book",
     link: "manage-book",
     icon: <LibraryBooksIcon />,
+  },
+  {
+    label: "Manage Order",
+    link: "manage-order",
+    icon: <CardGiftcardIcon />,
   },
 ];

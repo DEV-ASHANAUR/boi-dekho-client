@@ -47,6 +47,8 @@ import ViewPublisher from "./components/Dashboard/ManagePublisher/ViewPublisher"
 import ViewBook from "./components/Dashboard/ManageBook/ViewBook";
 import AddBook from "./components/Dashboard/ManageBook/AddBook";
 import UpdateBook from "./components/Dashboard/ManageBook/UpdateBook";
+import ViewOrder from "./components/Dashboard/ManageOrder/ViewOrder";
+import ViewOrderDetails from "./components/Dashboard/ManageOrder/ViewOrderDetails";
 
 function Layout() {
   return (
@@ -314,6 +316,22 @@ function App() {
             element={
               <AdminRoute>
                 <UpdateBook />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-order"
+            element={
+              <AdminRoute>
+                <ViewOrder />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-order/:orderId"
+            element={
+              <AdminRoute>
+                <ViewOrderDetails />
               </AdminRoute>
             }
           />

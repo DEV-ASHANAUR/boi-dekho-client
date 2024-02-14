@@ -19,3 +19,16 @@ export const payOrder = async (data) => {
     // console.log("order response : ",response.data);
     return response.data;
 }
+export const getAllOrders = async () => {
+    const response = await axios.get('/order');
+    // console.log("order response : ",response.data);
+    return response.data;
+}
+export const deleteOrder = async (id) => {
+    const response = await axios.delete(`/order/${id}`);
+    return response.data;
+}
+export const editOrder = async ({id,data}) => {
+    const response = await axios.put(`/order/${id}`,data);
+    return response.data;
+}

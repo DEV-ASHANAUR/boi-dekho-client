@@ -3,7 +3,6 @@ import './orderdetails.css';
 import { FaHome } from 'react-icons/fa'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import toast, { Toaster } from 'react-hot-toast';
-import { TbCurrencyTaka } from 'react-icons/tb';
 import Sidebar from '../../sidebar/Sidebar';
 import { useParams } from 'react-router-dom';
 import axios from '../../../../utils/tokenAxios';
