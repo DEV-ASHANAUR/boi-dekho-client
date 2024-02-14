@@ -1,4 +1,5 @@
 import axios from "../../utils/axois"
+import axiosToken from "../../utils/tokenAxios"
 
 export const registerUser = async (data) => {
     const response = await axios.post("/auth/register",data);
@@ -10,7 +11,11 @@ export const googleUser = async (data) => {
     return response.data
 }
 export const login = async (data) => {
+    console.log("data",data)
     const response = await axios.post("/auth/login",data);
-    // console.log("reponse",response.data);
+    return response.data
+}
+export const changePass = async ({id,data}) => {
+    const response = await axiosToken.post(`/auth/change-password/${id}`,data);
     return response.data
 }

@@ -49,6 +49,8 @@ import AddBook from "./components/Dashboard/ManageBook/AddBook";
 import UpdateBook from "./components/Dashboard/ManageBook/UpdateBook";
 import ViewOrder from "./components/Dashboard/ManageOrder/ViewOrder";
 import ViewOrderDetails from "./components/Dashboard/ManageOrder/ViewOrderDetails";
+import UpdateProfile from "./components/Dashboard/ManageProfile/UpdateProfile";
+import UpdatePassword from "./components/Dashboard/ManageProfile/UpdatePassword";
 
 function Layout() {
   return (
@@ -332,6 +334,22 @@ function App() {
             element={
               <AdminRoute>
                 <ViewOrderDetails />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-profile"
+            element={
+              <AdminRoute>
+                <UpdateProfile />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-password"
+            element={
+              <AdminRoute>
+                <UpdatePassword />
               </AdminRoute>
             }
           />

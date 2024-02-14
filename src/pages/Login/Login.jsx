@@ -85,6 +85,7 @@ const Login = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         const resUser = await signInWithEmailAndPassword(email, password);
+        console.log("resUser",resUser)
         if (resUser) {
             if (resUser.user.emailVerified) {
                 dispatch(loginUser({ email, password }))

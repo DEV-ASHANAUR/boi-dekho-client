@@ -1,15 +1,13 @@
 import React from "react";
-import "./account.css";
 import { FaHome } from "react-icons/fa";
 import { RiArrowRightSLine } from "react-icons/ri";
-import Sidebar from "../sidebar/Sidebar";
 import { sendPasswordResetEmail } from "firebase/auth";
-import auth from "../../../firebase/firebase.config";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import auth from "../../../firebase/firebase.config";
 // import {auth} from "fi"
 
-const Password = () => {
+const UpdatePassword = () => {
   const {
     register,
     formState: { errors },
@@ -38,8 +36,7 @@ const Password = () => {
         <span className="account">Account</span>
       </div>
       <div className="row pt-4 pb-4">
-        <Sidebar />
-        <div className="col-lg-9 col-md-9">
+        <div className="col-lg-12 col-md-12">
           <div className="row">
             <Toaster />
             <div className="col-md-12">
@@ -86,4 +83,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default UpdatePassword;

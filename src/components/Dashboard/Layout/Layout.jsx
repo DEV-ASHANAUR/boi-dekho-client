@@ -100,7 +100,7 @@ export default function DashboardLayout() {
 
   const darkTheme = createTheme({
     palette: {
-      mode: dark ? 'dark' : 'light',
+      mode: dark ? "dark" : "light",
     },
   });
 
@@ -126,7 +126,13 @@ export default function DashboardLayout() {
     console.log("hello");
     signOut(auth);
     dispatch(userLoggedOut());
-};
+  };
+  const handleToProfile = () => {
+    navigate("manage-profile");
+  };
+  const handleToPassword = () => {
+    navigate("manage-password");
+  };
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -146,13 +152,12 @@ export default function DashboardLayout() {
             >
               <MenuIcon />
             </IconButton>
-            <IconButton sx={{ mr: 1 }} onClick={() => navigate('/')}>
-                <Home style={{color:"#fff"}} />
-              </IconButton>
+            <IconButton sx={{ mr: 1 }} onClick={() => navigate("/")}>
+              <Home style={{ color: "#fff" }} />
+            </IconButton>
             <Typography variant="h6" component="div">
-              
-            Dashboard
-          </Typography>
+              Dashboard
+            </Typography>
             <Box
               sx={{
                 display: "flex",
@@ -209,10 +214,10 @@ export default function DashboardLayout() {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleToProfile}>
                   <Avatar /> Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleToPassword}>
                   <ListItemIcon>
                     <Settings fontSize="small" />
                   </ListItemIcon>
