@@ -98,9 +98,10 @@
     display: none!important;
 }
 /* profile__img__section end  */
-.address__wrapper{
+.address__wrapper {
     background-color: #fff;
     padding: 1rem;
+    border-radius: 10px;
 }
 .address__wrapper h4{
     text-transform: capitalize;

@@ -51,6 +51,7 @@ import ViewOrder from "./components/Dashboard/ManageOrder/ViewOrder";
 import ViewOrderDetails from "./components/Dashboard/ManageOrder/ViewOrderDetails";
 import UpdateProfile from "./components/Dashboard/ManageProfile/UpdateProfile";
 import UpdatePassword from "./components/Dashboard/ManageProfile/UpdatePassword";
+import ResetPassword from "./pages/Register/ResetPassword";
 
 function Layout() {
   return (
@@ -96,6 +97,14 @@ function App() {
             element={
               <PublicRoute>
                 <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <PublicRoute>
+                <ResetPassword />
               </PublicRoute>
             }
           />

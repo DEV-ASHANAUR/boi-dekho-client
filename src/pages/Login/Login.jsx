@@ -85,7 +85,7 @@ const Login = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         const resUser = await signInWithEmailAndPassword(email, password);
-        console.log("resUser",resUser)
+        // console.log("resUser",resUser)
         if (resUser) {
             if (resUser.user.emailVerified) {
                 dispatch(loginUser({ email, password }))
@@ -117,7 +117,7 @@ const Login = () => {
                         <button className='login__btn' type="submit">Login</button>
                         {errorElement}
 
-                        <Link to="" className='forget__text'>Forget password</Link>
+                        <Link to="/reset-password" className='forget__text'>Forget password</Link>
                         <span className='text-center mt-3'>Don't Have Any Account? <Link to="/register">Register</Link></span>
                         <div className='separator__wrapper'>
                             <div className="line"></div>
