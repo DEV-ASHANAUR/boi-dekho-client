@@ -1,26 +1,28 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, Tooltip, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+// import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Delete, Edit } from "@mui/icons-material";
 import toast, { Toaster } from "react-hot-toast";
 import {
-  fetchManageBooks,
-  removeBook,
+  fetchUsers,
+  removeUser,
   resetState,
-} from "../../../features/books/ManageBooksSlice";
+} from "../../../features/User/UserSlice";
 
-export default function ViewBook() {
-  const { books } = useSelector((state) => state.managebooks);
+export default function ViewUser() {
+  const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchManageBooks());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
-  const rows = books?.map((item, index) => {
+  console.log("users", users);
+
+  const rows = users?.map((item, index) => {
     return {
       id: item._id,
       ...item,
@@ -30,8 +32,8 @@ export default function ViewBook() {
 
   const handleDelete = (id) => {
     if (window.confirm("Delete! Are you sure!")) {
-      dispatch(removeBook(id));
-      toast.success("Book deleted Successfully!");
+      dispatch(removeUser(id));
+      toast.success("User deleted Successfully!");
       dispatch(resetState());
     } else {
       console.log("cancle");
@@ -39,12 +41,18 @@ export default function ViewBook() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 150 },
-    { field: "bookTitle", headerName: "Book Title", width: 150 },
-    { field: "publisher", headerName: "publisher", width: 150 },
-    { field: "categories", headerName: "category", width: 150 },
-    { field: "price", headerName: "Price (tk)", width: 100 },
-    { field: "quantity", headerName: "Available", width: 100 },
+    { field: "id", headerName: "ID", width: 200 },
+    { field: "username", headerName: "Full Name", width: 200 },
+    { field: "email", headerName: "Email", width: 200 },
+    { field: "isVarified", headerName: "Verified", width: 100 },
+    {
+      field: "isAdmin",
+      headerName: "Role",
+      width: 100,
+      renderCell: (params) => {
+        return <>{params.value === true ? "Admin" : "User"}</>;
+      },
+    },
     {
       field: "actions",
       headerName: "Actions",
@@ -53,16 +61,16 @@ export default function ViewBook() {
       renderCell: (params) => {
         return (
           <>
-            <Tooltip title="Edit this book">
+            <Tooltip title="Edit this author">
               <IconButton>
                 <Edit
                   onClick={() =>
-                    navigate(`/dashboard/manage-book/${params.id}`)
+                    navigate(`/dashboard/manage-author/${params.id}`)
                   }
                 />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Delete this book">
+            <Tooltip title="Delete this author">
               <IconButton sx={{ color: "red" }}>
                 <Delete onClick={() => handleDelete(params.id)} />
               </IconButton>
@@ -85,13 +93,13 @@ export default function ViewBook() {
               alignItems: "center",
             }}
           >
-            <Typography variant="h5">Books List</Typography>
-            <IconButton
+            <Typography variant="h5">Users List</Typography>
+            {/* <IconButton
               sx={{ mr: 1 }}
-              onClick={() => navigate("/dashboard/create-book")}
+              onClick={() => navigate("/dashboard/create-author")}
             >
               <AddIcon />
-            </IconButton>
+            </IconButton> */}
           </Typography>
           <div style={{ height: 400, width: "100%", marginTop: "16px" }}>
             <DataGrid
@@ -108,7 +116,6 @@ export default function ViewBook() {
           </div>
         </div>
       </div>
-
       <Toaster />
     </>
   );

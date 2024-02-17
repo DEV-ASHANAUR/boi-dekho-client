@@ -191,5 +191,6 @@ export const {
   updateAvater,
   updateUserInfo,
   updateAddress,
+  resetState,
 } = authSlice.actions;
 export default authSlice.reducer;

@@ -14,8 +14,10 @@ import reletedBookReducer from "../features/reletedBooks/reletedBooksSlice";
 import shippingReducer from "../features/shipping/shippingSlice";
 import wishlistReducer from "../features/wishlist/wishlistSlice";
 import orderReducer from "../features/order/OrderSlice";
+import userReducer from "../features/User/UserSlice";
 export const store = configureStore({
   reducer: {
+    users: userReducer,
     books: booksReducer,
     book: bookReducer,
     managebooks: managebooksReducer,

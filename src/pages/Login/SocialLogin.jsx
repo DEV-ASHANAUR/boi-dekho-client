@@ -21,27 +21,7 @@ export const SocialLogin = () => {
     }
   }, [dispatch, isError, loguser]);
 
-  const [signInWithGoogle, loading, error] = useSignInWithGoogle(auth);
-
-  if (error) {
-    errorElement = (
-      <div>
-        <p className="text-danger">Error: {error.message}</p>
-      </div>
-    );
-  }
-
-  if (serverError !== "") {
-    errorElement = (
-      <div>
-        <p className="text-danger">Error: {serverError}</p>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
 
 
   const handleGoogleLogin = async () => {

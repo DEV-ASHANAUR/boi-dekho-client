@@ -63,9 +63,9 @@ const Sidebar = () => {
                     <div className="side__menu">
                         <NavLink to="/user-order-history" className={({ isActive }) => isActive ? "active" : ""
                         }>My Order History</NavLink>
-                        <Link>My Returns</Link>
+                        {/* <Link>My Returns</Link>
                         <Link>My Cancellations</Link>
-                        <Link>My Reviews</Link>
+                        <Link>My Reviews</Link> */}
                     </div>
                 </div>
                 <hr />

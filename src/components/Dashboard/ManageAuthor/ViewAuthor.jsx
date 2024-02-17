@@ -5,10 +5,12 @@ import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Delete, Edit } from "@mui/icons-material";
-import toast,{Toaster} from "react-hot-toast";
-import { fetchAuthors, removeAuthor, resetState } from "../../../features/Author/AuthorSlice";
-
-
+import toast, { Toaster } from "react-hot-toast";
+import {
+  fetchAuthors,
+  removeAuthor,
+  resetState,
+} from "../../../features/Author/AuthorSlice";
 
 export default function ViewAuthor() {
   const { authors } = useSelector((state) => state.author);
@@ -26,7 +28,7 @@ export default function ViewAuthor() {
       author: item.author,
     };
   });
-//   console.log("row", rows);
+  //   console.log("row", rows);
   const navigate = useNavigate();
 
   const handleDelete = (id) => {
@@ -35,10 +37,9 @@ export default function ViewAuthor() {
       toast.success("Author deleted Successfully!");
       dispatch(resetState());
     } else {
-      console.log("cancle")
+      console.log("cancle");
     }
-  }
-
+  };
 
   const columns = [
     { field: "id", headerName: "ID", width: 200 },
@@ -53,13 +54,16 @@ export default function ViewAuthor() {
           <>
             <Tooltip title="Edit this author">
               <IconButton>
-                <Edit onClick={()=> navigate(`/dashboard/manage-author/${params.id}`)} />
+                <Edit
+                  onClick={() =>
+                    navigate(`/dashboard/manage-author/${params.id}`)
+                  }
+                />
               </IconButton>
             </Tooltip>
             <Tooltip title="Delete this author">
-              <IconButton sx={{color:"red"}}
-              >
-                <Delete onClick={()=> handleDelete(params.id)} />
+              <IconButton sx={{ color: "red" }}>
+                <Delete onClick={() => handleDelete(params.id)} />
               </IconButton>
             </Tooltip>
           </>
@@ -70,31 +74,38 @@ export default function ViewAuthor() {
 
   return (
     <>
-      <Typography
-        component="div"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Typography variant="h5">Author List</Typography>
-        <IconButton sx={{ mr: 1 }} onClick={() => navigate("/dashboard/create-author")}>
-          <AddIcon />
-        </IconButton>
-      </Typography>
-      <div style={{ height: 400, width: "100%", marginTop: "16px" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
+      <div className="row bg-white py-3">
+        <div className="col-md-12">
+          <Typography
+            component="div"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h5">Author List</Typography>
+            <IconButton
+              sx={{ mr: 1 }}
+              onClick={() => navigate("/dashboard/create-author")}
+            >
+              <AddIcon />
+            </IconButton>
+          </Typography>
+          <div style={{ height: 400, width: "100%", marginTop: "16px" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 5 },
+                },
+              }}
+              pageSizeOptions={[5, 10]}
+              checkboxSelection
+            />
+          </div>
+        </div>
       </div>
       <Toaster />
     </>

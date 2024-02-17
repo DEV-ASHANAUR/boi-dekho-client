@@ -139,7 +139,7 @@ export default function DashboardLayout() {
     <ThemeProvider theme={darkTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} style={{ background: "#f39200" }}>
           <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             <IconButton
               color="inherit"

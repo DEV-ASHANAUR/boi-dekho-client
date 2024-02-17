@@ -52,6 +52,7 @@ import ViewOrderDetails from "./components/Dashboard/ManageOrder/ViewOrderDetail
 import UpdateProfile from "./components/Dashboard/ManageProfile/UpdateProfile";
 import UpdatePassword from "./components/Dashboard/ManageProfile/UpdatePassword";
 import ResetPassword from "./pages/Register/ResetPassword";
+import ViewUser from "./components/Dashboard/ManageUser/ViewUser";
 
 function Layout() {
   return (
@@ -359,6 +360,14 @@ function App() {
             element={
               <AdminRoute>
                 <UpdatePassword />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="manage-user"
+            element={
+              <AdminRoute>
+                <ViewUser />
               </AdminRoute>
             }
           />

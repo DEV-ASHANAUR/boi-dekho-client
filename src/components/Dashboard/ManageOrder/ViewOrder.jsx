@@ -6,7 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Delete, Edit } from "@mui/icons-material";
 import toast, { Toaster } from "react-hot-toast";
-import { fetchAllOrders, removeOrder, restOrderMessage } from "../../../features/order/OrderSlice";
+import {
+  fetchAllOrders,
+  removeOrder,
+  restOrderMessage,
+} from "../../../features/order/OrderSlice";
 import Moment from "react-moment";
 
 export default function ViewOrder() {
@@ -17,17 +21,14 @@ export default function ViewOrder() {
     dispatch(fetchAllOrders());
   }, [dispatch]);
 
-  // console.log("books", books);
-
   const rows = orders?.map((item, index) => {
     return {
       id: item._id,
       ...item,
     };
   });
-  console.log("row", rows);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const handleDelete = (id) => {
     if (window.confirm("Delete! Are you sure!")) {
       dispatch(removeOrder(id));
@@ -83,35 +84,40 @@ export default function ViewOrder() {
 
   return (
     <>
-      <Typography
-        component="div"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Typography variant="h5">Order List</Typography>
-        <IconButton
-          sx={{ mr: 1 }}
-          onClick={() => navigate("/dashboard/create-book")}
-        >
-          <AddIcon />
-        </IconButton>
-      </Typography>
-      <div style={{ height: 400, width: "100%", marginTop: "16px" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
+      <div className="row bg-white py-3">
+        <div className="col-md-12">
+          <Typography
+            component="div"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h5">Order List</Typography>
+            <IconButton
+              sx={{ mr: 1 }}
+              onClick={() => navigate("/dashboard/create-book")}
+            >
+              <AddIcon />
+            </IconButton>
+          </Typography>
+          <div style={{ height: 400, width: "100%", marginTop: "16px" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: { page: 0, pageSize: 5 },
+                },
+              }}
+              pageSizeOptions={[5, 10]}
+              checkboxSelection
+            />
+          </div>
+        </div>
       </div>
+
       <Toaster />
     </>
   );

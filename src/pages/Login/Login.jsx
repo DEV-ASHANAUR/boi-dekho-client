@@ -5,7 +5,6 @@ import {
     useAuthState,
     useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import Loading from '../../components/SharedComponents/Loading/Loading';
 import auth from '../../firebase/firebase.config';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../features/Auth/AuthSlice';
@@ -16,7 +15,6 @@ import toast, { Toaster } from 'react-hot-toast';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [verfiyError, setVerifyError] = useState("");
     const { isError } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const [loguser] = useAuthState(auth);
@@ -25,6 +23,7 @@ const Login = () => {
     // dispatch(userLoggedOut());
 
     useEffect(() => {
+        // console.log("sdfcxsa",loguser)
         if (loguser && isError) {
             signOut(auth);
             toast.error("something went worng!");
@@ -33,65 +32,22 @@ const Login = () => {
     // error variable
     let errorElement;
 
-    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth, {
+    const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth, {
         providerOptions: {
             customParameters: { linkWithCredential: false },
         },
     });
 
-    if (loading) {
-        return <Loading></Loading>;
-    }
-    //set fibase error
-    if (error) {
-        const errorCode = error?.code;
-        if (errorCode === 'auth/wrong-password') {
-            errorElement = (
-                <div>
-                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Wrong credential!</p>
-                </div>
-            );
-        } else if (errorCode === 'auth/user-not-found') {
-            errorElement = (
-                <div>
-                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : User Not Exist!</p>
-                </div>
-            );
-        }
-        else if (errorCode === 'auth/invalid-email') {
-            errorElement = (
-                <div>
-                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Invalid Email!</p>
-                </div>
-            );
-        }
-        else {
-            errorElement = (
-                <div>
-                    <p className="text-white bg-danger text-uppercase text-center p-1">Error : Something Went Worng!</p>
-                </div>
-            );
-        }
-    }
-
-    if (verfiyError !== "") {
-        errorElement = (
-            <div>
-                <p className="text-white bg-danger text-uppercase text-center p-1">Error: {verfiyError}</p>
-            </div>
-        );
-    }
-
     const handleLogin = async (event) => {
         event.preventDefault();
         const resUser = await signInWithEmailAndPassword(email, password);
-        // console.log("resUser",resUser)
+        console.log("resUser",resUser)
         if (resUser) {
             if (resUser.user.emailVerified) {
                 dispatch(loginUser({ email, password }))
                 // console.log("check verified", resUser?.user.emailVerified);
             } else {
-                setVerifyError("Please verify your email!");
+                toast.error("Please verify your email!");
                 signOut(auth);
                 // console.log("verified nai")
             }

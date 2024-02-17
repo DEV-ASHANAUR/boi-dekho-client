@@ -436,7 +436,7 @@ const OrderDetails = () => {
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12 text-right identity">
-                                                                        <p>Designer identity<br /><strong>Jeffrey Williams</strong></p>
+                                                                        {/* <p>Designer identity<br /><strong>Jeffrey Williams</strong></p> */}
                                                                     </div>
                                                                     <button className='btn btn-flat btn-primary' onClick={handlePrint}>Download</button>
                                                                 </div>
