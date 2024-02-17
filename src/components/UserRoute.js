@@ -26,10 +26,10 @@ const UserRoute = ({ children }) => {
     }
     // let from = location.state?.from || "/";
     // console.log("first",from);
-    console.log("first hello log in root");
+    // console.log("first hello log in root");
     if (isLoggedIn && currentUser.isAdmin === false) {
         return children;
-    } else if(isLoggedIn && currentUser.isAdmin === false){
+    } else if(isLoggedIn && currentUser.isAdmin === true){
         return <Navigate to="/dashboard" />
     } else {
         console.log("first hello log in");

@@ -66,9 +66,9 @@ const ViewOrderDetails = () => {
       orderData.payment = true;
     }
     dispatch(updateOrder({ id: orderId, data: orderData }));
-    fetchOrder(orderId);
   };
   if (!isLoading && isSuccess) {
+    fetchOrder(orderId);
     toast.success(message);
     dispatch(restOrderMessage());
   }

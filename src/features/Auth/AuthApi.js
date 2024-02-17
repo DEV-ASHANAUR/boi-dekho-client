@@ -11,7 +11,7 @@ export const googleUser = async (data) => {
     return response.data
 }
 export const login = async (data) => {
-    console.log("data",data)
+    // console.log("data",data)
     const response = await axios.post("/auth/login",data);
     return response.data
 }

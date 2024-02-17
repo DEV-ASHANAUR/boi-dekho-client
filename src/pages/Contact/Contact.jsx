@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SubscriptionArea from "../../components/SharedComponents/SubscriptionArea/subscriptionArea";
 import banner from "../../images/banner/CoverPage.jpg"
 import "./Contact.css";
+import toast, { Toaster } from 'react-hot-toast';
+import emailjs from '@emailjs/browser';
 const Contact = () => {
+    const form = useRef();
+    const sendEmail = (e) => {
+      e.preventDefault();
+        // console.log("first",form.current)
+      emailjs
+        .sendForm('service_wos5s5q', 'template_tyla7bg', form.current, {
+          publicKey: 'YzpEMEipHrGhk_I1g',
+        })
+        .then(
+          () => {
+            toast.success("Message send SuccessFully!")
+            form.current.reset();
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            toast.error("Failed!")
+            console.log('FAILED...', error.text);
+          },
+        );
+    };
     return (
         <>
             <div className="contact_wrapper overflow-hidden" id="contact">
                 <div className="order-banner mb-5" style={{ backgroundImage: `url(${banner})` }}>
                     <div className="container">
+                        
                         <div className="row align-items-center justify-content-center">
                             <div className="col-md-12">
                                 <div className="cart-text-area">
@@ -52,19 +75,19 @@ const Contact = () => {
                             </aside>
                         </div>
                         <div className="col-lg-7 col-xl-8 mt-5 text-center">
-                            <form action="#" method="post">
+                            <form ref={form} onSubmit={sendEmail}>
                                 <div className="row">
                                     <div className="col-md-6 form-group mb-3">
-                                        <input type="text" name="name" className="inputBox form-control" placeholder="Your Name" />
+                                        <input type="text" name="user_name" className="inputBox form-control" placeholder="Your Name" required />
                                     </div>
                                     <div className="col-md-6 form-group mb-3">
-                                        <input type="email" name="email" className="inputBox form-control" placeholder="Your Email" />
+                                        <input type="email" name="user_email" className="inputBox form-control" placeholder="Your Email" required />
                                     </div>
-                                    <div className="col-md-12 form-group mb-3">
+                                    {/* <div className="col-md-12 form-group mb-3">
                                         <input type="text" name="subject" className="inputBox form-control" placeholder="Subject" />
-                                    </div>
+                                    </div> */}
                                     <div className="col-md-12 form-group mb-3">
-                                        <textarea name="message" className="textBox form-control" placeholder="Message"></textarea>
+                                        <textarea name="message" className="textBox form-control" placeholder="Message" required></textarea>
                                     </div>
                                     <div className="col-12">
                                         <button className="button" type="submit">Send message</button>
@@ -75,6 +98,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
+            <Toaster />
             <SubscriptionArea />
         </>
     );

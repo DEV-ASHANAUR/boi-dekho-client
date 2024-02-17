@@ -31,7 +31,7 @@ const OrderHistory = () => {
     }
     if (!isLoading && isError) {
         content = (<tr>
-            <td colSpan={6} className="bg-info text-white text-center p-2">Something Went Wrong!</td>
+            <td colSpan={6} className="bg-info text-white text-center p-2">Something Went Wrong! Refresh the page!</td>
         </tr>)
     }
     if (!isLoading && !isError && orders?.length === 0) {
