@@ -23,6 +23,7 @@ import { menuItem } from "../../../global/DashboardMenu";
 import { signOut } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { userLoggedOut } from "../../../features/Auth/AuthSlice";
+import logo from "../../../images/banner/BoiDekho-PNG.png";
 import auth from "../../../firebase/firebase.config";
 
 const drawerWidth = 260;
@@ -241,7 +242,8 @@ export default function DashboardLayout() {
               paddingLeft: "1.1rem",
             }}
           >
-            <h5 style={{ margin: 0, textTransform: "uppercase" }}>Boi Dekho</h5>
+            {/* <h5 style={{ margin: 0, textTransform: "uppercase" }}>Boi Dekho</h5> */}
+            <img src={logo} width="120" alt="Organic" />
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === "rtl" ? (
                 <>

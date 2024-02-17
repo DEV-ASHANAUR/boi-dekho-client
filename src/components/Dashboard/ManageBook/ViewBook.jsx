@@ -24,7 +24,7 @@ export default function ViewBook() {
       ...item
     };
   });
-console.log("row", rows);
+// console.log("row", rows);
   const navigate = useNavigate();
 
   const handleDelete = (id) => {

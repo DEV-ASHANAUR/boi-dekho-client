@@ -4,12 +4,16 @@ import {
   deleteOrder,
   editOrder,
   getAllOrders,
+  getDiffSalesData,
   getOrders,
+  getSalesData,
   payOrder,
 } from "./orderApi";
 
 const initialState = {
   orders: [],
+  salesData: [],
+  diffSalesData: {},
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -22,6 +26,22 @@ export const fetchOrders = createAsyncThunk(
   async (userId) => {
     const orders = await getOrders(userId);
     return orders;
+  }
+);
+
+export const fetchSalesData = createAsyncThunk(
+  "order/fetchSalesData",
+  async () => {
+    const salesData = await getSalesData();
+    return salesData;
+  }
+);
+
+export const fetchDiffSalesData = createAsyncThunk(
+  "order/fetchDiffSalesData",
+  async () => {
+    const diffsalesData = await getDiffSalesData();
+    return diffsalesData;
   }
 );
 
@@ -134,6 +154,42 @@ export const orderSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.orders = [];
+        state.isSuccess = false;
+        state.error = action.error?.message;
+      })
+      .addCase(fetchSalesData.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = null;
+      })
+      .addCase(fetchSalesData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.salesData = action.payload;
+      })
+      .addCase(fetchSalesData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.salesData = [];
+        state.isSuccess = false;
+        state.error = action.error?.message;
+      })
+      .addCase(fetchDiffSalesData.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+        state.message = null;
+      })
+      .addCase(fetchDiffSalesData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.diffSalesData = action.payload;
+      })
+      .addCase(fetchDiffSalesData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.diffSalesData = {};
         state.isSuccess = false;
         state.error = action.error?.message;
       });

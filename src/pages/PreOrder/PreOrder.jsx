@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom";
-// import TopHeader from '../SharedComponents/Topbar/TopHeader';
-// import Header from '../SharedComponents/Navbar/Header';
 import SubscriptionArea from "./../../components/SharedComponents/SubscriptionArea/subscriptionArea";
-// import Footer from './../../components/SharedComponents/SharedComponents/Footer/Footer';
-import Filters from '../../components/Books/filter/Filters';
-import SingleBook from '../../components/Books/SingleBook';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../features/books/BooksSlice';
 import Skeleton from '../../components/SharedComponents/skeleton/Skeleton';
-import { authorRemoved, categoryRemoved, publisherRemoved, setLimit, setPage, setQueryString, sortBy, subcategoryRemoved } from '../../features/Filter/filterSlice';
+import { setLimit, setPage, setQueryString, sortBy } from '../../features/Filter/filterSlice';
 import { Toaster } from 'react-hot-toast';
 import SingleBookPreOrder from '../../components/PreOrder/SingleBookPreOrder';
 
