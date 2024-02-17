@@ -11,8 +11,8 @@ const Contact = () => {
       e.preventDefault();
         // console.log("first",form.current)
       emailjs
-        .sendForm('service_wos5s5q', 'template_tyla7bg', form.current, {
-          publicKey: 'YzpEMEipHrGhk_I1g',
+        .sendForm(process.env.REACT_APP_email_service_id, process.env.REACT_APP_email_template_id, form.current, {
+          publicKey: process.env.REACT_APP_email_public_key,
         })
         .then(
           () => {
