@@ -5,7 +5,7 @@ import { RiArrowRightSLine } from 'react-icons/ri'
 import Sidebar from '../sidebar/Sidebar';
 
 
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import Loading from '../../SharedComponents/Loading/Loading';
