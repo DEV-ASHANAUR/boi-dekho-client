@@ -51,6 +51,8 @@ const Login = () => {
                 signOut(auth);
                 // console.log("verified nai")
             }
+        }else{
+            toast.error("Wrong credential!");
         }
     };
 

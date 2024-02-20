@@ -2,25 +2,28 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { IconButton, Tooltip, Typography } from "@mui/material";
 // import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
+import GavelIcon from "@mui/icons-material/Gavel";
 import toast, { Toaster } from "react-hot-toast";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import {
   fetchUsers,
   removeUser,
   resetState,
+  updateUser,
 } from "../../../features/User/UserSlice";
 
 export default function ViewUser() {
   const { users } = useSelector((state) => state.users);
+  const { currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  console.log("users", users);
+  // console.log("users", users);
 
   const rows = users?.map((item, index) => {
     return {
@@ -28,15 +31,29 @@ export default function ViewUser() {
       ...item,
     };
   });
-  const navigate = useNavigate();
 
   const handleDelete = (id) => {
-    if (window.confirm("Delete! Are you sure!")) {
-      dispatch(removeUser(id));
-      toast.success("User deleted Successfully!");
-      dispatch(resetState());
+    if (id === currentUser?._id) {
+      toast.error("You can to delete yourself!");
     } else {
-      console.log("cancle");
+      if (window.confirm("Delete! Are you sure!")) {
+        dispatch(removeUser(id));
+        toast.success("User deleted Successfully!");
+        dispatch(resetState());
+      } else {
+        console.log("cancle");
+      }
+    }
+  };
+
+  const handleAdmin = (status, id) => {
+    if (id === currentUser?._id) {
+      toast.error("You can to change your role!");
+    } else {
+      const filteredData = users.find((item) => item._id === id);
+      let data = { ...filteredData, isAdmin: status };
+      dispatch(updateUser({ id, data }));
+      toast.success("Role changed successfully!");
     }
   };
 
@@ -61,15 +78,22 @@ export default function ViewUser() {
       renderCell: (params) => {
         return (
           <>
-            <Tooltip title="Edit this author">
-              <IconButton>
-                <Edit
-                  onClick={() =>
-                    navigate(`/dashboard/manage-author/${params.id}`)
-                  }
-                />
-              </IconButton>
-            </Tooltip>
+            {params.row.isAdmin === true ? (
+              <Tooltip title="Remove Admin">
+                <IconButton>
+                  <PersonRemoveIcon
+                    onClick={() => handleAdmin(false, params.id)}
+                  />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title="Make Admin">
+                <IconButton>
+                  <GavelIcon onClick={() => handleAdmin(true, params.id)} />
+                </IconButton>
+              </Tooltip>
+            )}
+
             <Tooltip title="Delete this author">
               <IconButton sx={{ color: "red" }}>
                 <Delete onClick={() => handleDelete(params.id)} />
